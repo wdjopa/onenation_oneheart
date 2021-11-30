@@ -4,7 +4,7 @@
 Orphelinats
 @endsection
 
-@section("subtitle", "Ajoutez un orphelinat ici.")
+@section("subtitle", "Modifiez l'orphelinat $orphanage->name")
 
 @section('css')
 <link rel="stylesheet" href="{{asset("admin_assets/vendors/toastify/toastify.css")}}">
@@ -16,14 +16,15 @@ Orphelinats
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Création d'un orphelinat</h4>
+            <h4 class="card-title">Mise à jour d'un orphelinat</h4>
             <small>Tous les champs avec (*) sont obligatoires</small>
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-horizontal" method="POST" action="{{route("orphanages.store")}}"
+                <form class="form form-horizontal" method="POST" action="{{route("orphanages.update", $orphanage)}}"
                     enctype="multipart/form-data">
                     @csrf
+                    @method("PUT")
                     @include("admin.orphanages.components.form", ["fields" => $fields, "orphanage" => $orphanage])
                 </form>
             </div>

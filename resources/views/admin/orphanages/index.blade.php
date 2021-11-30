@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 {{-- Titre de la page --}}
 @section('title')
-Orphélinats
+Orphelinats
 @endsection
 
-@section("subtitle", "La liste des orphélinats enregistrés")
+@section("subtitle", "La liste des orphelinats enregistrés")
 
 {{-- Code CSS supplémentaire (soit des <link></link> soit <style></style>) --}}
 @section('css')
@@ -16,9 +16,9 @@ Orphélinats
         <div class="card">
             <div class="card-body">
                 <div class="mb-4">
-                    <h4 class="card-title">Liste des orphélinats</h4>
+                    <h4 class="card-title">Liste des orphelinats</h4>
                     <div class="text-right" style="text-align: right;">
-                        <a href="{{route("orphanages.create")}}" class="btn btn-success">Ajouter un orphélinat</a>
+                        <a href="{{route("orphanages.create")}}" class="btn btn-success">Ajouter un orphelinat</a>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -60,7 +60,7 @@ Orphélinats
                                                 class="bi-pencil c-orange-700"></i></a>
                                         </a>
                                         <button type="button"
-                                            onclick="document.querySelector('#check{{$orphanage->id}}').setAttribute('checked', 'checked');(confirm('Êtes-vous sûr de vouloir supprimer cet(s) orphélinat(s) ?')? document.deleteForm.submit():console.log('annulé'));"
+                                            onclick="document.querySelector('#check{{$orphanage->id}}').setAttribute('checked', 'checked');(confirm('Êtes-vous sûr de vouloir supprimer cet(s) orphelinat(s) ?')? document.deleteForm.submit():console.log('annulé'));"
                                             class="btn btn-danger">
                                             <span class=""><i class="bi-trash c-red-600"></i></span>
                                         </button>

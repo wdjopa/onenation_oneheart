@@ -8,14 +8,14 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset("admin_assets/css/bootstrap.css")}}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/bootstrap.css') }}">
 
-    <link rel="stylesheet" href="{{asset("admin_assets/vendors/iconly/bold.css")}}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/vendors/iconly/bold.css') }}">
 
-    <link rel="stylesheet" href="{{asset("admin_assets/vendors/perfect-scrollbar/perfect-scrollbar.css")}}">
-    <link rel="stylesheet" href="{{asset("admin_assets/vendors/bootstrap-icons/bootstrap-icons.css")}}">
-    <link rel="stylesheet" href="{{asset("admin_assets/css/app.css")}}">
-    <link rel="shortcut icon" href="{{asset("admin_assets/images/favicon.svg")}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('admin_assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('admin_assets/images/favicon.svg') }}" type="image/x-icon">
     @yield("css")
 </head>
 
@@ -36,12 +36,23 @@
             <div class="page-content">
                 @yield("content")
             </div>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; <a href="https://lamater.tech" target="_blank">La Mater Tech</a> for <a href="">One Nation One Heart</a> </p>
+                    </div>
+                    <div class="float-end">
+                        <p>Based on admin template Mazer by <a
+                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-    <script src="{{asset("admin_assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js")}}"></script>
-    <script src="{{asset("admin_assets/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{ asset('admin_assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('admin_assets/js/bootstrap.bundle.min.js') }}"></script>
     @yield("scripts")
-    <script src="{{asset("admin_assets/js/main.js")}}"></script>
+    <script src="{{ asset('admin_assets/js/main.js') }}"></script>
 </body>
 
 </html>

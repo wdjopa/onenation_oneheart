@@ -32,20 +32,20 @@ class OrphanageController extends Controller
         $fields[] = [
             "name" => "Nom",
             "field_name" => "name",
-            "placeholder" => "Nom de l'orphélinat",
+            "placeholder" => "Nom de l'orphelinat",
             "type" => "text",
             "required" => true,
         ];
         $fields[] = [
             "name" => "Email",
             "field_name" => "email",
-            "placeholder" => "Email de l'orphélinat",
+            "placeholder" => "Email de l'orphelinat",
             "type" => "email",
         ];
         $fields[] = [
             "name" => "Tel",
             "field_name" => "tel",
-            "placeholder" => "N° de téléphone l'orphélinat",
+            "placeholder" => "N° de téléphone l'orphelinat",
             "type" => "tel",
             "required" => true,
         ];
@@ -103,7 +103,7 @@ class OrphanageController extends Controller
             }
         }
 
-        return redirect()->route("orphanages.index")->with("success", "L'orphélinat a été enregistré avec succès.");
+        return redirect()->route("orphanages.index")->with("success", "L'orphelinat a été enregistré avec succès.");
     }
 
     /**
@@ -125,7 +125,51 @@ class OrphanageController extends Controller
      */
     public function edit(Orphanage $orphanage)
     {
-        //
+
+        $cities = City::all();
+        $fields = [];
+        $fields[] = [
+            "name" => "Nom",
+            "field_name" => "name",
+            "placeholder" => "Nom de l'orphelinat",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->name,
+        ];
+        $fields[] = [
+            "name" => "Email",
+            "field_name" => "email",
+            "placeholder" => "Email de l'orphelinat",
+            "type" => "email",
+            "value" => $orphanage->datas["email"],
+        ];
+        $fields[] = [
+            "name" => "Tel",
+            "field_name" => "tel",
+            "placeholder" => "N° de téléphone l'orphelinat",
+            "type" => "tel",
+            "required" => true,
+            "value" => $orphanage->datas["tel"],
+        ];
+        $fields[] = [
+            "name" => "Nom du gérant",
+            "field_name" => "gerant",
+            "placeholder" => "Nom du gérant",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->datas["gerant"],
+        ];
+        $fields[] = [
+            "name" => "Nombre d'enfants",
+            "field_name" => "children",
+            "placeholder" => "Nombre d'enfants du gérant",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->datas["total_children"],
+        ];
+
+        return view("admin.orphanages.edit", compact("cities", "fields", "orphanage"));
+
     }
 
     /**
@@ -137,7 +181,32 @@ class OrphanageController extends Controller
      */
     public function update(Request $request, Orphanage $orphanage)
     {
-        //
+
+        $orphanage->name = $request->name;
+        $orphanage->status = $request->status ? 1 : 0;
+        $datas = [
+            "donates" => [
+                'total_received' => 0,
+                'total_remaining' => 0,
+                'donators' => [],
+            ],
+            "email" => $request->email,
+            "tel" => $request->tel,
+            "gerant" => $request->tel,
+            "total_children" => $request->children,
+            "description" => $request->description,
+            "public_content" => $request->public_content,
+        ];
+        $orphanage->datas = $datas;
+        $orphanage->save();
+
+        if ($request->files) {
+            foreach ($request->files as $image) {
+                $orphanage->addMedia($image)->toMediaCollection("images");
+            }
+        }
+        return redirect()->route("orphanages.index")->with("success", "L'orphelinat a été modifié avec succès.");
+
     }
 
     /**
@@ -150,4 +219,29 @@ class OrphanageController extends Controller
     {
         //
     }
+
+
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Request
+     * @return \Illuminate\Http\Response
+     */
+    public function multipleDestroy(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            foreach ($ids as $id) {
+                $orphanage = Orphanage::find($id);
+                //ActivityLogger::activity("Suppression de l'équipe ID:".$client->id.' par l\'utilisateur ID:'.Auth::id());
+                $orphanage->delete();
+            }
+            $message = sizeof($ids) . ' orphelinat(s) supprimé(s) avec succès';
+        } else {
+            $message = "Aucun orphelinat n'a été supprimé";
+        }
+        return redirect()->route("orphanages.index")->with('success', $message);
+    }
+
 }
