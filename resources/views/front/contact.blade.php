@@ -1,4 +1,5 @@
 @extends('front.layouts.app')
+@section('title', 'Contact')
 
 @section('content')
 
@@ -28,7 +29,7 @@
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">
                       <div class="text">
-                        <p><span>Adresse:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                        <p><span>Adresse:</span> Omnisports, Yaoundé, Cameroun</p>
                       </div>
                     </div>
                   </div>

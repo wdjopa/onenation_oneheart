@@ -1,5 +1,6 @@
 @extends('front.layouts.app')
 
+@section('title', 'Orphélinats')
 @section('content')
 
 

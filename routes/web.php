@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrphanageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DonationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +30,13 @@ Route::get('/', [PageController::class, "home"])->name("public.home");
 Route::get('/about', [PageController::class, "about"])->name("public.about");
 Route::get('/search', [PageController::class, "search"])->name("public.search");
 Route::get('/contact', [PageController::class, "contact"])->name("public.contact");
+Route::get('/joinus', [PageController::class, "joinus"])->name("public.joinus");
+Route::post('/joinus', [PageController::class, "joinus_register"])->name("public.joinus.register");
 
 Route::get('/orphelinats', [PageController::class, "orphanages"])->name("public.orphanages");
 Route::get('/orphelinats/{orphanage_slug}', [PageController::class, "orphanages_detail"])->name("public.orphanages.details");
 
 Route::get('/blog', [PageController::class, "blog"])->name("public.blog");
 Route::get('/blog/{blog_slug}', [PageController::class, "blog_detail"])->name("public.blog.details");
+
+Route::post('/donation', [DonationController::class, "store"])->name("public.donation");

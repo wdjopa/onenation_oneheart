@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center">
                 <div class="col-lg-6">
-                    <span class="subheading">Raising Hope</span>
-                    <h1 class="mb-4">To the Homeless &amp; Hopeless People</h1>
+                    <span class="subheading">One Nation One Heart</span>
+                    <h1 class="mb-4">Smile Together</h1>
                     <p><a href="#donate" class="btn btn-primary p-4 py-3">Faire un don maintenant <span
                                 class="ion-ios-arrow-round-forward"></span></a>
                         {{-- <a href="#" class="btn">Watch the
@@ -30,27 +30,34 @@
                                 <span class="flaticon-heart"></span>
                             </div>
                             <div class="text section-counter-2">
-                                <h4 class="countup">0 FCFA</h4>
+                                <h4 class="countup">{{ number_format($total_donations) }} FCFA</h4>
                                 <span>Dons récoltés</span>
                             </div>
                         </div>
-                        <form action="#" class="appointment">
-                            <span class="subheading">Donate Now</span>
-                            <h2 class="mb-4 appointment-head">Giving is the greatest act of grace</h2>
+                        <form action="{{ route('public.donation') }}" method="POST" class="appointment">
+                            @csrf
+                            <span class="subheading">Faire un don</span>
+                            <h2 class="mb-4 appointment-head">Donner est le plus grand acte de grace</h2>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Your Full Name</label>
-                                        <input type="text" class="form-control" placeholder="Your Full Name">
+                                        <label for="name">Nom complet</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Nom complet">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="email">Email Address</label>
-                                        <input type="text" class="form-control" placeholder="Email">
+                                        <label for="email">Adresse email</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="tel">N° de tel</label>
+                                        <input type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-12 d-none">
                                     <div class="form-group">
                                         <label for="subject">Select Causes</label>
                                         <div class="form-field">
@@ -68,34 +75,35 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="amount">Amount to Give</label>
-                                        <input type="text" class="form-control" placeholder="Amount">
+                                        <label for="amount">Montant (en FCFA)</label>
+                                        <input type="number" name="amount" class="form-control"
+                                            placeholder="Montant à donner (en FCFA)">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group d-flex">
                                         <div class="form-check d-flex">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">Paypal</label>
+                                            <input class="form-check-input" type="radio" name="payment_mode" value="paypal"
+                                                id="payment_mode1">
+                                            <label class="form-check-label" for="payment_mode1">Paypal</label>
                                         </div>
                                         <div class="form-check d-flex ms-3">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault2">
-                                            <label class="form-check-label" for="flexRadioDefault2">Credit Card</label>
+                                            <input class="form-check-input" type="radio" name="payment_mode" value="card"
+                                                id="payment_mode2">
+                                            <label class="form-check-label" for="payment_mode2">Carte bancaire</label>
                                         </div>
                                         <div class="form-check d-flex ms-3">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault3">
-                                            <label class="form-check-label" for="flexRadioDefault3">OM/MoMo</label>
+                                            <input class="form-check-input" type="radio" name="payment_mode" value="momo"
+                                                id="payment_mode3">
+                                            <label class="form-check-label" for="payment_mode3">OM / MTN MoMo</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="submit" value="Donate Now" class="btn btn-light py-3 px-4 rounded">
+                                    <input type="submit" value="Faire mon don" class="btn btn-light py-3 px-4 rounded">
                                 </div>
                             </div>
                         </form>
@@ -104,19 +112,25 @@
                 <div class="col-md-7 heading-section d-flex align-items-center" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="1000">
                     <div class="mt-0 about-wrap">
-                        <span class="subheading">Welcome to Lovecare Charity</span>
-                        <h2 class="mb-4">We Help Thousands of Children to Get Their Education</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                            live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                            a large language ocean.</p>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                            is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                        <span class="subheading">Bienvenue chez One Nation, One Heart</span>
+                        <h2 class="mb-4">Pour une action sociale, humanitaire et solidaire,</h2>
+                        <p>Sur cette plateforme, nous recensons tous les orphelinats et centres sociaux légaux sur
+                            toute l’étendue du territoire national Camerounais (répartis par Région, Départements, Villes et
+                            quartiers), le nombre d’enfants en charge dans chaque structure, la tranche d’âge d’enfants
+                            présents dans ces orphelinats, la liste de leurs besoins (financiers, sanitaires, denrées
+                            alimentaires, vestimentaires, etc…), leur histoire et les contacts des responsables de ces
+                            diverses structures.
+                        </p>
+                        <p>
+                            L'idée étant de casser les codes préétablis et préjugés de l’action sociale au Cameroun et
+                            rendre chacun acteur du bonheur d’autrui.</p>
+
                         <div class="row mt-5 g-md-3">
                             <div class="col-md-6 col-lg-4 mb-2 mb-md-0 d-flex align-items-stretch">
                                 <a href="#" class="services-2">
                                     <div class="icon"><span class="flaticon-donation"></span></div>
                                     <div class="text">
-                                        <h2>Start Donating</h2>
+                                        <h2>Ajouter un orphélinat</h2>
                                     </div>
                                 </a>
                             </div>
@@ -124,7 +138,7 @@
                                 <a href="#" class="services-2 color-2">
                                     <div class="icon"><span class="flaticon-ecosystem"></span></div>
                                     <div class="text">
-                                        <h2>Join Our Community</h2>
+                                        <h2>Devenir partenaire</h2>
                                     </div>
                                 </a>
                             </div>
@@ -132,7 +146,7 @@
                                 <a href="#" class="services-2 color-3">
                                     <div class="icon"><span class="flaticon-charity"></span></div>
                                     <div class="text">
-                                        <h2>Be A Volunteer</h2>
+                                        <h2>Devenir bénévole</h2>
                                     </div>
                                 </a>
                             </div>
@@ -149,8 +163,8 @@
             <div class="row">
                 <div class="col-md-6 heading-section heading-section-white mb-5" data-aos="fade-up"
                     data-aos-duration="1000">
-                    <span class="subheading">Great Reviews for our services</span>
-                    <h2 class="mb-0">Technical Statistics</h2>
+                    <span class="subheading">Quelques chiffres de ONOH</span>
+                    <h2 class="mb-0">Chiffres clés</h2>
                 </div>
             </div>
             <div class="row section-counter">
@@ -159,9 +173,9 @@
                         <div class="icon">
                             <span class="flaticon-heart"></span>
                         </div>
-                        <h2 class="number"><small>$</small><span class="countup">60</span><small>M</small>
+                        <h2 class="number"><span class="countup">5</span>
                         </h2>
-                        <span class="caption">Fund Raised</span>
+                        <span class="caption">Orphelinats prospectés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
@@ -169,8 +183,8 @@
                         <div class="icon">
                             <span class="flaticon-ecosystem"></span>
                         </div>
-                        <h2 class="number"><span class="countup">9200</span></h2>
-                        <span class="caption">Completed Projects </span>
+                        <h2 class="number"><span class="countup">3</span></h2>
+                        <span class="caption">Partenaires </span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
@@ -178,8 +192,8 @@
                         <div class="icon">
                             <span class="flaticon-donation"></span>
                         </div>
-                        <h2 class="number"><span class="countup">5800</span></h2>
-                        <span class="caption">Donation</span>
+                        <h2 class="number"><span class="countup">239</span></h2>
+                        <span class="caption">enfants recensés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
@@ -187,8 +201,8 @@
                         <div class="icon">
                             <span class="flaticon-charity"></span>
                         </div>
-                        <h2 class="number"><span class="countup">2750</span></h2>
-                        <span class="caption">Volunteer</span>
+                        <h2 class="number"><span class="countup">33</span></h2>
+                        <span class="caption">bénévoles</span>
                     </div>
                 </div>
             </div>
@@ -199,14 +213,29 @@
         <div class="container-xl">
             <div class="row justify-content-center">
                 <div class="col-lg-5 heading-section text-center mb-4" data-aos="fade-up" data-aos-duration="1000">
-                    <span class="subheading">Our Causes</span>
-                    <h2 class="mb-4">Our Causes &amp; Help Us</h2>
+                    <span class="subheading">Nos actions menées grâce à vous </span>
+                    <h2 class="mb-4">Actions menées</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="carousel-causes">
-                        <div class="item">
+
+
+                    @if ($blogs->count() > 0)
+                        <div class="carousel-causes">
+                            @foreach ($blogs as $blog)
+                                @include("front.components.blog-card", ["blog" => $blog])
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="d-flex"
+                            style="flex-direction: column; align-items: center; justify-content:center; margin: auto;">
+                            <img src="{{ asset('lovecare/images/empty.svg') }}" style="margin: 50px auto; width: 300px" />
+                            Pas d'articles enregistré pour l'instant
+                        </div>
+                    @endif
+
+                    {{-- <div class="item">
                             <div class="causes-wrap">
                                 <a href="{{ asset('lovecare/images/cause-1') }}.jpg"
                                     class="img d-flex align-items-end justify-content-center glightbox"
@@ -237,104 +266,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="causes-wrap">
-                                <a href="{{ asset('lovecare/images/cause-1') }}.jpg"
-                                    class="img d-flex align-items-end justify-content-center glightbox"
-                                    style="background-image: url({{ asset('lovecare/images/cause-2') }}.jpg);">
-                                    <div class="icon d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-search"></span></div>
-                                    <span class="sub">Education</span>
-                                </a>
-                                <div class="text">
-                                    <div class="desc">
-                                        <h2 class="mb-3">Give Food to Homeless Children</h2>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia.</p>
-                                    </div>
-                                    <div class="progress-desc">
-                                        <div class="progress-wrap">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                                    <span>70%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex raised-goal justify-content-between">
-                                            <span>Raised: <strong>$9,800</strong></span>
-                                            <span class="goal">Goal: <strong>15,000</strong></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="causes-wrap">
-                                <a href="{{ asset('lovecare/images/cause-1') }}.jpg"
-                                    class="img d-flex align-items-end justify-content-center glightbox"
-                                    style="background-image: url({{ asset('lovecare/images/cause-3') }}.jpg);">
-                                    <div class="icon d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-search"></span></div>
-                                    <span class="sub">Education</span>
-                                </a>
-                                <div class="text">
-                                    <div class="desc">
-                                        <h2 class="mb-3">Give Food to Homeless Children</h2>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia.</p>
-                                    </div>
-                                    <div class="progress-desc">
-                                        <div class="progress-wrap">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                                    <span>70%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex raised-goal justify-content-between">
-                                            <span>Raised: <strong>$9,800</strong></span>
-                                            <span class="goal">Goal: <strong>15,000</strong></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="causes-wrap">
-                                <a href="{{ asset('lovecare/images/cause-1') }}.jpg"
-                                    class="img d-flex align-items-end justify-content-center glightbox"
-                                    style="background-image: url({{ asset('lovecare/images/cause-4') }}.jpg);">
-                                    <div class="icon d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-search"></span></div>
-                                    <span class="sub">Education</span>
-                                </a>
-                                <div class="text">
-                                    <div class="desc">
-                                        <h2 class="mb-3">Give Food to Homeless Children</h2>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia.</p>
-                                    </div>
-                                    <div class="progress-desc">
-                                        <div class="progress-wrap">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                                    <span>70%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex raised-goal justify-content-between">
-                                            <span>Raised: <strong>$9,800</strong></span>
-                                            <span class="goal">Goal: <strong>15,000</strong></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </div> --}}
                 </div>
             </div>
         </div>
@@ -346,16 +278,32 @@
             <div class="row justify-content-center">
                 <div class="col-md-10 heading-section heading-section-white mb-5 text-center" data-aos="fade-up"
                     data-aos-duration="1000">
-                    <span class="subheading">Lovecare Charity</span>
-                    <h2 class="mb-4">The Smallest Act of Kindness is Worth More Than the Grandest Intention</h2>
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Donate Now!</a> <a href="#"
-                            class="btn btn-secondary py-3 px-4">Become A Volunteer</a></p>
+                    <span class="subheading">Faites un don ou devenez volontaires</span>
+                    <h2 class="mb-4">Le plus petit acte de bonté vaut plus que la plus grande intention</h2>
+                    <p><a href="#donate" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a href="#"
+                            class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="ftco-section">
+        <div class="container-xl">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 heading-section text-center" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="subheading">Partenaires</span>
+                    <h2>Découvrez nos partenaires</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {{-- La Mater Market --}}
+                @foreach ($partners as $partner)
+                    @include("front.components.partner-card", ["partner" =>($partner)])
+                @endforeach
+            </div>
+        </div>
+    </section>
+    {{-- <section class="ftco-section">
         <div class="container-fluid">
             <div class="row justify-content-center pb-4">
                 <div class="col-lg-7 text-center heading-section" data-aos="fade-up" data-aos-duration="1000">
@@ -482,7 +430,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section testimony-section img"
         style="background-image: url({{ asset('lovecare/images/bg_4.jpg') }});">
@@ -491,108 +439,18 @@
             <div class="row justify-content-center pb-4">
                 <div class="col-lg-7 text-center heading-section heading-section-white" data-aos="fade-up"
                     data-aos-duration="1000">
-                    <span class="subheading">Testimonial</span>
-                    <h2 class="mb-5">What People Says</h2>
+                    <span class="subheading">Témoignages</span>
+                    <h2 class="mb-5">Ce qu'ils disent de nous</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div class="carousel-testimony">
-                        <div class="item">
-                            <div class="testimony-wrap">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-quote-left"></div>
-                                <div class="text">
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img"
-                                            style="background-image: url({{ asset('lovecare/images/person_1.jpg') }})">
-                                        </div>
-                                        <div class="ps-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-quote-left"></div>
-                                <div class="text">
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img"
-                                            style="background-image: url({{ asset('lovecare/images/person_2.jpg') }})">
-                                        </div>
-                                        <div class="ps-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-quote-left"></div>
-                                <div class="text">
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img"
-                                            style="background-image: url({{ asset('lovecare/images/person_3.jpg') }})">
-                                        </div>
-                                        <div class="ps-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-quote-left"></div>
-                                <div class="text">
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img"
-                                            style="background-image: url({{ asset('lovecare/images/person_4.jpg') }})">
-                                        </div>
-                                        <div class="ps-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="fa fa-quote-left"></div>
-                                <div class="text">
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img"
-                                            style="background-image: url({{ asset('lovecare/images/person_2.jpg') }})">
-                                        </div>
-                                        <div class="ps-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        @foreach ($testimonies as $testimony)
+                            @include("front.components.testimony-item", ["testimony" => $testimony])
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -611,14 +469,14 @@
                 <div class="col-md-6 heading-section d-flex align-items-center" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="1000">
                     <div class="mt-0 my-lg-5 py-5">
-                        <span class="subheading">Welcome to LoveCare Non-Profit Charity</span>
-                        <h2 class="mb-4">Do You Care Our Children?</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                            live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                            a large language ocean.</p>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                            is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p><a href="#" class="btn btn-secondary py-3 px-4">Be A Volunteer</a></p>
+                        <span class="subheading">Apportez un soutien humain à l'aventure ONOH</span>
+                        <h2 class="mb-4">Appel à bénévoles</h2>
+                        <p>Couvrir l’étendue du territoire afin d’avoir une proximité avec la quasi-totalité des orphelinats
+                            et centres sociaux. Faciliter les descentes et faire connaître l’association.
+                        </p>
+                        <p>N'hésitez pas à nous rejoindre et mettre votre pièrre à l'édifice.
+                        </p>
+                        <p><a href="#" class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                     </div>
                 </div>
             </div>
@@ -626,71 +484,5 @@
     </section>
 
 
-    <section class="ftco-section">
-        <div class="container-xl">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-7 heading-section text-center" data-aos="fade-up" data-aos-duration="1000">
-                    <span class="subheading">Our Blog</span>
-                    <h2>Recent From Blog</h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000"
-                        data-aos-delay="100">
-                        <a href="blog-single.html" class="block-20 img"
-                            style="background-image: url('{{ asset('lovecare/images/image_1.jpg') }}');">
-                        </a>
-                        <div class="text text-center">
-                            <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i
-                                        class="fa fa-calendar me-1"></i>Feb. 22, 2021</span> <span><a href="#"><i
-                                            class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
-                            <h3 class="heading mb-3"><a href="#">Give Hope to the People Need Most</a></h3>
-                            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                ocean.</p>
-                            <p><a href="#" class="btn btn-secondary">Read More <span
-                                        class="ion-ios-arrow-round-forward me-2"></span></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000"
-                        data-aos-delay="100">
-                        <a href="blog-single.html" class="block-20 img"
-                            style="background-image: url('{{ asset('lovecare/images/image_2.jpg') }}');">
-                        </a>
-                        <div class="text text-center">
-                            <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i
-                                        class="fa fa-calendar me-1"></i>Feb. 22, 2021</span> <span><a href="#"><i
-                                            class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
-                            <h3 class="heading mb-3"><a href="#">Give Hope to the People Need Most</a></h3>
-                            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                ocean.</p>
-                            <p><a href="#" class="btn btn-secondary">Read More <span
-                                        class="ion-ios-arrow-round-forward me-2"></span></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex">
-                    <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000"
-                        data-aos-delay="100">
-                        <a href="blog-single.html" class="block-20 img"
-                            style="background-image: url('{{ asset('lovecare/images/image_3.jpg') }}');">
-                        </a>
-                        <div class="text text-center">
-                            <p class="meta"><span><i class="fa fa-user me-1"></i>Admin</span> <span><i
-                                        class="fa fa-calendar me-1"></i>Feb. 22, 2021</span> <span><a href="#"><i
-                                            class="fa fa-comment me-1"></i> 3 Comments</a></span></p>
-                            <h3 class="heading mb-3"><a href="#">Give Hope to the People Need Most</a></h3>
-                            <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                ocean.</p>
-                            <p><a href="#" class="btn btn-secondary">Read More <span
-                                        class="ion-ios-arrow-round-forward me-2"></span></a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 @endsection
