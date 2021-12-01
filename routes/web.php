@@ -35,4 +35,3 @@ Route::get('/orphelinats/{orphanage_slug}', [PageController::class, "orphanages_
 
 Route::get('/blog', [PageController::class, "blog"])->name("public.blog");
 Route::get('/blog/{blog_slug}', [PageController::class, "blog_detail"])->name("public.blog.details");
-

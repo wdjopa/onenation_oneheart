@@ -64,7 +64,7 @@
       	<div class="container-xl">
       		<div class="row">
 	          <div class="col-md-12">
-	            <p class="mb-0" style="font-size: 14px;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="nofollow noopener">Colorlib</a></p>
+	            <p class="mb-0" style="font-size: 14px;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | One Nation One Heart. Made By <a href="https://lamater.tech" target="_blank">La Mater Tech</a></p>
 	          </div>
 	        </div>
       	</div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orphanage;
+use App\Models\User;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -16,19 +19,20 @@ class PageController extends Controller
     }
     public function about(Request $request)
     {
-        return view("front.about");
+        $users = User::all();
+        return view("front.about", compact("users"));
     }
-
 
     public function blog(Request $request)
     {
-        return view("front.blog");
+        $blogs = Blog::paginate(9);
+        return view("front.blog", compact("blogs"));
     }
 
-    
     public function orphanages(Request $request)
     {
-        return view("front.orphanages");
+        $orphelinats = Orphanage::paginate(9);
+        return view("front.orphanages", compact("orphelinats"));
     }
     //
 }

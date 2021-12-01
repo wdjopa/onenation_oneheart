@@ -3,46 +3,46 @@
 @section('content')
 
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset("lovecare/images/bg_5.jpg")}}');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 text-center">
-            <p class="breadcrumbs"><span class="me-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Contact <i class="fa fa-chevron-right"></i></span></p>
-            <h1 class="mb-0 bread">Contact Us</h1>
+            <p class="breadcrumbs"><span class="me-2"><a href="{{route("public.home")}}">Accueil <i class="fa fa-chevron-right"></i></a></span> <span>Contact <i class="fa fa-chevron-right"></i></span></p>
+            <h1 class="mb-0 bread">Contact</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ftco-section bg-light">
+    <section class="ftco-section ">
       <div class="container-xl">
         <div class="wrapper">
           <div class="row g-0">
             
             <div class="col-lg-12">
               <div class="contact-wrap w-100 p-md-5 p-4">
-                <h3>Contact us</h3>
-                <p class="mb-4">We're open for any suggestion or just to have a chat</p>
+                <h3>Contactez-nous</h3>
+                <p class="mb-4">Nous sommes ouvert ! Laissez-nous un message et nous reviendrons vers vous très rapidement</p>
                 <div class="row mb-4">
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">
                       <div class="text">
-                        <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                        <p><span>Adresse:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">
                       <div class="text">
-                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">contact@onoh.org</a></p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">
                       <div class="text">
-                        <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                        <p><span>Telephone / Whatsapp:</span> <a href="https://wa.me/33614597593">+33 6 14 59 75 93</a></p>
                       </div>
                     </div>
                   </div>
@@ -51,7 +51,7 @@
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nom complet">
                       </div>
                     </div>
                     <div class="col-lg-4"> 
@@ -61,29 +61,28 @@
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Objet">
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <textarea name="message" class="form-control" id="message" cols="30" rows="7" placeholder="Create a message here"></textarea>
+                        <textarea name="message" class="form-control" id="message" cols="30" rows="7" placeholder="Votre message ici"></textarea>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary">
+                        <input type="submit" value="Envoyer le message" class="btn btn-primary">
                         <div class="submitting"></div>
                       </div>
                     </div>
                   </div>
                 </form>
                 <div class="w-100 social-media mt-5">
-                  <h3>Follow us here</h3>
+                  <h3>Suivez-nous</h3>
                   <p>
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">Dribbble</a>
+                    <a href="https://facebook.com/">Facebook</a>
+                    <a href="https://twitter.com/">Twitter</a>
+                    <a href="https://instagram.com/">Instagram</a>
                   </p>
                 </div>
               </div>

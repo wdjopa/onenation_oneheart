@@ -90,7 +90,7 @@
                                         <div class="form-check d-flex ms-3">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault"
                                                 id="flexRadioDefault3">
-                                            <label class="form-check-label" for="flexRadioDefault3">Payoneer</label>
+                                            <label class="form-check-label" for="flexRadioDefault3">OM/MoMo</label>
                                         </div>
                                     </div>
                                 </div>
