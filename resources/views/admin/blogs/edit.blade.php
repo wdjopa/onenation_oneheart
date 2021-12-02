@@ -55,8 +55,12 @@ Blog/Actions menées
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 <script>
     // EDITEUR DE TEXTE
-    tinymce.init({ selector: '#public_content', toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code', plugins: 'code' });
-
+   tinymce.init({
+            selector: '#public_content',
+            plugins: "image code",
+            toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+            a11y_advanced_options: true
+        });
     // Filepond: Multiple Files
     FilePond.create( document.querySelector('.image-preview-filepond'), {
         allowMultiple: true,
