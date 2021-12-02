@@ -18,7 +18,7 @@
                     <div class="mb-4">
                         <h4 class="card-title">Liste des dons</h4>
                         <div class="text-right" style="text-align: right;">
-                            <a href="{{ route('donations.create') }}" class="btn btn-success">Ajouter un don</a>
+                            {{-- <a href="{{ route('donations.create') }}" class="btn btn-success">Ajouter un don</a> --}}
                         </div>
                     </div>
                     <div class="table-responsive">
