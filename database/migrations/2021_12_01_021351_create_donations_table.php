@@ -18,6 +18,10 @@ class CreateDonationsTable extends Migration
             $table->float("amount", 15, 2)->default(0);
             $table->integer("status")->default(0);
             $table->json("datas")->nullable();
+
+            $table->unsignedBigInteger('orphanage_id')->nullable();
+            $table->foreign('orphanage_id')->references('id')->on('orphanages')->onDelete('set null');
+
             $table->timestamps();
         });
     }

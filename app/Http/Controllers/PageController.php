@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\Orphanage;
 use App\Models\Donation;
+use App\Models\Orphanage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -69,12 +69,11 @@ class PageController extends Controller
             "image" => null,
         ];
 
-
         $total_donations = Donation::all()->sum("amount");
 
         $blogs = Blog::latest()->paginate(9);
 
-        return view("front.home", compact("partners","testimonies", "total_donations", "blogs"));
+        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs"));
     }
     public function contact(Request $request)
     {
@@ -92,10 +91,33 @@ class PageController extends Controller
         return view("front.blog", compact("blogs"));
     }
 
+    public function blog_detail(Request $request, $orphanage_slug)
+    {
+
+        $blog = Blog::where("slug", $orphanage_slug)->first();
+        views($blog)->record();
+        return view("front.blogs_details", compact("blog"));
+    }
+
     public function orphanages(Request $request)
     {
         $orphelinats = Orphanage::paginate(9);
         return view("front.orphanages", compact("orphelinats"));
+    }
+    public function orphanages_detail(Request $request, $orphanage_slug)
+    {
+
+        $orphelinat = Orphanage::where("slug", $orphanage_slug)->first();
+        views($orphelinat)->record();
+        return view("front.orphanages_details", compact("orphelinat"));
+    }
+
+    public function search(Request $request)
+    {
+        $searchResults = (new Search())
+            ->registerModel(Orphanage::class, 'name', 'city')
+            ->search($request->q);
+
     }
 
     public function joinus(Request $request)
@@ -109,7 +131,7 @@ class PageController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $datas = [];
-        $datas["status"] = 1; // active user
+        $datas["visible"] = 0; // invisible on homepage
         $datas["tel"] = $request->tel;
         $datas["register_from"] = "JoinUs Page";
         $datas["past_experience"] = $request->past_experience;
@@ -121,6 +143,7 @@ class PageController extends Controller
         $datas["facebook"] = "";
         $datas["whatsapp"] = "";
         $datas["instagram"] = "";
+        $datas["linkedin"] = "";
         $datas["description"] = "";
         $datas["profile_picture"] = "";
         $user->password = bcrypt(Str::random(8));

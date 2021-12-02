@@ -6,13 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+   
     <meta property="og:type" content="Association" />
-    <meta property="og:title" content="Smile Together - One Nation One Heart" />
-    <meta property="og:description" content="Faites un don à des orphélins avec One Nation One Heart" />
-    <meta property="og:url" content="https://onoh.org/" />
-    <meta property="og:image" content="{{asset("lovecare/images/logo.png")}}" />
-    <meta property="og:site_name" content="Faites un don ou devenez bénévole chez One Nation One Heart" />
+    <meta property="og:title" content="@yield("meta_title", "Smile Together - One Nation One Heart")" />
+    <meta property="og:description" content="@yield("meta_description", "Faites un don à des orphélins avec One Nation One Heart")" />
+    <meta property="og:url" content="@yield("meta_url", "https://onoh.org/")" />
+    <meta property="og:image" content="@yield("meta_image", asset("lovecare/images/logo.png"))" />
+    <meta property="og:site_name" content="@yield("meta_site_name", "Faites un don ou devenez bénévole chez One Nation One Heart")" />
 
 
     <link rel="preconnect" href="https://fonts.gstatic.com">

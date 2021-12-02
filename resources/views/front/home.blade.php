@@ -30,7 +30,7 @@
                                 <span class="flaticon-heart"></span>
                             </div>
                             <div class="text section-counter-2">
-                                <h4 class="countup">{{ number_format($total_donations) }} FCFA</h4>
+                                <h4 class="countup-">{{ number_format($total_donations) }} FCFA</h4>
                                 <span>Dons récoltés</span>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group d-flex">
+                                    <div class="form-group d-flex" style="flex-wrap: wrap;">
                                         <div class="form-check d-flex">
                                             <input class="form-check-input" type="radio" name="payment_mode" value="paypal"
                                                 id="payment_mode1">
@@ -127,7 +127,7 @@
 
                         <div class="row mt-5 g-md-3">
                             <div class="col-md-6 col-lg-4 mb-2 mb-md-0 d-flex align-items-stretch">
-                                <a href="#" class="services-2">
+                                <a href="{{route("public.contact")}}?add_orphanage" class="services-2">
                                     <div class="icon"><span class="flaticon-donation"></span></div>
                                     <div class="text">
                                         <h2>Ajouter un orphélinat</h2>
@@ -135,7 +135,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-4 mb-2 mb-md-0 d-flex align-items-stretch">
-                                <a href="#" class="services-2 color-2">
+                                <a href="mailto:contact@onoh.org?subject=Devenir partenaire" class="services-2 color-2">
                                     <div class="icon"><span class="flaticon-ecosystem"></span></div>
                                     <div class="text">
                                         <h2>Devenir partenaire</h2>
@@ -143,7 +143,7 @@
                                 </a>
                             </div>
                             <div class="col-md-6 col-lg-4 mb-2 mb-md-0 d-flex align-items-stretch">
-                                <a href="#" class="services-2 color-3">
+                                <a href="{{route("public.joinus")}}" class="services-2 color-3">
                                     <div class="icon"><span class="flaticon-charity"></span></div>
                                     <div class="text">
                                         <h2>Devenir bénévole</h2>
@@ -280,7 +280,7 @@
                     data-aos-duration="1000">
                     <span class="subheading">Faites un don ou devenez volontaires</span>
                     <h2 class="mb-4">Le plus petit acte de bonté vaut plus que la plus grande intention</h2>
-                    <p><a href="#donate" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a href="#"
+                    <p><a href="{{route("public.joinus")}}" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a href="#"
                             class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                 </div>
             </div>
@@ -476,7 +476,7 @@
                         </p>
                         <p>N'hésitez pas à nous rejoindre et mettre votre pièrre à l'édifice.
                         </p>
-                        <p><a href="#" class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
+                        <p><a href="{{route("public.joinus")}}" class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Orphanage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrphanageController extends Controller
 {
@@ -60,7 +61,7 @@ class OrphanageController extends Controller
             "name" => "Nombre d'enfants",
             "field_name" => "children",
             "placeholder" => "Nombre d'enfants du gérant",
-            "type" => "text",
+            "type" => "number",
             "required" => true,
         ];
 
@@ -80,16 +81,18 @@ class OrphanageController extends Controller
         $orphanage = new Orphanage();
 
         $orphanage->name = $request->name;
+        $orphanage->slug = Str::slug($request->name);
         $orphanage->status = $request->status ? 1 : 0;
+        $orphanage->city_id = $request->city_id;
         $datas = [
-            "donates" => [
-                'total_received' => 0,
-                'total_remaining' => 0,
-                'donators' => [],
-            ],
+            // "donates" => [
+            //     'total_received' => 0,
+            //     'total_remaining' => 0,
+            //     'donators' => [],
+            // ],
             "email" => $request->email,
             "tel" => $request->tel,
-            "gerant" => $request->tel,
+            "gerant" => $request->gerant,
             "total_children" => $request->children,
             "description" => $request->description,
             "public_content" => $request->public_content,
@@ -97,6 +100,7 @@ class OrphanageController extends Controller
         $orphanage->datas = $datas;
         $orphanage->save();
 
+        // dd($request->files);
         if ($request->files) {
             foreach ($request->files as $image) {
                 $orphanage->addMedia($image)->toMediaCollection("images");
@@ -163,7 +167,7 @@ class OrphanageController extends Controller
             "name" => "Nombre d'enfants",
             "field_name" => "children",
             "placeholder" => "Nombre d'enfants du gérant",
-            "type" => "text",
+            "type" => "number",
             "required" => true,
             "value" => $orphanage->datas["total_children"],
         ];
@@ -183,16 +187,18 @@ class OrphanageController extends Controller
     {
 
         $orphanage->name = $request->name;
+        $orphanage->slug = Str::slug($request->name);
         $orphanage->status = $request->status ? 1 : 0;
+        $orphanage->city_id = $request->city_id;
         $datas = [
-            "donates" => [
-                'total_received' => 0,
-                'total_remaining' => 0,
-                'donators' => [],
-            ],
+            // "donates" => [
+            //     'total_received' => 0,
+            //     'total_remaining' => 0,
+            //     'donators' => [],
+            // ],
             "email" => $request->email,
             "tel" => $request->tel,
-            "gerant" => $request->tel,
+            "gerant" => $request->gerant,
             "total_children" => $request->children,
             "description" => $request->description,
             "public_content" => $request->public_content,
@@ -201,6 +207,8 @@ class OrphanageController extends Controller
         $orphanage->save();
 
         if ($request->files) {
+            foreach($orphanage->getMedia("images") as $media)
+            $media->delete();
             foreach ($request->files as $image) {
                 $orphanage->addMedia($image)->toMediaCollection("images");
             }

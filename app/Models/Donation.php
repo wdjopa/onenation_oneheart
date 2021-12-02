@@ -10,4 +10,8 @@ class Donation extends Model
     use HasFactory;
 
     protected $casts = ["datas" => "array"];
+
+    public function orphanage(){
+        return $this->belongsTo(Orphanage::class);
+    }
 }

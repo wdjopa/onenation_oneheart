@@ -24,7 +24,7 @@ Orphelinats
                 <form class="form form-horizontal" method="POST" action="{{route("orphanages.store")}}"
                     enctype="multipart/form-data">
                     @csrf
-                    @include("admin.orphanages.components.form", ["fields" => $fields, "orphanage" => $orphanage])
+                    @include("admin.orphanages.components.form", ["fields" => $fields])
                 </form>
             </div>
         </div>

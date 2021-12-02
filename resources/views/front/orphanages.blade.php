@@ -24,7 +24,7 @@
     <section class="ftco-causes ftco-section ">
         <div class="container-xl">
 
-            <div class="row">
+            <div class="row d-none">
                 <div class="col-12">
                     <h5>Recherchez parmi les orphélinats</h5>
                     <div class="sidebar-box bg-light rounded">

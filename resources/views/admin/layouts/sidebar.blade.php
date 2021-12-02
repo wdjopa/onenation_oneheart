@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="{{route("admins.home")}}"><img src="assets/images/logo/logo.png" alt="One Nation One Heart" srcset=""></a>
+                    <a href="{{route("admins.home")}}"><img src="{{asset("lovecare/images/logo.png")}}" style="height: 60px" alt="One Nation One Heart" srcset=""></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -26,33 +26,41 @@
                         <span>Orphelinats</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item @if(Request::segment(2) == trim('blogs')) active @endif">
+                    <a href="{{route("blogs.index")}}" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data"></i>
+                        <span>Blogs/Actions</span>
+                    </a>
+                </li>
+                {{-- <li class="sidebar-item">
                     <a href="{{route("admins.home")}}" class='sidebar-link'>
                         <i class="bi bi-tag-fill"></i>
                         <span>Tags</span>
                     </a>
-                </li>
-                <li class="sidebar-title">Administration</li>
-                <li class="sidebar-item">
-                    <a href="{{route("admins.home")}}" class='sidebar-link'>
-                        <i class="bi bi-cash-stack"></i>
-                        <span>Donateurs</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
+                </li> --}}
+                
+                {{-- <li class="sidebar-item">
                     <a href="{{route("admins.home")}}" class='sidebar-link'>
                         <i class="bi bi-briefcase-fill"></i>
                         <span>Partenaires</span>
                     </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{route("admins.home")}}" class='sidebar-link'>
+                </li> --}}
+                <li class="sidebar-item  @if(Request::segment(2) == trim('cities')) active @endif">
+                    <a href="{{route("cities.index")}}" class='sidebar-link'>
                         <i class="bi bi-map-fill"></i>
                         <span>Villes</span>
                     </a>
                 </li>
                 
-                <li class="sidebar-item">
+                <li class="sidebar-title">Administration</li>
+                <li class="sidebar-item  @if(Request::segment(2) == trim('donations')) active @endif">
+                    <a href="{{route("donations.index")}}" class='sidebar-link'>
+                        <i class="bi bi-cash-stack"></i>
+                        <span>Dons</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar-item @if(Request::segment(2) == trim('users')) active @endif">
                     <a href="{{route("users.index")}}" class='sidebar-link'>
                         <i class="bi bi-person-fill"></i>
                         <span>Utilisateurs</span>

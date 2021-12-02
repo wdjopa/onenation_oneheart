@@ -15,6 +15,10 @@ class DonationController extends Controller
     public function index()
     {
         //
+        //
+        $donations = Donation::all();
+        return view("admin.donations.index", compact("donations"));
+
     }
 
     /**
@@ -40,11 +44,16 @@ class DonationController extends Controller
         $donation->amount = $request->amount;
         $donation->status = 0;
         $datas = [
+            "name" => $request->name,
             "email" => $request->email,
             "tel" => $request->tel,
             "payment_mode" => $request->payment_mode,
         ];
         $donation->datas = $datas;
+        
+        if($request->orphanage_id)
+        $donation->orphanage_id = $request->orphanage_id;
+        
         $donation->save();
 
         return redirect()->back()->with("success", "Votre don a bien été enregistré. Nous vous recontacterons afin de finaliser le paiement");
@@ -72,6 +81,14 @@ class DonationController extends Controller
         //
     }
 
+    public function update_status(Request $request)
+    {
+        $donation = Donation::find($request->donation_id);
+        $donation->status = $request->status;
+        $donation->save();
+        return redirect()->back()->with("success", "Le don a bien été modifié");
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -81,7 +98,35 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
-        //
+        $datas = $donation->datas;
+        if ($request->amount) {
+            $donation->amount = $request->amount;
+        }
+
+        if ($request->status) {
+            $donation->status = $request->status;
+        }
+
+        if ($request->name) {
+            $datas["name"] = $request->name;
+        }
+
+        if ($request->email) {
+            $datas["email"] = $request->email;
+        }
+
+        if ($request->tel) {
+            $datas["tel"] = $request->tel;
+        }
+
+        if ($request->payment_mode) {
+            $datas["payment_mode"] = $request->payment_mode;
+        }
+        $donation->datas = $datas;
+        $donation->save();
+
+        return redirect()->back()->with("success", "Ce don a bien été modifié.");
+
     }
 
     /**
@@ -93,5 +138,27 @@ class DonationController extends Controller
     public function destroy(Donation $donation)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Request
+     * @return \Illuminate\Http\Response
+     */
+    public function multipleDestroy(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            foreach ($ids as $id) {
+                $donations = Donation::find($id);
+                //ActivityLogger::activity("Suppression de l'équipe ID:".$client->id.' par l\'utilisateur ID:'.Auth::id());
+                $donations->delete();
+            }
+            $message = sizeof($ids) . ' don(s) supprimé(s) avec succès';
+        } else {
+            $message = "Aucun don n'a été supprimé";
+        }
+        return redirect()->route("donations.index")->with('success', $message);
     }
 }

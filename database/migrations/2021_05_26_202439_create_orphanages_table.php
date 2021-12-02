@@ -16,6 +16,7 @@ class CreateOrphanagesTable extends Migration
         Schema::create('orphanages', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("slug")->nullable();
             $table->integer("status")->default(0);
             $table->json("datas")->nullable();
             $table->unsignedBigInteger('city_id')->nullable();

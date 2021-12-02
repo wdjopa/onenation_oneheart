@@ -18,7 +18,7 @@ var optionsProfileVisit = {
 		name: 'sales',
 		data: [9,20,30,20,10,20,30,20,10,20,30,20]
 	}],
-	colors: '#435ebe',
+	colors: '#0313A0',
 	xaxis: {
 		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
 	},
@@ -26,7 +26,7 @@ var optionsProfileVisit = {
 let optionsVisitorsProfile  = {
 	series: [70, 30],
 	labels: ['Male', 'Female'],
-	colors: ['#435ebe','#55c6e8'],
+	colors: ['#0313A0','#55c6e8'],
 	chart: {
 		type: 'donut',
 		width: '100%',

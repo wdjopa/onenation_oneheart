@@ -53,8 +53,8 @@ Orphelinats
                                     </td>
                                     <td>{{$orphanage->name}}</td>
                                     <td>{{views($orphanage)->count()}}</td>
-                                    <td>{{$orphanage->city}}</td>
-                                    <td>{{$orphanage->datas["donates"]["total_received"] ?? 0}}</td>
+                                    <td>{{$orphanage->city->name ?? ''}}</td>
+                                    <td>{{$orphanage->dons->sum("amount") ?? 0}}</td>
                                     <td>
                                         <a type="button" class="btn btn-primary" href={{ route("orphanages.edit", $orphanage) }}><i
                                                 class="bi-pencil c-orange-700"></i></a>

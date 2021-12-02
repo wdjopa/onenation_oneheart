@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 {{-- Titre de la page --}}
 @section('title')
-Dashboard
+    Tableau de board
 @endsection
 
-@section("subtitle", "Statistiques")
+@section('subtitle', 'Statistiques')
 
 {{-- Code CSS supplémentaire (soit des <link></link> soit <style></style>) --}}
 @section('css')
-<link href="{{asset("admin_assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css")}}" rel="stylesheet">
+    <link href="{{ asset('admin_assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -25,8 +25,8 @@ Dashboard
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Nombre de visites</h6>
+                                    <h6 class="font-extrabold mb-0">{{ CyrildeWit\EloquentViewable\View::count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -42,8 +42,8 @@ Dashboard
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Bénévoles</h6>
+                                    <h6 class="font-extrabold mb-0">{{ App\Models\User::count() }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,9 @@ Dashboard
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="text-muted font-semibold">Dons</h6>
+                                    <h6 class="font-extrabold mb-0">
+                                        {{ number_format(App\Models\Donation::sum('amount'), 0) }} FCFA</h6>
                                 </div>
                             </div>
                         </div>
@@ -76,15 +77,15 @@ Dashboard
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Orphélinats</h6>
+                                    <h6 class="font-extrabold mb-0">{{ App\Models\Orphanage::count() }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row d-none">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -96,7 +97,8 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="min-height: 50vh"></div>
+            <div class="row d-none">
                 <div class="col-12 col-xl-4">
                     <div class="card">
                         <div class="card-header">
@@ -213,16 +215,23 @@ Dashboard
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="assets/images/faces/1.jpg" alt="Face 1">
+                            <img src="{{ asset('admin_assets/images/faces/1.jpg') }}" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <button type="submit" class="btn btn-light">
+                                <h6 class="text-muted mb-0">Déconnexion</h6>
+                                    {{-- {{ __('Log Out') }} --}}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card d-none">
                 <div class="card-header">
                     <h4>Recent Messages</h4>
                 </div>
@@ -260,7 +269,7 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card d-none">
                 <div class="card-header">
                     <h4>Visitors Profile</h4>
                 </div>
