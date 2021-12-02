@@ -29,7 +29,7 @@
                 <div class="col-md-6 heading-section d-flex align-items-center" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="1000">
                     <div class="mt-0 my-lg-5 py-5">
-                        <span class="subheading">Welcome to LoveCare Non-Profit Charity</span>
+                        <span class="subheading">Découvrez l'association One Nation One Heart</span>
                         <h2 class="mb-4">Qui sommes-nous ?</h2>
                         <p>
                             One Nation One Heart est une association qui souhaite promouvoir sur le plan national l’unité,
