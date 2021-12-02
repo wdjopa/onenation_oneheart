@@ -52,7 +52,9 @@
                             <p class="mb-4">Nous vous remercions d'avance de vous inscrire en tant que bénévole.
                                 Que ce soit à temps plein ou partiel, nous sommes déjà ravis d'avoir vos compétences dans
                                 nos équipes</p>
-                            <div class="row mb-4">
+
+                                @include("components.successError")
+                            <div class="row mb-4 mt-5">
 
                                 <div class="col-md-4">
                                     <div class="dbox w-100 d-flex align-items-start">

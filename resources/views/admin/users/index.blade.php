@@ -56,8 +56,8 @@ Utilisateurs
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->datas != null && isset($user->datas["tel"]) ? $user->datas["tel"] : ""}}</td>
-                                    <td>{{$user->datas != null && isset($user->datas["ville"]) ? $user->datas["ville"]. ", ". $user->datas["pays"]: "Non defini"}}</td>
-                                    <td>{{$user->datas != null && isset($user->datas["preferences"]) ? $user->datas["preferences"]: "Non defini"}}</td>
+                                    <td>{{$user->datas != null && isset($user->datas["ville"]) ? $user->datas["ville"]. ", ". ($user->datas["pays"] ?? ''): "Non defini"}}</td>
+                                    <td>{{$user->datas != null && isset($user->datas["preferences"]) ? join( "; ", $user->datas["preferences"]) : "Non defini"}}</td>
                                     <td>{{$user->created_at}}</td>
                                     <td>
                                         <a type="button" class="btn btn-primary" href={{ route("users.edit", $user) }}><i
