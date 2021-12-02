@@ -1,3 +1,5 @@
+ @if($blog->status == 1)
+
  <div class="col-md-6 col-lg-4 d-flex">
      <div class="blog-entry justify-content-end" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
          <a href="{{ route('public.blog.details', ['blog_slug' => $blog->slug]) }}" class="block-20 img"
@@ -16,3 +18,5 @@
          </div>
      </div>
  </div>
+ @endif
+

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
 use App\Models\Blog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -29,7 +28,6 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
         $fields = [];
         $fields[] = [
             "name" => "Titre",
@@ -39,8 +37,7 @@ class BlogController extends Controller
             "required" => true,
         ];
 
-
-        return view("admin.blogs.create", compact("cities", "fields"));
+        return view("admin.blogs.create", compact("fields"));
         //
     }
 
@@ -97,49 +94,17 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
 
-        $cities = City::all();
         $fields = [];
         $fields[] = [
-            "name" => "Nom",
+            "name" => "Titre",
             "field_name" => "name",
-            "placeholder" => "Nom de l'article",
+            "placeholder" => "Titre de l'article",
             "type" => "text",
             "required" => true,
-            "value" => $blog->name,
-        ];
-        $fields[] = [
-            "name" => "Email",
-            "field_name" => "email",
-            "placeholder" => "Email de l'article",
-            "type" => "email",
-            "value" => $blog->datas["email"],
-        ];
-        $fields[] = [
-            "name" => "Tel",
-            "field_name" => "tel",
-            "placeholder" => "N° de téléphone l'article",
-            "type" => "tel",
-            "required" => true,
-            "value" => $blog->datas["tel"],
-        ];
-        $fields[] = [
-            "name" => "Nom du gérant",
-            "field_name" => "gerant",
-            "placeholder" => "Nom du gérant",
-            "type" => "text",
-            "required" => true,
-            "value" => $blog->datas["gerant"],
-        ];
-        $fields[] = [
-            "name" => "Nombre d'enfants",
-            "field_name" => "children",
-            "placeholder" => "Nombre d'enfants du gérant",
-            "type" => "number",
-            "required" => true,
-            "value" => $blog->datas["total_children"],
+            "value"=>$blog->name
         ];
 
-        return view("admin.blogs.edit", compact("cities", "fields", "blog"));
+        return view("admin.blogs.edit", compact("fields", "blog"));
 
     }
 
@@ -156,17 +121,7 @@ class BlogController extends Controller
         $blog->name = $request->name;
         $blog->slug = Str::slug($request->name);
         $blog->status = $request->status ? 1 : 0;
-        $blog->city_id = $request->city_id;
         $datas = [
-            // "donates" => [
-            //     'total_received' => 0,
-            //     'total_remaining' => 0,
-            //     'donators' => [],
-            // ],
-            "email" => $request->email,
-            "tel" => $request->tel,
-            "gerant" => $request->gerant,
-            "total_children" => $request->children,
             "description" => $request->description,
             "public_content" => $request->public_content,
         ];
