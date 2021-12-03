@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="shortcut icon" href="{{asset("lovecare/images/logo.png")}}" type="image/x-icon">
    
     <meta property="og:type" content="Association" />
     <meta property="og:title" content="@yield("meta_title", "Smile Together - One Nation One Heart")" />
