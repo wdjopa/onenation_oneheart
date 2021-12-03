@@ -8,7 +8,7 @@
         </a>
         <div class="text">
             <div class="desc">
-                <a href="{{route("public.orphanages.details", $orphanage)}}">
+                <a href="{{route("public.orphanages.details", ["orphanage_slug" => $orphanage->slug])}}">
                 <h2 class="mb-3">{{$orphanage->name}}</h2>
                 </a>
                 <p>{{substr($orphanage->datas["description"] ?? "", 0, 100) . "..."}}
