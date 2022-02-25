@@ -103,16 +103,15 @@ class PageController extends Controller
 
     public function orphanages(Request $request)
     {
-        if ($request->ville)
-        dd($request);
 
         $villes = City::all();
-        $cities = City::where('name', 'LIKE', "%{$request->ville}%");
+        $cities = City::whereIn('name', $request->villes);
 
-        $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%");
+        $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
+                                ->where('status', '=', 1);
 
 
-        if ($request->ville != null || strlen($request->ville) > 0) 
+        if ($request->villes != null)
         {
             $orphelinats = Orphanage::
                                 joinSub($cities, 'cities', function ($join) {

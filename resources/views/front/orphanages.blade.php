@@ -34,8 +34,11 @@
                                 <input type="text" name="search" class="form-control" placeholder="Search...">
                             </div>
                             <div class="form-group mt-2 mb-2">
-                                <select name="ville" id="cities-select" class="form-control selectpicker" multiple data-live-search="true">
-                                    <option value="" selected disabled>Selectionner une ville</option>
+                                <select name="villes[]" id="cities-select" class="form-control selectpicker" multiple data-live-search="true">
+                                    <option value="" disabled>Selectionner une ville</option>
+                                    @foreach ($villes as $ville)
+                                        <option value="{{ $ville->name }}">{{ $ville->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
