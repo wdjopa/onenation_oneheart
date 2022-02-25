@@ -21,18 +21,24 @@
         </div>
     </section>
 
-    <section class="ftco-causes ftco-section ">
+    <section class="ftco-causes ftco-section">
         <div class="container-xl">
 
-            <div class="row d-none">
+            <div class="row">
                 <div class="col-12">
                     <h5>Recherchez parmi les orphélinats</h5>
                     <div class="sidebar-box bg-light rounded">
-                        <form action="{{ route('public.search') }}" method="GET" class="search-form">
+                        <form action="{{ route('public.orphanages') }}" method="GET" class="search-form">
                             <div class="form-group">
                                 <span class="icon fa fa-search"></span>
                                 <input type="text" name="search" class="form-control" placeholder="Search...">
                             </div>
+                            <div class="form-group mt-2 mb-2">
+                                <select name="ville" id="cities-select" class="form-control selectpicker" multiple data-live-search="true">
+                                    <option value="" selected disabled>Selectionner une ville</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
                         </form>
                     </div>
                 </div>
@@ -46,7 +52,7 @@
                 @else
                 <div class="d-flex" style="flex-direction: column; align-items: center;">
                 <img src="{{asset("lovecare/images/empty.svg")}}" style="margin: 50px auto; width: 300px" />
-                Pas d'orphelinats enregistré pour l'instant
+                Pas d'orphelinats trouvés
                 </div>
                 @endif
             </div>

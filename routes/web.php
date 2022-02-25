@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\OrphanageController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CityController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

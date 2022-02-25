@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\City;
 use App\Models\Donation;
 use App\Models\Orphanage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PageController extends Controller
@@ -101,8 +103,30 @@ class PageController extends Controller
 
     public function orphanages(Request $request)
     {
-        $orphelinats = Orphanage::paginate(9);
-        return view("front.orphanages", compact("orphelinats"));
+        if ($request->ville)
+        dd($request);
+
+        $villes = City::all();
+        $cities = City::where('name', 'LIKE', "%{$request->ville}%");
+
+        $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%");
+
+
+        if ($request->ville != null || strlen($request->ville) > 0) 
+        {
+            $orphelinats = Orphanage::
+                                joinSub($cities, 'cities', function ($join) {
+                                    $join->on('cities.id', '=', 'orphanages.city_id');
+                                })
+                                -> joinSub($orphelinats, 'orph', function ($join) {
+                                    $join->on('orph.id', '=', 'orphanages.city_id');
+                                })
+                                ->select('orphanages.*');
+        }
+
+        $orphelinats = $orphelinats->paginate(9);
+
+        return view("front.orphanages", compact("orphelinats", "villes"));
     }
     public function orphanages_detail(Request $request, $orphanage_slug)
     {

@@ -23,6 +23,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
+    
 
     <link rel="stylesheet" href="{{ asset('lovecare/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('lovecare/css/flaticon.css') }}">
@@ -43,6 +45,7 @@
     @include('front.layouts.footer')
 
 
+    <script src="{{ asset('lovecare/js/jquery.js') }}"></script>
     <script src="{{ asset('lovecare/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('lovecare/js/tiny-slider.js') }}"></script>
     <script src="{{ asset('lovecare/js/glightbox.min.js') }}"></script>
@@ -51,6 +54,15 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('lovecare/js/google-map.js') }}"></script>
     <script src="{{ asset('lovecare/js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+
+    <script>
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker();
+        });
+    </script>
 
 </body>
 
