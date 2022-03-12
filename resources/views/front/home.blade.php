@@ -192,7 +192,7 @@
                         <div class="icon">
                             <span class="flaticon-donation"></span>
                         </div>
-                        <h2 class="number"><span class="countup">239</span></h2>
+                        <h2 class="number"><span class="countup">{{ $total_enfants }}</span></h2>
                         <span class="caption">enfants recensés</span>
                     </div>
                 </div>

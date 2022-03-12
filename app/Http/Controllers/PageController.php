@@ -71,11 +71,21 @@ class PageController extends Controller
             "image" => null,
         ];
 
+        $total_enfants = 0;
+
+        $orphelinats = Orphanage::get();
+
+        foreach ($orphelinats as $data) {
+            $total_kids = $data->datas;
+
+            $total_enfants += intval($total_kids["total_children"]);
+        }
+
         $total_donations = Donation::all()->sum("amount");
 
         $blogs = Blog::latest()->paginate(9);
 
-        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs"));
+        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants"));
     }
     public function contact(Request $request)
     {
