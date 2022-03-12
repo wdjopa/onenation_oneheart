@@ -24,7 +24,7 @@
             <div class="col-lg-12">
               <div class="contact-wrap w-100 p-md-5 p-4">
                 <h3>Contactez-nous</h3>
-                <p class="mb-4">Nous sommes ouvert ! Laissez-nous un message et nous reviendrons vers vous très rapidement</p>
+                <p class="mb-4">Nous sommes ouverts ! Laissez-nous un message et nous reviendrons vers vous très rapidement</p>
                 <div class="row mb-4">
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">

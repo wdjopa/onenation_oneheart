@@ -54,7 +54,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="tel">N° de tel</label>
-                                        <input type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
+                                        <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-12 d-none">
@@ -114,12 +114,18 @@
                     <div class="mt-0 about-wrap">
                         <span class="subheading">Bienvenue chez One Nation, One Heart</span>
                         <h2 class="mb-4">Pour une action sociale, humanitaire et solidaire,</h2>
-                        <p>Sur cette plateforme, nous recensons tous les orphelinats et centres sociaux légaux sur
-                            toute l’étendue du territoire national Camerounais (répartis par Région, Départements, Villes et
-                            quartiers), le nombre d’enfants en charge dans chaque structure, la tranche d’âge d’enfants
-                            présents dans ces orphelinats, la liste de leurs besoins (financiers, sanitaires, denrées
-                            alimentaires, vestimentaires, etc…), leur histoire et les contacts des responsables de ces
-                            diverses structures.
+                        <p>Sur cette plateforme, nous recensons les orphelinats et centres sociaux légaux sur
+                            toute l’étendue du territoire national Camerounais.
+                        </p>
+                        <p>
+                            Ceux-ci sont répartis suivant divers critères vous permettant de les découvrir aisément:
+                            <ul>
+                                <li>La localisation : la région, le département, la ville et le quartier</li>
+                                <li>Leur capacité d'accueil : le nombre d'enfants pris en charge dans chaque structure, la tranche
+                                    d'âge de ces enfants</li>
+                                <li>Leurs besoins : financiers, sanitaires, denrées alimentaires, vestimentaires, etc...</li>
+                                <li>Leur histoire et les contacts des responsables de ces diverses structures.</li>
+                            </ul>  
                         </p>
                         <p>
                             L'idée étant de casser les codes préétablis et préjugés de l’action sociale au Cameroun et
@@ -130,7 +136,7 @@
                                 <a href="{{route("public.contact")}}?add_orphanage" class="services-2">
                                     <div class="icon"><span class="flaticon-donation"></span></div>
                                     <div class="text">
-                                        <h2>Ajouter un orphélinat</h2>
+                                        <h2>Proposer un orphélinat</h2>
                                     </div>
                                 </a>
                             </div>
@@ -175,28 +181,37 @@
                         </div>
                         <h2 class="number"><span class="countup">5</span>
                         </h2>
-                        <span class="caption">Orphelinats prospectés</span>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                        <div class="icon">
-                            <span class="flaticon-ecosystem"></span>
-                        </div>
-                        <h2 class="number"><span class="countup">3</span></h2>
-                        <span class="caption">Partenaires </span>
+                        <span class="caption">Orphelinats enregistrés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                         <div class="icon">
-                            <span class="flaticon-donation"></span>
+                            <span class="flaticon-child"></span>
                         </div>
                         <h2 class="number"><span class="countup">239</span></h2>
                         <span class="caption">enfants recensés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                        <div class="icon">
+                            <span class="flaticon-place"></span>
+                        </div>
+                        <h2 class="number"><span class="countup">1</span></h2>
+                        <span class="caption">Régions couvertes</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                        <div class="icon">
+                            <span class="flaticon-friend"></span>
+                        </div>
+                        <h2 class="number"><span class="countup">3</span></h2>
+                        <span class="caption">Partenaires </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch mt-5">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                         <div class="icon">
                             <span class="flaticon-charity"></span>
@@ -280,7 +295,7 @@
                     data-aos-duration="1000">
                     <span class="subheading">Faites un don ou devenez volontaires</span>
                     <h2 class="mb-4">Le plus petit acte de bonté vaut plus que la plus grande intention</h2>
-                    <p><a href="{{route("public.joinus")}}" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a href="#"
+                    <p><a href="#" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a>          </a><a href="{{route("public.joinus")}}"
                             class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                 </div>
             </div>

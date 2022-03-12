@@ -5,7 +5,7 @@
             <div class="col-md-5">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2 logo d-flex">
-                        <a class="navbar-brand align-items-center" href="index.html">
+                        <a class="navbar-brand align-items-center" href="#">
                             {{-- Love<small>Care</small>
                   <span>Charity Theme</span> --}}
                             <img src="{{ asset('lovecare/images/logo.png') }}" alt="Logo One Nation One Heart"
@@ -17,7 +17,7 @@
                         .</p>
                     <ul class="ftco-footer-social mt-4">
                         <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.facebook.com/ONOH237"><span class="fa fa-facebook"></span></a></li>
                         <li><a href="#"><span class="fa fa-instagram"></span></a></li>
                     </ul>
                 </div>
