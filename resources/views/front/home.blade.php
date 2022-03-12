@@ -173,7 +173,7 @@
                         <div class="icon">
                             <span class="flaticon-heart"></span>
                         </div>
-                        <h2 class="number"><span class="countup">5</span>
+                        <h2 class="number"><span class="countup">{{ $total_orphanages }}</span>
                         </h2>
                         <span class="caption">Orphelinats prospectés</span>
                     </div>

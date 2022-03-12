@@ -75,6 +75,8 @@ class PageController extends Controller
 
         $orphelinats = Orphanage::get();
 
+        $total_orphanages = $orphelinats->count();
+
         foreach ($orphelinats as $data) {
             $total_kids = $data->datas;
 
@@ -85,7 +87,7 @@ class PageController extends Controller
 
         $blogs = Blog::latest()->paginate(9);
 
-        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants"));
+        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants", "total_orphanages"));
     }
     public function contact(Request $request)
     {
