@@ -179,7 +179,7 @@
                         <div class="icon">
                             <span class="flaticon-heart"></span>
                         </div>
-                        <h2 class="number"><span class="countup">5</span>
+                        <h2 class="number"><span class="countup">{{ $total_orphanages }}</span>
                         </h2>
                         <span class="caption">Orphelinats enregistrés</span>
                     </div>
@@ -198,8 +198,8 @@
                         <div class="icon">
                             <span class="flaticon-place"></span>
                         </div>
-                        <h2 class="number"><span class="countup">1</span></h2>
-                        <span class="caption">Régions couvertes</span>
+                        <h2 class="number"><span class="countup">{{ $total_enfants }}</span></h2>
+                        <span class="caption">enfants recensés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
