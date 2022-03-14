@@ -60,8 +60,7 @@
                                 <div class="col-md-4">
                                     <div class="dbox w-100 d-flex align-items-start">
                                         <div class="text">
-                                            <p><span>Si vous avez des questions:</span> <a
-                                                    href="https://wa.me/33614597593">+33 6 14 59 75 93</a></p>
+                                            <p><span>Si vous avez des questions:</span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -130,42 +129,42 @@
                                                     <label for="preference-dev-web">
                                                         <input type="checkbox" id="preference-dev-web" name="preferences[]"
                                                             value="developpement-web" id="">
-                                                        Developpement Web
+                                                        Pôle Developpement Web
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-prospection">
                                                         <input type="checkbox" id="preference-prospection"
                                                             name="preferences[]" value="prospection">
-                                                        Prospection
+                                                            Pôle Prospection
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-financement-relation-donateur">
                                                         <input type="checkbox" id="preference-financement-relation-donateur"
                                                             name="preferences[]" value="financement-relation-donateur">
-                                                        Finacement & Relation donateurs
+                                                            Pôle Finacement & Relation donateurs
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-communication">
                                                         <input type="checkbox" id="preference-communication"
                                                             name="preferences[]" value="communication">
-                                                        Communication
+                                                            Pôle Communication
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-juridique">
                                                         <input type="checkbox" id="preference-juridique" name="preferences[]"
                                                             value="juridique">
-                                                        Juridique
+                                                            Pôle Juridique
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-partenaire">
                                                         <input type="checkbox" id="preference-partenaire" name="preferences[]"
                                                             value="partenaire">
-                                                        Partenaires
+                                                            Pôle Recherche de Partenariats
                                                     </label>
                                                 </div>
                                             </div>
