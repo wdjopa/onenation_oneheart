@@ -65,6 +65,51 @@ class OrphanageController extends Controller
             "required" => true,
         ];
 
+        // new fields
+
+        $fields[] = [
+            "name" => "Nombre d'enfants en classe d'examen",
+            "field_name" => "exam_class_children",
+            "placeholder" => "Nombre d'enfants en classe d'examen",
+            "type" => "number",
+            "required" => false,
+        ];
+        $fields[] = [
+            "name" => "Nombre d'enfants en recherche de professionnalisation",
+            "field_name" => "profesional_search_children",
+            "placeholder" => "Nombre d'enfants en recherche de professionnalisation",
+            "type" => "number",
+            "required" => false,
+        ];
+        $fields[] = [
+            "name" => "Quartier",
+            "field_name" => "street",
+            "placeholder" => "Quartier",
+            "type" => "text",
+            "required" => true,
+        ];
+        $fields[] = [
+            "name" => "Adresse exacte",
+            "field_name" => "exact_address",
+            "placeholder" => "Adresse exacte",
+            "type" => "text",
+            "required" => true,
+        ];
+        $fields[] = [
+            "name" => "Latitude",
+            "field_name" => "latitude",
+            "placeholder" => "Latitude",
+            "type" => "text",
+            "required" => true,
+        ];
+        $fields[] = [
+            "name" => "Longitude",
+            "field_name" => "longitude",
+            "placeholder" => "Longitude",
+            "type" => "text",
+            "required" => true,
+        ];
+
         return view("admin.orphanages.create", compact("cities", "fields"));
         //
     }
@@ -94,10 +139,19 @@ class OrphanageController extends Controller
             "tel" => $request->tel,
             "gerant" => $request->gerant,
             "total_children" => $request->children,
+            "exam_class_children" => $request->exam_class_children,
+            "profesional_search_children" => $request->profesional_search_children,
             "description" => $request->description,
             "public_content" => $request->public_content,
         ];
         $orphanage->datas = $datas;
+        $location = [
+            "street" => $request->street,
+            'exact_address' => $request->exact_address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude
+        ];
+        $orphanage->location = $location;
         $orphanage->save();
 
         // dd($request->files);
@@ -172,6 +226,55 @@ class OrphanageController extends Controller
             "value" => $orphanage->datas["total_children"],
         ];
 
+        // new fields
+        $fields[] = [
+            "name" => "Nombre d'enfants en classe d'examen",
+            "field_name" => "exam_class_children",
+            "placeholder" => "Nombre d'enfants en classe d'examen",
+            "type" => "number",
+            "required" => false,
+            "value" => $orphanage->datas["total_children_exam_class"],
+        ];
+        $fields[] = [
+            "name" => "Nombre d'enfants en recherche de professionnalisation",
+            "field_name" => "profesional_search_children",
+            "placeholder" => "Nombre d'enfants en recherche de professionnalisation",
+            "type" => "number",
+            "required" => false,
+            "value" => $orphanage->datas["total_children_profesional_search"],
+        ];
+        $fields[] = [
+            "name" => "Quartier",
+            "field_name" => "street",
+            "placeholder" => "Quartier",
+            "type" => "text",
+            "required" => true,
+        ];
+        $fields[] = [
+            "name" => "Adresse exacte",
+            "field_name" => "exact_address",
+            "placeholder" => "Adresse exacte",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->location["exact_address"],
+        ];
+        $fields[] = [
+            "name" => "Latitude",
+            "field_name" => "latitude",
+            "placeholder" => "Latitude",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->location["latitude"],
+        ];
+        $fields[] = [
+            "name" => "Longitude",
+            "field_name" => "longitude",
+            "placeholder" => "Longitude",
+            "type" => "text",
+            "required" => true,
+            "value" => $orphanage->location["longitude"],
+        ];
+
         return view("admin.orphanages.edit", compact("cities", "fields", "orphanage"));
 
     }
@@ -204,6 +307,14 @@ class OrphanageController extends Controller
             "public_content" => $request->public_content,
         ];
         $orphanage->datas = $datas;
+        $location = [
+            "street" => $request->street,
+            'exact_address' => $request->exact_address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude
+        ];
+        $orphanage->location = $location;
+
         $orphanage->save();
 
         if ($request->files) {
@@ -229,7 +340,7 @@ class OrphanageController extends Controller
     }
 
 
-    
+
     /**
      * Remove the specified resource from storage.
      *

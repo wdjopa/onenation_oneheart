@@ -120,7 +120,7 @@ class PageController extends Controller
         $cities = City::whereIn('name', $request->villes ?? []);
 
         $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
-                                ->where('status', '=', 1);
+                                ->where('status', '=', 1); 
 
 
         if ($request->villes != null)

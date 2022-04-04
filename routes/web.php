@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\OrphanageController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,8 @@ Route::get('/blog', [PageController::class, "blog"])->name("public.blog");
 Route::get('/blog/{blog_slug}', [PageController::class, "blog_detail"])->name("public.blog.details");
 
 Route::post('/donation', [DonationController::class, "store"])->name("public.donation");
+
+Route::get('/test', [TestController::class, 'List']);
 
 Auth::routes();
 

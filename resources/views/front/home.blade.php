@@ -168,7 +168,7 @@
                 </div>
             </div>
             <div class="row section-counter">
-                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="col-sm-6 03col-md-6 col-lg-3 d-flex align-items-stretch">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                         <div class="icon">
                             <span class="flaticon-heart"></span>

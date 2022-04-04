@@ -25,12 +25,13 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
      */
     protected $casts = [
         'datas' => 'array',
+        'location' => 'array'
     ];
 
      public function getSearchResult(): SearchResult
      {
         $url = route('public.orphanages.details', ["orphanage_slug" => $this->slug]);
-     
+
          return new \Spatie\Searchable\SearchResult(
             $this,
             $this->name,
