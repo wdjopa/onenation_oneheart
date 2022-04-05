@@ -79,7 +79,7 @@
 
 	}
 	slider();
-	
+
 	//COUNTER
 	'use trict';
 		// How long you want the animation to take, in ms
@@ -172,6 +172,13 @@
 	  loop: true,
 	  autoplayVideos: true
 	});
+
+    //Orphanages search
+    jQuery(function() {
+        $('.selectpicker-city').selectpicker({
+            title: 'Filtrer par ville'
+        });
+    });
 
 
 })()

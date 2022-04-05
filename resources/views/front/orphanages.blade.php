@@ -33,13 +33,23 @@
                                 <span class="icon fa fa-search"></span>
                                 <input type="text" name="search" class="form-control" placeholder="Search...">
                             </div>
-                            <div class="form-group mt-2 mb-2">
-                                <select name="villes[]" id="cities-select" class="form-control selectpicker" multiple data-live-search="true">
-                                    <option value="" disabled>Selectionner une ville</option>
-                                    @foreach ($villes as $ville)
-                                        <option value="{{ $ville->name }}">{{ $ville->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 mt-2 mb-2">
+                                    <div class="form-group">
+                                        <select name="villes[]" id="cities-select" class="form-control selectpicker-city" multiple data-live-search="true">
+                                            <option value="" disabled>Selectionner une ville</option>
+                                            @foreach ($villes as $ville)
+                                                <option value="{{ $ville->name }}">{{ $ville->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12 mt-2 mb-2">
+                                    <div class="form-group">
+                                        <span class="icon fas fa-location-dot"></span>
+                                        <input type="text" name="street" class="form-control" placeholder="Quartier">
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
                         </form>
