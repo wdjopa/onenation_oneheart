@@ -55,7 +55,7 @@
                     <div class="block-23 mb-3">
                         <ul>
                             <li><span class="icon fa fa-map marker"></span><span class="text">Omnisport, Yaoundé, Cameroun</span></li>
-                            <li><a href="https://wa.me/33614597593"><span class="icon fa fa-phone"></span><span class="text">+33 6 14 59 75 93</span></a></li>
+                            <li><span class="icon fa fa-phone"></span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></li>
                             <li><a href="mailto:contact@onoh.org"><span class="icon fa fa-paper-plane"></span><span
                                         class="text">contact@onoh.org</span></a></li>
                         </ul>

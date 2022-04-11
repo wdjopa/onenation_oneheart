@@ -43,7 +43,7 @@
                   <div class="col-md-4">
                     <div class="dbox w-100 d-flex align-items-start">
                       <div class="text">
-                        <p><span>Telephone / Whatsapp:</span> <a href="https://wa.me/33614597593">+33 6 14 59 75 93</a></p>
+                        <p><span>Telephone / Whatsapp:</span> <span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></p>
                       </div>
                     </div>
                   </div>
@@ -78,14 +78,7 @@
                     </div>
                   </div>
                 </form>
-                <div class="w-100 social-media mt-5">
-                  <h3>Suivez-nous</h3>
-                  <p>
-                    <a href="https://facebook.com/">Facebook</a>
-                    <a href="https://twitter.com/">Twitter</a>
-                    <a href="https://instagram.com/">Instagram</a>
-                  </p>
-                </div>
+                
               </div>
             </div>
           </div>
