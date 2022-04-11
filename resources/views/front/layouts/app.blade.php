@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
 
     <link rel="stylesheet" href="{{ asset('lovecare/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('lovecare/css/flaticon.css') }}">
@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('lovecare/css/glightbox.min') }}.css">
     <link rel="stylesheet" href="{{ asset('lovecare/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('lovecare/css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
 
     @yield('css')
 </head>
@@ -57,8 +59,7 @@
     <script src="{{ asset('lovecare/js/google-map.js') }}"></script>
     <script src="{{ asset('lovecare/js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
+    
 
     <script>
         $(document).ready(function() {
@@ -67,5 +68,13 @@
     </script>
 
 </body>
+
+<script>
+   const phoneInputField = document.querySelector("#phone");
+   const phoneInput = window.intlTelInput(phoneInputField, {
+     utilsScript:
+       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+   });
+ </script>
 
 </html>

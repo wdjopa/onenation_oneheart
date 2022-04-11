@@ -12,7 +12,7 @@
                     <p class="breadcrumbs"><span class="me-2"><a href="{{ route('public.home') }}">Accueil <i
                                     class="fa fa-chevron-right"></i></a></span> <span>Orphelinats <i
                                 class="fa fa-chevron-right"></i></span></p>
-                    <h1 class="mb-0 bread">Orphélinats</h1>
+                    <h1 class="mb-0 bread">Orphelinats</h1>
 
                 </div>
 
@@ -26,7 +26,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h5>Recherchez parmi les orphélinats</h5>
+                    <h5>Recherchez parmi les orphelinats</h5>
                     <div class="sidebar-box bg-light rounded">
                         <form action="{{ route('public.orphanages') }}" method="GET" class="search-form">
                             <div class="form-group">
