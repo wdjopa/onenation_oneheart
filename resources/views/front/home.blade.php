@@ -136,7 +136,7 @@
                                 <a href="{{route("public.contact")}}?add_orphanage" class="services-2">
                                     <div class="icon"><span class="flaticon-donation"></span></div>
                                     <div class="text">
-                                        <h2>Proposer un orphélinat</h2>
+                                        <h2>Proposer un orphelinat</h2>
                                     </div>
                                 </a>
                             </div>
@@ -187,25 +187,25 @@
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                         <div class="icon">
-                            <span class="flaticon-child"></span>
-                        </div>
-                        <h2 class="number"><span class="countup">239</span></h2>
-                        <span class="caption">enfants recensés</span>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <div class="icon">
-                            <span class="flaticon-place"></span>
+                            <span class="icon fa fa-map marker"></span>
                         </div>
                         <h2 class="number"><span class="countup">1</span></h2>
                         <span class="caption">Régions couvertes</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                        <div class="icon">
+                            <span class="flaticon-donation"></span>
+                        </div>
+                        <h2 class="number"><span class="countup">239</span></h2>
+                        <span class="caption">enfants recensés</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                         <div class="icon">
-                            <span class="flaticon-friend"></span>
+                            <span class="flaticon-ecosystem"></span>
                         </div>
                         <h2 class="number"><span class="countup">3</span></h2>
                         <span class="caption">Partenaires </span>

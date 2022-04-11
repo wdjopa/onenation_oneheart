@@ -60,7 +60,7 @@
                                 <div class="col-md-4">
                                     <div class="dbox w-100 d-flex align-items-start">
                                         <div class="text">
-                                            <p><span>Si vous avez des questions:</span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></p>
+                                            <p><span>Si vous avez des questions, contactez-nous au:</span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></p>
                                         </div>
                                     </div>
                                 </div>

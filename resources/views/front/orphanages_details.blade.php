@@ -242,10 +242,9 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="tel">N° de tel</label>
-                                                    <input type="tel" name="tel" class="form-control"
-                                                        placeholder="N° de Téléphone">
+                                                     <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
                                                 </div>
-                                            </div>
+                                             </div>
                                             {{-- <div class="col-md-12 d-none">
                                     <div class="form-group">
                                         <label for="subject">Select Causes</label>
