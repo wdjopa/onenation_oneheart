@@ -3546,6 +3546,7 @@
         },
         {
             "name": "spatie/laravel-permission",
+          
             "version": "5.5.2",
             "source": {
                 "type": "git",
@@ -3616,6 +3617,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-permission/issues",
+              
                 "source": "https://github.com/spatie/laravel-permission/tree/5.5.2"
             },
             "funding": [
@@ -4358,6 +4360,7 @@
         },
         {
             "name": "symfony/http-foundation",
+          
             "version": "v5.4.6",
             "source": {
                 "type": "git",
@@ -5762,6 +5765,7 @@
         },
         {
             "name": "symfony/translation",
+          
             "version": "v6.0.6",
             "source": {
                 "type": "git",
@@ -5935,6 +5939,7 @@
         },
         {
             "name": "symfony/var-dumper",
+          
             "version": "v5.4.6",
             "source": {
                 "type": "git",
