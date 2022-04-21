@@ -48,6 +48,7 @@
 
                     <div class="col-lg-12">
                         <div class="contact-wrap w-100 p-md-5 p-4">
+                            <span class="subheading">N'hésitez pas à nous rejoindre et mettre votre pierre à l'édifice.</span>
                             <h1>Formulaire d'inscription</h1>
                             <p class="mb-4">Nous vous remercions d'avance de vous inscrire en tant que bénévole.
                                 Que ce soit à temps plein ou partiel, nous sommes déjà ravis d'avoir vos compétences dans
@@ -59,8 +60,7 @@
                                 <div class="col-md-4">
                                     <div class="dbox w-100 d-flex align-items-start">
                                         <div class="text">
-                                            <p><span>Si vous avez des questions:</span> <a
-                                                    href="https://wa.me/33614597593">+33 6 14 59 75 93</a></p>
+                                            <p><span>Si vous avez des questions, contactez-nous au:</span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label for="">Dans quelle ville résidez-vous ?</label>
+                                            <label for="">Dans quelle ville résides-tu ?</label>
                                             
                                             <input type="text" class="form-control" name="city" id="city"
                                                 placeholder="Votre ville de résidence">
@@ -113,7 +113,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="">As-tu deja investi precedement dans une association a but non
-                                                lucrative? Si oui, parle nous-en en quelques mots.</label>
+                                                lucratif? Si oui, parle nous-en en quelques mots.</label>
                                             <textarea name="past_experience" class="form-control" id="message" cols="30" rows="7"
                                                 placeholder="As-tu deja investi precedement dans une association a but non lucrative? Si oui, parle nous-en en quelques mots."></textarea>
                                         </div>
@@ -129,42 +129,42 @@
                                                     <label for="preference-dev-web">
                                                         <input type="checkbox" id="preference-dev-web" name="preferences[]"
                                                             value="developpement-web" id="">
-                                                        Developpement Web
+                                                        Pôle Developpement Web
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-prospection">
                                                         <input type="checkbox" id="preference-prospection"
                                                             name="preferences[]" value="prospection">
-                                                        Prospection
+                                                            Pôle Prospection
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-financement-relation-donateur">
                                                         <input type="checkbox" id="preference-financement-relation-donateur"
                                                             name="preferences[]" value="financement-relation-donateur">
-                                                        Finacement & Relation donateurs
+                                                            Pôle Finacement & Relation donateurs
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-communication">
                                                         <input type="checkbox" id="preference-communication"
                                                             name="preferences[]" value="communication">
-                                                        Communication
+                                                            Pôle Communication
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-juridique">
                                                         <input type="checkbox" id="preference-juridique" name="preferences[]"
                                                             value="juridique">
-                                                        Juridique
+                                                            Pôle Juridique
                                                     </label>
                                                 </div>
                                                 <div class="checkbox-item">
                                                     <label for="preference-partenaire">
                                                         <input type="checkbox" id="preference-partenaire" name="preferences[]"
                                                             value="partenaire">
-                                                        Partenaires
+                                                            Pôle Recherche de Partenariats
                                                     </label>
                                                 </div>
                                             </div>
