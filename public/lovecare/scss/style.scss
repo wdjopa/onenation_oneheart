@@ -9,11 +9,11 @@ $font-secondary: 'Patrick Hand', cursive;
 
 $white: #fff;
 $black: #000000;
-$darken: #39311d;
+$darken: #000749;
 $light: #f3f0eb;
 
-$primary: #d49a3a;
-$secondary: #0a686e;
+$primary: #F40402;
+$secondary: #0313A0;
 
 @mixin transition($transition) {
     -moz-transition:    all $transition ease;
@@ -30,7 +30,7 @@ $secondary: #0a686e;
 	background: -o-linear-gradient(-45deg, rgba(10,79,83,1) 0%, rgba(145,129,66,0.1) 67%, rgba(212,154,58,0.1) 100%);
 	background: -ms-linear-gradient(-45deg, rgba(10,79,83,1) 0%, rgba(145,129,66,0.1) 67%, rgba(212,154,58,0.1) 100%);
 	background: linear-gradient(135deg, rgba(10,79,83,1) 0%, rgba(145,129,66,0.1) 67%, rgba(212,154,58,0.1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a4f53', endColorstr='#d49a3a', GradientType=1 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a4f53', endColorstr='#F40402', GradientType=1 );
 }
 @mixin gradient-background-two(){
 	background: rgba(8,39,41,1);
