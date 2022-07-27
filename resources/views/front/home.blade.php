@@ -14,7 +14,7 @@
                                 class="ion-ios-arrow-round-forward"></span></a>
                         {{-- <a href="#" class="btn">Watch the
                             Video <span class="ion-ios-play"></span></a> --}}
-                    </p>
+                    </p> 
                 </div>
             </div>
         </div>
@@ -54,54 +54,160 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="tel">N° de tel</label>
-                                        <input type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
+                                        <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
                                     </div>
                                 </div>
-                                {{-- <div class="col-md-12 d-none">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="subject">Select Causes</label>
-                                        <div class="form-field">
-                                            <div class="select-wrap">
-                                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Food</option>
-                                                    <option value="">Medical Health</option>
-                                                    <option value="">Education</option>
-                                                    <option value="">Environment</option>
-                                                    <option value="">Shelter/Home</option>
-                                                    <option value="">Clothes</option>
-                                                    <option value="">Other</option>
-                                                </select>
+                                        <label for="amount">Nature du Don </label>
+                                        
+                                       <select class="form-select" name="" id="select-don"> 
+                                           <option value="" id="Recepteur-option">Don vestimentaire</option>
+                                           <option value="" id="Collecteur-option">Don alimentaire en nature</option>
+                                           <option value="" id="Sponsoring-option">Parrainage d'enfant</option>
+                                           <option value="" id="achat-option">Achat alimentaire en ligne</option>
+                                           <option value="" id="financial-option">Don financier</option>
+
+                                       
+                                        </select>
+                                      
+
+                                        <script>
+                                            $(document).ready(function () {
+                                                
+
+                                                $('#payment_mode3, #payment_mode1').on('change', function () {
+                                                    console.log('@ornella')
+                                                    if ($('#payment_mode3').prop('checked') == true) {
+                                                        $('#payment_mode3-block').show()
+                                                        $('#payment_mode1-block').hide()
+                                                    }
+                                                        
+                                                    else {
+                                                        $('#payment_mode3-block').hide()
+                                                        $('#payment_mode1-block').show()
+                                                    }
+                                                   
+                                                })
+                                                $('#select-don').change(function() {
+                                                    if ($('#financial-option').is(':selected')) {
+                                                    $('#financial-block').show()
+                                                }
+                                         
+                                                else {
+                                                    $('#financial-block').hide()
+                                                    $('#payment_mode3-block').hide()
+                                                    $('#payment_mode1-block').hide()
+                                                }
+                                                if ($('#Recepteur-option').is(':selected')){
+                                                    $('#Recepteur-block').show()
+                                                }
+                                                else {
+                                                    $('#Recepteur-block').hide()
+                                                }
+                                                if ($('#Collecteur-option').is(':selected')){
+                                                    $('#Recepteur-block').show()
+                                                }
+                                               
+                                               if ($('#Sponsoring-option').is(':selected')){
+                                                    $('#Sponsoring-block').show()
+                                                }
+                                                else {
+                                                   $('#Sponsoring-block').hide()
+                                                }
+                                                if ($('#achat-option').is(':selected')){
+                                                    $('#achat-block').show()
+                                                }
+                                                else {
+                                                   $('#achat-block').hide()
+                                                }
+                                                })
+                                            })
+                                        </script>                                  
+                                    </div>
+                                </div>
+                               
+                                <div id="financial-block" style="display: none">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="amount">Montant (en FCFA)</label>
+                                            <input type="number" name="amount" class="form-control"
+                                                placeholder="Montant à donner (en FCFA)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group d-flex" style="flex-wrap: wrap;">
+                                            <!--ici je donne un id a cette classe pour lappeller dans le script-->
+                                            <div class="form-check d-flex" id="mode3_payment">
+                                                <!--<a href="https://gofund.me/3a5f9632">
+                                                
+                                                    Paypal / Carte bancaire</a> -->
+                                                    <input class="form-check-input" type="radio" name="payment_mode" value="paypal"
+                                                    id="payment_mode1">
+                                               <label class="form-check-label" for="payment_mode1">Paypal / Carte bancaire</label>
+                                                    
+                                            </div>
+                                            <!--<div class="form-check d-flex ms-3">
+                                                <input class="form-check-input" type="radio" name="payment_mode" value="card"
+                                                    id="payment_mode2">
+                                                <label class="form-check-label" for="payment_mode2">Carte bancaire</label>
+                                            </div>-->
+                                            <div class="form-check d-flex ms-3">
+                                                <input class="form-check-input" type="radio" name="payment_mode" value="momo"
+                                                    id="payment_mode3">
+                                                <label class="form-check-label" for="payment_mode3">OM / MTN MoMo</label>
                                             </div>
                                         </div>
-                                    </div>
-                                </div> --}}
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="amount">Montant (en FCFA)</label>
-                                        <input type="number" name="amount" class="form-control"
-                                            placeholder="Montant à donner (en FCFA)">
+                                     
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group d-flex" style="flex-wrap: wrap;">
-                                        <div class="form-check d-flex">
-                                            <input class="form-check-input" type="radio" name="payment_mode" value="paypal"
-                                                id="payment_mode1">
-                                            <label class="form-check-label" for="payment_mode1">Paypal</label>
-                                        </div>
-                                        <div class="form-check d-flex ms-3">
-                                            <input class="form-check-input" type="radio" name="payment_mode" value="card"
-                                                id="payment_mode2">
-                                            <label class="form-check-label" for="payment_mode2">Carte bancaire</label>
-                                        </div>
-                                        <div class="form-check d-flex ms-3">
-                                            <input class="form-check-input" type="radio" name="payment_mode" value="momo"
-                                                id="payment_mode3">
-                                            <label class="form-check-label" for="payment_mode3">OM / MTN MoMo</label>
+                                <div id="payment_mode3-block" style="display: none">
+                                    <div class="form-check d-flex ms-3">
+                                        <div class="form-group">
+                                            <p> adresse</p>
+                                            <form>
+                                                <ul>
+                                                    <li>Nom: One nation one heart</li>
+                                                    <li>Numero de telephone: +237 6 55 02 98 67</li>
+                                                </ul>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                                <div id="payment_mode1-block" style="display: none">
+                                    <div class="gfm-embed" data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
+                                </div>
+
+                                <div id="Recepteur-block" style="display: none">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <p> Recepteur des dons en nature</p>
+                                            <form>
+                                                <ul>
+                                                    <li>Nom: One nation one heart</li>
+                                                    <li>Numero de telephone: +237 6 55 02 98 67</li>
+                                                </ul>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Sponsoring-block" style="display: none">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <p>Veuillez joindre ce contact: +33 6 59 49 68 51</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="achat-block" style="display: none">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> 
+                                            <a href="https://market.lamater.net/?ref=onenation_oneheart" >effectuons l'achat</a>
+                                        </div>
+                                    </div>
+                                </div>                              
+
+
                                 <div class="col-md-12">
                                     <input type="submit" value="Faire mon don" class="btn btn-light py-3 px-4 rounded">
                                 </div>
@@ -114,12 +220,18 @@
                     <div class="mt-0 about-wrap">
                         <span class="subheading">Bienvenue chez One Nation, One Heart</span>
                         <h2 class="mb-4">Pour une action sociale, humanitaire et solidaire,</h2>
-                        <p>Sur cette plateforme, nous recensons tous les orphelinats et centres sociaux légaux sur
-                            toute l’étendue du territoire national Camerounais (répartis par Région, Départements, Villes et
-                            quartiers), le nombre d’enfants en charge dans chaque structure, la tranche d’âge d’enfants
-                            présents dans ces orphelinats, la liste de leurs besoins (financiers, sanitaires, denrées
-                            alimentaires, vestimentaires, etc…), leur histoire et les contacts des responsables de ces
-                            diverses structures.
+                        <p>Sur cette plateforme, nous recensons les orphelinats et centres sociaux légaux sur
+                            toute l’étendue du territoire national Camerounais.
+                        </p>
+                        <p>
+                            Ceux-ci sont répartis suivant divers critères vous permettant de les découvrir aisément:
+                            <ul>
+                                <li>La localisation : la région, le département, la ville et le quartier</li>
+                                <li>Leur capacité d'accueil : le nombre d'enfants pris en charge dans chaque structure, la tranche
+                                    d'âge de ces enfants</li>
+                                <li>Leurs besoins : financiers, sanitaires, denrées alimentaires, vestimentaires, etc...</li>
+                                <li>Leur histoire et les contacts des responsables de ces diverses structures.</li>
+                            </ul>  
                         </p>
                         <p>
                             L'idée étant de casser les codes préétablis et préjugés de l’action sociale au Cameroun et
@@ -130,7 +242,7 @@
                                 <a href="{{route("public.contact")}}?add_orphanage" class="services-2">
                                     <div class="icon"><span class="flaticon-donation"></span></div>
                                     <div class="text">
-                                        <h2>Ajouter un orphélinat</h2>
+                                        <h2>Proposer un orphelinat</h2>
                                     </div>
                                 </a>
                             </div>
@@ -175,7 +287,25 @@
                         </div>
                         <h2 class="number"><span class="countup">{{ $total_orphanages }}</span>
                         </h2>
-                        <span class="caption">Orphelinats prospectés</span>
+                        <span class="caption">Orphelinats enregistrés</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                        <div class="icon">
+                            <span class="icon fa fa-map marker"></span>
+                        </div>
+                        <h2 class="number"><span class="countup">1</span></h2>
+                        <span class="caption">Régions couvertes</span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                        <div class="icon">
+                            <span class="flaticon-donation"></span>
+                        </div>
+                        <h2 class="number"><span class="countup">239</span></h2>
+                        <span class="caption">enfants recensés</span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
@@ -187,16 +317,7 @@
                         <span class="caption">Partenaires </span>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
-                    <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <div class="icon">
-                            <span class="flaticon-donation"></span>
-                        </div>
-                        <h2 class="number"><span class="countup">{{ $total_enfants }}</span></h2>
-                        <span class="caption">enfants recensés</span>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="col-sm-6 col-md-6 col-lg-3 d-flex align-items-stretch mt-5">
                     <div class="counter-wrap-2" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                         <div class="icon">
                             <span class="flaticon-charity"></span>
@@ -280,7 +401,7 @@
                     data-aos-duration="1000">
                     <span class="subheading">Faites un don ou devenez volontaires</span>
                     <h2 class="mb-4">Le plus petit acte de bonté vaut plus que la plus grande intention</h2>
-                    <p><a href="{{route("public.joinus")}}" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a href="#"
+                    <p><a href="#" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a>          </a><a href="{{route("public.joinus")}}"
                             class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                 </div>
             </div>
@@ -482,6 +603,11 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            
+        })
+    </script>
 
 
 
