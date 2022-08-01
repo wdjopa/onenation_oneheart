@@ -119,10 +119,12 @@ class PageController extends Controller
         $villes = City::all();
         $cities = City::whereIn('name', $request->villes ?? []);
 
+        // recherche par le nom
         $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
                                 ->where('status', '=', 1);
 
 
+        // Recherche par nom des villes
         if ($request->villes != null)
         {
             $orphelinats = Orphanage::
@@ -133,6 +135,28 @@ class PageController extends Controller
                                     $join->on('orph.id', '=', 'orphanages.city_id');
                                 })
                                 ->select('orphanages.*');
+        }
+
+        //quartier
+        if ($request->street != null) {
+            $query = $orphelinats->newQuery();
+
+            $orphelinats = $query->where('orphanages.location->street', 'like', "%{$request->street}%");
+        }
+
+        //le nombre d'enfants
+        if ($request->profesional_search_children != null) {
+
+        }
+
+        //le nombre d'enfants en recherche de professionnalisation
+        if ($request->total_children != null) {
+
+        }
+
+        //le nombre d'enfants en classe d'examen
+        if ($request->exam_class_children != null) {
+
         }
 
         $orphelinats = $orphelinats->paginate(9);
