@@ -30,6 +30,8 @@ class OrphanageController extends Controller
     {
         $cities = City::all();
 
+        $orphanage = new Orphanage();
+
         $data_identity = [];
         $data_identity_promoter = [];
         $data_address = [];
@@ -310,7 +312,7 @@ class OrphanageController extends Controller
 
 
         return view("admin.orphanages.create", compact("cities", "data_needs", 'data_education',
-        'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects'));
+        'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage'));
         //
     }
 
