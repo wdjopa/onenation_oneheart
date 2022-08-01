@@ -32,6 +32,7 @@ Orphelinats
                                 "data_education" =>$data_education,
                                 "data_needs" =>$data_needs,
                                 "data_projects" =>$data_projects,
+                                "orphanage" => $orphanage,
                             ])
                 </form>
             </div>

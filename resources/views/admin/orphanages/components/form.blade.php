@@ -12,16 +12,20 @@
                          <div class="accordion-body">
                              <div class="container p-20">
                                  @foreach ($data_identity as $field)
-                                     <div class="form-group row mb-5">
-                                         <div class="col-md-4 col-lg-2">
-                                             <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
+                                     @if ($field['name'] != 'status')
+                                         <div class="form-group row mb-5">
+                                             <div class="col-md-4 col-lg-2">
+                                                 <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
+                                             </div>
+                                             <div class="col-md-8 col-lg-10">
+                                                 <input type="{{ $field['type'] }}" id="{{ $field['field_name'] }}" class="form-control"
+                                                        name="{{ $field['field_name'] }}" placeholder="{{ $field['placeholder'] }}"
+                                                        value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
+                                             </div>
                                          </div>
-                                         <div class="col-md-8 col-lg-10">
-                                             <input type="{{ $field['type'] }}" id="{{ $field['field_name'] }}" class="form-control"
-                                                    name="{{ $field['field_name'] }}" placeholder="{{ $field['placeholder'] }}"
-                                                    value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
-                                         </div>
-                                     </div>
+                                     @else
+
+                                     @endif
                                  @endforeach
                                  <div class="form-group row mb-5">
                                      <div class="col-md-4 col-lg-2">
