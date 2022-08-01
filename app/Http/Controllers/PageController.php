@@ -78,9 +78,9 @@ class PageController extends Controller
         $total_orphanages = $orphelinats->count();
 
         foreach ($orphelinats as $data) {
-            $total_kids = $data->datas;
+            $total_kids = $data->data_stats['children_number'] ?? 0;
 
-            $total_enfants += intval($total_kids["total_children"]);
+            $total_enfants += intval($total_kids);
         }
 
         $total_donations = Donation::all()->sum("amount");
@@ -120,8 +120,23 @@ class PageController extends Controller
         $cities = City::whereIn('name', $request->villes ?? []);
 
         // recherche par le nom
-        $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
+        $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
                                 ->where('status', '=', 1);
+
+        //quartier
+        if ($request->street != null) {
+            $query = $orphelinats->newQuery();
+
+            $orphelinats = $query->where('orphanages.data_address->localisation', 'like', "%{$request->street}%");
+        }
+
+        // Recherche par tranche d'age
+        if ($request->ages != null) {
+            $query = $orphelinats->newQuery();
+
+            if (in_array(1, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
+            if (in_array(2, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
+        }
 
 
         // Recherche par nom des villes
@@ -135,13 +150,6 @@ class PageController extends Controller
                                     $join->on('orph.id', '=', 'orphanages.city_id');
                                 })
                                 ->select('orphanages.*');
-        }
-
-        //quartier
-        if ($request->street != null) {
-            $query = $orphelinats->newQuery();
-
-            $orphelinats = $query->where('orphanages.location->street', 'like', "%{$request->street}%");
         }
 
         //le nombre d'enfants

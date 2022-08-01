@@ -33,7 +33,6 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
         'data_education' => 'array',
         'data_needs' => 'array',
         'data_projects' => 'array',
-        'location' => 'array'
     ];
 
      public function getSearchResult(): SearchResult

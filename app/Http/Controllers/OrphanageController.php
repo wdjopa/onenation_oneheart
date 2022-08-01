@@ -379,6 +379,7 @@ class OrphanageController extends Controller
         ];
 
         $orphanage->city_id = $request->city;
+        $orphanage->status = $request->status;
 
 
         $orphanage->save();
@@ -740,7 +741,6 @@ class OrphanageController extends Controller
      */
     public function update(Request $request, Orphanage $orphanage)
     {
-
         $orphanage->slug = Str::slug($request->name);
 
         $orphanage->name = $request->name;
@@ -797,6 +797,7 @@ class OrphanageController extends Controller
         ];
 
         $orphanage->city_id = $request->city;
+        $orphanage->status = $request->status ?? 0;
 
         $orphanage->save();
 
