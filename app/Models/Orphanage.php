@@ -25,6 +25,14 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
      */
     protected $casts = [
         'datas' => 'array',
+        'data_identity' => 'array',
+        'data_identity_promoter' => 'array',
+        'data_address' => 'array',
+        'data_financial_infos' => 'array',
+        'data_stats' => 'array',
+        'data_education' => 'array',
+        'data_needs' => 'array',
+        'data_projects' => 'array',
         'location' => 'array'
     ];
 

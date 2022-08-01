@@ -145,7 +145,19 @@ class PageController extends Controller
         }
 
         //le nombre d'enfants
+        if ($request->profesional_search_children != null) {
 
+        }
+
+        //le nombre d'enfants en recherche de professionnalisation
+        if ($request->total_children != null) {
+
+        }
+
+        //le nombre d'enfants en classe d'examen
+        if ($request->exam_class_children != null) {
+
+        }
 
         $orphelinats = $orphelinats->paginate(9);
 
