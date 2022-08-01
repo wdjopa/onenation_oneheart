@@ -178,6 +178,10 @@
         $('.selectpicker-city').selectpicker({
             title: 'Filtrer par ville'
         });
+
+        $('.selectpicker-age').selectpicker({
+            title: 'Filtrer par tranche d\'age'
+        });
     });
 
 

@@ -31,6 +31,14 @@
                                          <input type="file" class="image-preview-filepond-" name="files" multiple>
                                      </div>
                                  </div>
+                                 <div class="form-group row mb-5">
+                                     <div class="col-md-4 col-lg-2">
+                                         <label>Rendre visible ?</label>
+                                     </div>
+                                     <div class="col-md-8 col-lg-10">
+                                         <input type="checkbox" name="status" value="{{ "checked" ? 1 : 0 }}" {{ $orphanage->status != 0 ? "checked" : "" }}>
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                      </div>

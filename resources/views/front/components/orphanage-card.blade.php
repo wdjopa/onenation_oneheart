@@ -15,17 +15,8 @@
                 </p>
             </div>
             <div class="progress-desc">
-                {{-- <div class="progress-wrap">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                            aria-valuemax="100" style="width:70%">
-                            <span>70%</span>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="d-flex raised-goal justify-content-between">
                     <span>Dons collectés: <strong>{{$orphanage->dons->sum("amount")}} FCFA</strong></span>
-                    {{-- <span class="goal">Objectif: <strong>{{$orphanage->datas["goal"] ?? 0}}</strong></span> --}}
                 </div>
             </div>
         </div>

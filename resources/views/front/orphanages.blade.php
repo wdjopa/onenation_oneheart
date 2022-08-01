@@ -51,6 +51,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 mt-2 mb-2">
+                                    <select name="ages[]" id="age-select" class="form-control selectpicker-age" multiple data-live-search="false">
+                                        <option value="0" disabled>Tranches d'age</option>
+                                        <option value="1">0 - 6 ans</option>
+                                        <option value="2">7 - 13 ans</option>
+                                        <option value="3">14 - 21 ans</option>
+                                    </select>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
                         </form>
                     </div>
