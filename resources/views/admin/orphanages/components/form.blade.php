@@ -12,7 +12,7 @@
                          <div class="accordion-body">
                              <div class="container p-20">
                                  @foreach ($data_identity as $field)
-                                     @if ($field['name'] != 'status' && $field['field_name'] != 'mini_description')
+                                     @if ($field['name'] != 'status' && $field['field_name'] != 'mini_description' && $field['field_name'] != 'withonoh')
                                          <div class="form-group row mb-5">
                                              <div class="col-md-4 col-lg-2">
                                                  <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
