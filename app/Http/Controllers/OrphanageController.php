@@ -80,10 +80,24 @@ class OrphanageController extends Controller
             "type" => "text",
         ];
 
+        $data_identity['mini_description'] = [
+            "name" => "Mini description",
+            "field_name" => "mini_description",
+            "placeholder" => "Mini Description de l'orphelinat",
+            "type" => "textarea",
+        ];
+
+        $data_identity['description'] = [
+            "name" => "Description",
+            "field_name" => "description",
+            "placeholder" => "Description de l'orphelinat",
+            "type" => "text",
+        ];
+
         $data_identity['history'] = [
-            "name" => "Histore",
+            "name" => "Histoire",
             "field_name" => "history",
-            "placeholder" => "Histore de l'orphelinat",
+            "placeholder" => "Histoire de l'orphelinat",
             "type" => "text",
         ];
 
@@ -213,7 +227,6 @@ class OrphanageController extends Controller
             "field_name" => "school_children_number",
             "placeholder" => "Nombre d'enfants scolarisés",
             "type" => "number",
-            "required" => true,
         ];
 
         $data_education['schoolexam_children_number'] = [
@@ -335,6 +348,9 @@ class OrphanageController extends Controller
             'phone' => $request->phone,
             'arrete_number' => $request->arrete_number,
             'history' => $request->history,
+            'description' => $request->description,
+            'withonoh' => $request->withonoh,
+            'mini_description' => $request->mini_description
         ];
         $orphanage->data_identity_promoter = [
             'promoter_name' => $request->promoter_name,
@@ -471,11 +487,35 @@ class OrphanageController extends Controller
             "type" => "text",
         ];
 
+        $data_identity['mini_description'] = [
+            "name" => "Mini description",
+            "field_name" => "mini_description",
+            "value" => $orphanage->data_identity['mini_description'] ?? '',
+            "placeholder" => "Mini Description de l'orphelinat",
+            "type" => "textarea",
+        ];
+
+        $data_identity['description'] = [
+            "name" => "Description",
+            "field_name" => "description",
+            "value" => $orphanage->data_identity['description'] ?? '',
+            "placeholder" => "Description de l'orphelinat",
+            "type" => "text",
+        ];
+
         $data_identity['history'] = [
-            "name" => "Histore",
+            "name" => "Histoire",
             "field_name" => "history",
             "value" => $orphanage->data_identity['history'] ?? '',
-            "placeholder" => "Histore de l'orphelinat",
+            "placeholder" => "Histoire de l'orphelinat",
+            "type" => "text",
+        ];
+
+        $data_identity['withonoh'] = [
+            "name" => "withonoh",
+            "field_name" => "withonoh",
+            "value" => $orphanage->data_identity['withonoh'] ?? '',
+            "placeholder" => "Histoire de l'orphelinat avec onoh",
             "type" => "text",
         ];
 
@@ -753,6 +793,9 @@ class OrphanageController extends Controller
             'phone' => $request->phone,
             'arrete_number' => $request->arrete_number,
             'history' => $request->history,
+            'description' => $request->description,
+            'withonoh' => $request->withonoh,
+            'mini_description' => $request->mini_description
         ];
         $orphanage->data_identity_promoter = [
             'promoter_name' => $request->promoter_name,

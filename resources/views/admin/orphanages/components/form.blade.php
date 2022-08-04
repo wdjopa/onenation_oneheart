@@ -12,7 +12,7 @@
                          <div class="accordion-body">
                              <div class="container p-20">
                                  @foreach ($data_identity as $field)
-                                     @if ($field['name'] != 'status')
+                                     @if ($field['name'] != 'status' && $field['field_name'] != 'mini_description' && $field['field_name'] != 'withonoh')
                                          <div class="form-group row mb-5">
                                              <div class="col-md-4 col-lg-2">
                                                  <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
@@ -23,8 +23,18 @@
                                                         value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
                                              </div>
                                          </div>
-                                     @else
-
+                                     @elseif($field['field_name'] == 'mini_description')
+                                         <div class="form-group row mb-5">
+                                             <div class="col-md-4 col-lg-2">
+                                                 <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
+                                             </div>
+                                             <div class="col-md-8 col-lg-10">
+                                                 <textarea id="{{ $field['field_name'] }}" class="form-control"
+                                                        name="{{ $field['field_name'] }}" placeholder="{{ $field['placeholder'] }}"
+                                                        value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
+                                                 </textarea>
+                                             </div>
+                                         </div>
                                      @endif
                                  @endforeach
                                  <div class="form-group row mb-5">
@@ -58,16 +68,18 @@
                          <div class="accordion-body">
                              <div class="container p-20">
                                  @foreach ($data_identity_promoter as $field)
-                                     <div class="form-group row mb-5">
-                                         <div class="col-md-4 col-lg-2">
-                                             <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
+                                     @if($field['field_name'] != 'withonoh')
+                                         <div class="form-group row mb-5">
+                                             <div class="col-md-4 col-lg-2">
+                                                 <label>{{ $field['name'] }} {{ isset($field['required']) ? '*' : '' }}</label>
+                                             </div>
+                                             <div class="col-md-8 col-lg-10">
+                                                 <input type="{{ $field['type'] }}" id="{{ $field['field_name'] }}" class="form-control"
+                                                        name="{{ $field['field_name'] }}" placeholder="{{ $field['placeholder'] }}"
+                                                        value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
+                                             </div>
                                          </div>
-                                         <div class="col-md-8 col-lg-10">
-                                             <input type="{{ $field['type'] }}" id="{{ $field['field_name'] }}" class="form-control"
-                                                    name="{{ $field['field_name'] }}" placeholder="{{ $field['placeholder'] }}"
-                                                    value="{{ $field['value'] ?? '' }}" {{ isset($field['required']) ? 'required' : '' }}>
-                                         </div>
-                                     </div>
+                                     @endif
                                  @endforeach
                              </div>
                          </div>
@@ -237,6 +249,30 @@
                                          </div>
                                      </div>
                                  @endforeach
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="accordion-item">
+                     <h2 class="accordion-header" id="heading9">
+                         <button class="accordion-button cust-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapseOne">
+                             ONOH et L'orphelinat
+                             <i class="bi bi-caret-down" style="padding: 2px"></i>
+                         </button>
+                     </h2>
+                     <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#accordionExample">
+                         <div class="accordion-body">
+                             <div class="container p-20">
+                                 <div class="form-group row mb-5">
+                                     <div class="col-md-4 col-lg-2">
+                                         <label>ONOH et l'orphelinat</label>
+                                     </div>
+                                     <div class="col-md-8 col-lg-10">
+                                         <input type="text" id="withonoh" class="form-control"
+                                                name="withonoh" placeholder="ONOH et l'orphelinat"
+                                                value="{{ $orphanage->data_identity['withonoh'] ?? '' }}">
+                                     </div>
+                                 </div>
                              </div>
                          </div>
                      </div>
