@@ -182,6 +182,13 @@
         $('.selectpicker-age').selectpicker({
             title: 'Filtrer par tranche d\'age'
         });
+
+        $('.orphanages-cards').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+
     });
 
 

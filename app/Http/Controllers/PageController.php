@@ -176,7 +176,9 @@ class PageController extends Controller
 
         $orphelinat = Orphanage::where("slug", $orphanage_slug)->first();
         views($orphelinat)->record();
-        return view("front.orphanages_details", compact("orphelinat"));
+        $other_orphanages = City::where('id', $orphelinat->city_id)->first();
+        $other_orphanages = $other_orphanages->orphanages;
+        return view("front.orphanages_details", compact("orphelinat", "other_orphanages"));
     }
 
     public function search(Request $request)

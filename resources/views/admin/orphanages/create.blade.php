@@ -64,7 +64,7 @@ Orphelinats
 <script>
     // EDITEUR DE TEXTE
      tinymce.init({
-            selector: '#public_content, #history, #projects',
+            selector: '#public_content, #history, #projects, #other_needs, #food_needs, #health_needs, #school_needs, #clothes_needs, #ludic_needs, #description, #withonoh',
             plugins: "image code",
             toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
             a11y_advanced_options: true
