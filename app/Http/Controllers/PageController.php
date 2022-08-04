@@ -71,23 +71,11 @@ class PageController extends Controller
             "image" => null,
         ];
 
-        $total_enfants = 0;
-
-        $orphelinats = Orphanage::get();
-
-        $total_orphanages = $orphelinats->count();
-
-        foreach ($orphelinats as $data) {
-            $total_kids = $data->data_stats['children_number'] ?? 0;
-
-            $total_enfants += intval($total_kids);
-        }
-
         $total_donations = Donation::all()->sum("amount");
 
         $blogs = Blog::latest()->paginate(9);
 
-        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants", "total_orphanages"));
+        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs"));
     }
     public function contact(Request $request)
     {
@@ -119,27 +107,10 @@ class PageController extends Controller
         $villes = City::all();
         $cities = City::whereIn('name', $request->villes ?? []);
 
-        // recherche par le nom
-        $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
+        $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
                                 ->where('status', '=', 1);
 
-        //quartier
-        if ($request->street != null) {
-            $query = $orphelinats->newQuery();
 
-            $orphelinats = $query->where('orphanages.data_address->localisation', 'like', "%{$request->street}%");
-        }
-
-        // Recherche par tranche d'age
-        if ($request->ages != null) {
-            $query = $orphelinats->newQuery();
-
-            if (in_array(1, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
-            if (in_array(2, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
-        }
-
-
-        // Recherche par nom des villes
         if ($request->villes != null)
         {
             $orphelinats = Orphanage::
@@ -150,21 +121,6 @@ class PageController extends Controller
                                     $join->on('orph.id', '=', 'orphanages.city_id');
                                 })
                                 ->select('orphanages.*');
-        }
-
-        //le nombre d'enfants
-        if ($request->profesional_search_children != null) {
-
-        }
-
-        //le nombre d'enfants en recherche de professionnalisation
-        if ($request->total_children != null) {
-
-        }
-
-        //le nombre d'enfants en classe d'examen
-        if ($request->exam_class_children != null) {
-
         }
 
         $orphelinats = $orphelinats->paginate(9);
