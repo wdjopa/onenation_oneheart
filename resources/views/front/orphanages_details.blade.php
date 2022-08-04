@@ -56,15 +56,17 @@
                                 </div>
                             </div>
                         @endif
-                        @if($orphelinat->data_identity['withonoh'])
-                            <div class="withonoh mt-5">
-                                <div class="title">
-                                    <h1 style="color: #0313A0; text-transform: uppercase">L'orphelinat et ONOH</h1>
-                                    <div class="mt-5 withonoh-content">
-                                        {!! $orphelinat->data_identity['withonoh'] !!}
+                        @if( array_key_exists("withonoh", $orphelinat->data_identity))
+                            @if($orphelinat->data_identity['withonoh'] != null)
+                                <div class="withonoh mt-5">
+                                    <div class="title">
+                                        <h1 style="color: #0313A0; text-transform: uppercase">L'orphelinat et ONOH</h1>
+                                        <div class="mt-5 withonoh-content">
+                                            {!! $orphelinat->data_identity['withonoh'] !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
                     </div>
                 </div> <!-- .col-md-8 -->
