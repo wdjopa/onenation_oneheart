@@ -5,7 +5,7 @@
             <div class="col-md-5">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2 logo d-flex">
-                        <a class="navbar-brand align-items-center" href="index.html">
+                        <a class="navbar-brand align-items-center" href="#">
                             {{-- Love<small>Care</small>
                   <span>Charity Theme</span> --}}
                             <img src="{{ asset('lovecare/images/logo.png') }}" alt="Logo One Nation One Heart"
@@ -17,7 +17,7 @@
                         .</p>
                     <ul class="ftco-footer-social mt-4">
                         <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.facebook.com/ONOH237"><span class="fa fa-facebook"></span></a></li>
                         <li><a href="#"><span class="fa fa-instagram"></span></a></li>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="block-23 mb-3">
                         <ul>
                             <li><span class="icon fa fa-map marker"></span><span class="text">Omnisport, Yaoundé, Cameroun</span></li>
-                            <li><a href="https://wa.me/33614597593"><span class="icon fa fa-phone"></span><span class="text">+33 6 14 59 75 93</span></a></li>
+                            <li><span class="icon fa fa-phone"></span><span class="text">+237 6 55 02 98 67 / +33 6 14 59 75 93</span></li>
                             <li><a href="mailto:contact@onoh.org"><span class="icon fa fa-paper-plane"></span><span
                                         class="text">contact@onoh.org</span></a></li>
                         </ul>

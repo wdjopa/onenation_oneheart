@@ -24,7 +24,16 @@ Orphelinats
                 <form class="form form-horizontal" method="POST" action="{{route("orphanages.store")}}"
                     enctype="multipart/form-data">
                     @csrf
-                    @include("admin.orphanages.components.form", ["fields" => $fields])
+                    @include("admin.orphanages.components.form", ["data_identity" => $data_identity,
+                                "data_identity_promoter" =>$data_identity_promoter,
+                                "data_address" =>$data_address,
+                                "data_financial_infos" =>$data_financial_infos,
+                                "data_stats" =>$data_stats,
+                                "data_education" =>$data_education,
+                                "data_needs" =>$data_needs,
+                                "data_projects" =>$data_projects,
+                                "orphanage" => $orphanage,
+                            ])
                 </form>
             </div>
         </div>
@@ -55,7 +64,7 @@ Orphelinats
 <script>
     // EDITEUR DE TEXTE
      tinymce.init({
-            selector: '#public_content',
+            selector: '#public_content, #history, #projects, #other_needs, #food_needs, #health_needs, #school_needs, #clothes_needs, #ludic_needs, #description, #withonoh',
             plugins: "image code",
             toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
             a11y_advanced_options: true

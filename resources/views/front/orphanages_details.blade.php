@@ -3,7 +3,7 @@
 @section('title', $orphelinat->name)
 
 @section('meta_title', $orphelinat->name)
-@section('meta_description', $orphelinat->datas['description'] ?? '')
+@section('meta_description', $orphelinat->data_identity['history'] ?? '')
 @section('meta_url', route('public.orphanages.details', ['orphanage_slug' => $orphelinat->slug]))
 @section('meta_image', $orphelinat->getFirstMediaUrl('images'))
 
@@ -18,7 +18,7 @@
                                     class="fa fa-chevron-right"></i></a></span> <span class="me-2"><a
                                 href="{{ route('public.orphanages') }}">Orphelinats <i
                                     class="fa fa-chevron-right"></i></a></span> </p>
-                    <h1 class="mb-0 bread">{{ $orphelinat->name }}</h1>
+                    <h1 class="mb-0 bread">{{ $orphelinat->data_identity['name'] }}</h1>
                 </div>
             </div>
         </div>
@@ -29,182 +29,66 @@
             <div class="row g-lg-5">
                 <div class="col-lg-8">
                     <div class="content">
-                        <?= $orphelinat->datas['public_content'] ?? '' ?>
-                    </div>
-
-                    <div class="about-author d-flex p-4 bg-light rounded">
-                        {{-- <div class="bio me-md-4 img" style="background-image: url(images/person_1.jpg);"></div> --}}
-                        <div class="desc">
-                            <h3>{{ $orphelinat->datas['gerant'] ?? '' }}</h3>
-                            <p>{{ $orphelinat->datas['description'] ?? '' }}</p>
+                        <div class="infos-utiles p-5">
+                            <ul>
+                                <li>{{ $orphelinat->data_stats['children_number'] }} enfants</li>
+                                <li>{{ $orphelinat->data_address['localisation'] ?? '' }} ({{ $orphelinat->city->name }})</li>
+                                <li>{{ $orphelinat->data_identity_promoter['promoter_phone'] }} / {{$orphelinat->data_identity_promoter['second_phone'] ?? '' }}</li>
+                                <li>
+                                    <a href="{{ $orphelinat->data_identity['website'] }}" target="_blank">Site web
+                                        <span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex" style="flex-wrap: wrap">
-                            @foreach ($orphelinat->getMedia("images") as $media)
-                                <img src="{{$media->getFullUrl()}}"
-                                    class="m-4 shadow-1-strong rounded" style="max-height: 200px" alt="" />
-                            @endforeach
+                        <div class="description mt-5">
+                            {!! $orphelinat->data_identity['description'] ?? '' !!}
                         </div>
-                    </div>
-
-                    <div class="pt-5 mt-5 d-none">
-                        <h3 class="mb-5" style="font-size: 34px;">6 Comments</h3>
-                        <ul class="comment-list">
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">February 24, 2021 at 7:20am</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">February 24, 2021 at 7:20am</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard bio">
-                                            <img src="images/person_1.jpg" alt="Image placeholder">
-                                        </div>
-                                        <div class="comment-body">
-                                            <h3>John Doe</h3>
-                                            <div class="meta">February 24, 2021 at 7:20am</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                                laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                                enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?
-                                            </p>
-                                            <p><a href="#" class="reply">Reply</a></p>
-                                        </div>
-
-
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard bio">
-                                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <h3>John Doe</h3>
-                                                    <div class="meta">February 24, 2021 at 7:20am</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                        quidem laborum necessitatibus, ipsam impedit vitae autem, eum
-                                                        officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                                        impedit necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply">Reply</a></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">February 24, 2021 at 7:20am</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- END comment-list -->
-
-                        <div class="comment-form-wrap pt-5">
-                            <h3 class="mb-5" style="font-size: 34px;">Leave a comment</h3>
-                            <form action="#" class="p-4 p-lg-5 comment-form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Name *</label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
+                        @if($orphelinat->data_identity['history'])
+                            <div class="histoire mt-5">
+                                <div class="title">
+                                    <h1 style="color: #0313A0; text-transform: uppercase">Histoire de l'orphelinat</h1>
+                                    <div class="mt-5 histoire-content">
+                                        {!! $orphelinat->data_identity['history'] !!}
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="email">Email *</label>
-                                            <input type="email" class="form-control" id="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="website">Website</label>
-                                            <input type="url" class="form-control" id="website">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="message">Message</label>
-                                            <textarea name="" id="message" cols="30" rows="10"
-                                                class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-secondary">
+                                </div>
+                            </div>
+                        @endif
+                        @if( array_key_exists("withonoh", $orphelinat->data_identity))
+                            @if($orphelinat->data_identity['withonoh'] != null)
+                                <div class="withonoh mt-5">
+                                    <div class="title">
+                                        <h1 style="color: #0313A0; text-transform: uppercase">L'orphelinat et ONOH</h1>
+                                        <div class="mt-5 withonoh-content">
+                                            {!! $orphelinat->data_identity['withonoh'] !!}
                                         </div>
                                     </div>
                                 </div>
-
-                            </form>
-                        </div>
+                            @endif
+                        @endif
                     </div>
                 </div> <!-- .col-md-8 -->
                 <div class="col-lg-4 sidebar pl-md-4">
-                    {{-- <div class="sidebar-box bg-light rounded">
-                        <form action="#" class="search-form">
-                            <div class="form-group">
-                                <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </div>
-                        </form>
-                    </div> --}}
                     <div class="sidebar-box">
                         <h3>Informations complémentaires</h3>
                         <ul class="categories me-md-4">
                             <li>
                                 <strong>Nombre d'enfants : </strong>
-                                <span>{{ $orphelinat->datas['total_children'] ?? 0 }}</span>
+                                <span>{{ $orphelinat->data_stats['children_number'] ?? 0 }}</span>
                             </li>
 
                             <li>
                                 <strong>Email : </strong>
-                                <span>{{ $orphelinat->datas['email'] ?? 'contact@onoh.org' }}</span>
+                                <span>{{ $orphelinat->data_identity['email'] ?? 'contact@onoh.org' }}</span>
                             </li>
 
                             <li>
                                 <strong>Tel : </strong>
-                                <span>{{ $orphelinat->datas['tel'] ?? '' }}</span>
+                                <span>{{ $orphelinat->data_identity['phone'] ?? '' }}</span>
                             </li>
                         </ul>
-                        {{-- <ul class="categories me-md-4">
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward"></span>Food</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward"></span>Education</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward"></span>Shelter</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward"></span>Medical Health</a></li>
-                        </ul> --}}
                     </div>
                     <div class="sidebar-box ">
                         <div class="row">
@@ -242,29 +126,9 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="tel">N° de tel</label>
-                                                    <input type="tel" name="tel" class="form-control"
-                                                        placeholder="N° de Téléphone">
+                                                     <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
                                                 </div>
-                                            </div>
-                                            {{-- <div class="col-md-12 d-none">
-                                    <div class="form-group">
-                                        <label for="subject">Select Causes</label>
-                                        <div class="form-field">
-                                            <div class="select-wrap">
-                                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Food</option>
-                                                    <option value="">Medical Health</option>
-                                                    <option value="">Education</option>
-                                                    <option value="">Environment</option>
-                                                    <option value="">Shelter/Home</option>
-                                                    <option value="">Clothes</option>
-                                                    <option value="">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="amount">Montant (en FCFA)</label>
@@ -304,75 +168,48 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div class="sidebar-box d-none">
-                        <h3>Recent Blog</h3>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img me-4" style="background-image: url(images/image_1.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Lend Your Hands to the People Who Need Our Help</a>
-                                </h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="fa fa-calendar"></span> February 24, 2021</a></div>
-                                    <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img me-4" style="background-image: url(images/image_2.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Lend Your Hands to the People Who Need Our Help</a>
-                                </h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="fa fa-calendar"></span> February 24, 2021</a></div>
-                                    <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img me-4" style="background-image: url(images/image_3.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Lend Your Hands to the People Who Need Our Help</a>
-                                </h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="fa fa-calendar"></span> February 24, 2021</a></div>
-                                    <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                                    <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-box d-none">
-                        <h3>Tag Cloud</h3>
-                        <div class="tagcloud">
-                            <a href="#" class="tag-cloud-link">donate</a>
-                            <a href="#" class="tag-cloud-link">save</a>
-                            <a href="#" class="tag-cloud-link">food</a>
-                            <a href="#" class="tag-cloud-link">help</a>
-                            <a href="#" class="tag-cloud-link">lend</a>
-                            <a href="#" class="tag-cloud-link">hand</a>
-                            <a href="#" class="tag-cloud-link">education</a>
-                            <a href="#" class="tag-cloud-link">clothes</a>
-                            <a href="#" class="tag-cloud-link">environment</a>
-                            <a href="#" class="tag-cloud-link">help</a>
-                            <a href="#" class="tag-cloud-link">water</a>
-                            <a href="#" class="tag-cloud-link">charity</a>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="sidebar-box">
-                        <h3>Paragraph</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
-                            voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur
-                            similique, inventore eos fugit cupiditate numquam!</p>
-                    </div> --}}
                 </div>
 
             </div>
         </div>
+        @if(count($other_orphanages) > 0)
+            <div class="others mt-5 mb-5">
+                <div class="title mb-5" style="text-align: center">
+                    <h1 style="color: #0313A0; text-transform: uppercase">D'autre orphelinats de la zone</h1>
+                </div>
+                <div class="orphanages-cards">
+                    @foreach($other_orphanages as $other)
+                        @include("front.components.orphanage-card", ["orphanage" => $other])
+                    @endforeach
+                </div>
+            </div>
+        @endif
+        @if(str_starts_with($orphelinat->data_address['google_address'], '<iframe'))
+            <div class="f-container">
+                <div class="localisation-title mb-5" style="text-align: center">
+                    <h1 style="color: #0313A0; text-transform: uppercase">Comment trouver {{ $orphelinat->data_identity['name'] }} ?</h1>
+                </div>
+                <div class="pt-5">
+                    {!! $orphelinat->data_address['google_address'] ?? '' !!}
+                </div>
+            </div>
+        @endif
     </section> <!-- .section -->
+    <style>
+        .f-container {
+            width: 1440px;
+            margin: auto;
+        }
 
+        iframe { width: 100%; height: 400px }
+
+        .infos-utiles {
+            background-color: #0313A0;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .infos-utiles a {
+        }
+    </style>
 @endsection

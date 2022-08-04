@@ -16,4 +16,10 @@ class City extends Model
     protected $casts = [
         'datas' => 'array',
     ];
+
+
+    public function orphanages()
+    {
+        return $this->hasMany(Orphanage::class);
+    }
 }

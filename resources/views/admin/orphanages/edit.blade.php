@@ -25,7 +25,14 @@ Orphelinats
                     enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
-                    @include("admin.orphanages.components.form", ["fields" => $fields, "orphanage" => $orphanage])
+                    @include("admin.orphanages.components.form", ["orphanage" => $orphanage, "data_identity" => $data_identity,
+                                "data_identity_promoter" =>$data_identity_promoter,
+                                "data_address" =>$data_address,
+                                "data_financial_infos" =>$data_financial_infos,
+                                "data_stats" =>$data_stats,
+                                "data_education" =>$data_education,
+                                "data_needs" =>$data_needs,
+                                "data_projects" =>$data_projects,])
                 </form>
             </div>
         </div>
@@ -56,11 +63,11 @@ Orphelinats
 <script>
     // EDITEUR DE TEXTE
     tinymce.init({
-            selector: '#public_content',
-            plugins: "image code",
-            toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
-            a11y_advanced_options: true
-        });
+        selector: '#public_content, #history, #projects, #other_needs, #food_needs, #health_needs, #school_needs, #clothes_needs, #ludic_needs, #description, #withonoh',
+        plugins: "image code",
+        toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+        a11y_advanced_options: true
+    });
     // Filepond: Multiple Files
     FilePond.create( document.querySelector('.image-preview-filepond'), {
         allowMultiple: true,
