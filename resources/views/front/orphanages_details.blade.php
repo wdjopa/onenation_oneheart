@@ -88,6 +88,13 @@
                                 <strong>Tel : </strong>
                                 <span>{{ $orphelinat->data_identity['phone'] ?? '' }}</span>
                             </li>
+
+                            <li>
+                                <strong>Nom promoteur: </strong>
+                                <span>{{ $orphelinat->data_identity_promoter['promoter_name'] ?? '' }}</span>
+                            </li>
+
+                            
                         </ul>
                     </div>
                     <div class="sidebar-box ">
@@ -129,7 +136,7 @@
                                                      <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
                                                 </div>
                                              </div>
-<<<<<<< HEAD
+
                                             {{-- <div class="col-md-12 d-none">
                                     <div class="form-group">
                                         <label for="subject">Select Causes</label>
@@ -346,7 +353,7 @@
                     @foreach($other_orphanages as $other)
                         @include("front.components.orphanage-card", ["orphanage" => $other])
                     @endforeach
-                </div>
+                </div>i
             </div>
         @endif
         @if(str_starts_with($orphelinat->data_address['google_address'], '<iframe'))
