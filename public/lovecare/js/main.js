@@ -184,10 +184,12 @@
         });
 
         $('.orphanages-cards').slick({
-            infinite: true,
+            infinite: false,
             slidesToShow: 3,
-            slidesToScroll: 3
-        });
+            slidesToScroll: 1,
+            appendArrows: false,
+            dots: true
+        })
 
     });
 
