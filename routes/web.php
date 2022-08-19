@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
     Route::resource("cities", CityController::class);
     Route::post("cities/bulk_delete", [CityController::class, "multipleDestroy"])->name("cities.multipleDestroy");
 
+    Route::post('orphanages/images', [OrphanageController::class, 'storeImages'])->name('orphanage.storeImages');
+
 });
 // Route::group(['middleware' => 'auth'], function () {});
 
