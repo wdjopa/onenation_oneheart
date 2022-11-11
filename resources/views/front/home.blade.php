@@ -3,7 +3,7 @@
 @section('content')
 
     <section class="hero-wrap rellax" data-rellax-speed="-5" data-rellax-min="-120" data-rellax-max="0"
-        style="background-image: url('{{ asset('lovecare/images/bg_1.jpg') }}');">
+             style="background-image: url('{{ asset('lovecare/images/bg_1.jpg') }}');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center">
@@ -14,7 +14,7 @@
                                 class="ion-ios-arrow-round-forward"></span></a>
                         {{-- <a href="#" class="btn">Watch the
                             Video <span class="ion-ios-play"></span></a> --}}
-                    </p> 
+                    </p>
                 </div>
             </div>
         </div>
@@ -54,85 +54,79 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="tel">N° de tel</label>
-                                        <input id="phone" type="tel" name="tel" class="form-control" placeholder="N° de Téléphone">
+                                        <input id="phone" type="tel" name="tel" class="form-control"
+                                               placeholder="N° de Téléphone">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="amount">Nature du Don </label>
-                                        
-                                       <select class="form-select" name="" id="select-don"> 
-                                           <option value="" id="Recepteur-option">Don vestimentaire</option>
-                                           <option value="" id="Collecteur-option">Don alimentaire en nature</option>
-                                           <option value="" id="Sponsoring-option">Parrainage d'enfant</option>
-                                           <option value="" id="achat-option">Achat alimentaire en ligne</option>
-                                           <option value="" id="financial-option">Don financier</option>
 
-                                       
+                                        <select class="form-select" name="" id="select-don">
+                                            <option value="" id="recepteur-option">Don vestimentaire</option>
+                                            <option value="" id="Collecteur-option">Don alimentaire en nature</option>
+                                            <option value="" id="Sponsoring-option">Parrainage d'enfant</option>
+                                            <option value="" id="achat-option">Achat alimentaire en ligne</option>
+                                            <option value="" id="financial-option">Don financier</option>
+
+
                                         </select>
-                                      
+
 
                                         <script>
                                             $(document).ready(function () {
-                                                
+
 
                                                 $('#payment_mode3, #payment_mode1').on('change', function () {
                                                     console.log('@ornella')
                                                     if ($('#payment_mode3').prop('checked') == true) {
                                                         $('#payment_mode3-block').show()
                                                         $('#payment_mode1-block').hide()
-                                                    }
-                                                        
-                                                    else {
+                                                    } else {
                                                         $('#payment_mode3-block').hide()
                                                         $('#payment_mode1-block').show()
                                                     }
-                                                   
+
                                                 })
-                                                $('#select-don').change(function() {
+                                                $('#select-don').change(function () {
                                                     if ($('#financial-option').is(':selected')) {
-                                                    $('#financial-block').show()
-                                                }
-                                         
-                                                else {
-                                                    $('#financial-block').hide()
-                                                    $('#payment_mode3-block').hide()
-                                                    $('#payment_mode1-block').hide()
-                                                }
-                                                if ($('#Recepteur-option').is(':selected')){
-                                                    $('#Recepteur-block').show()
-                                                }
-                                                else {
-                                                    $('#Recepteur-block').hide()
-                                                }
-                                                if ($('#Collecteur-option').is(':selected')){
-                                                    $('#Recepteur-block').show()
-                                                }
-                                               
-                                               if ($('#Sponsoring-option').is(':selected')){
-                                                    $('#Sponsoring-block').show()
-                                                }
-                                                else {
-                                                   $('#Sponsoring-block').hide()
-                                                }
-                                                if ($('#achat-option').is(':selected')){
-                                                    $('#achat-block').show()
-                                                }
-                                                else {
-                                                   $('#achat-block').hide()
-                                                }
+                                                        $('#financial-block').show()
+                                                    } else {
+                                                        $('#financial-block').hide()
+                                                        $('#payment_mode3-block').hide()
+                                                        $('#payment_mode1-block').hide()
+                                                    }
+                                                    if ($('#recepteur-option').is(':selected')) {
+                                                        $('#recepteur-block').show()
+                                                    } else {
+                                                        $('#recepteur-block').hide()
+                                                    }
+                                                    if ($('#Collecteur-option').is(':selected')) {
+                                                        $('#recepteur-block').show()
+                                                    }
+
+                                                    if ($('#Sponsoring-option').is(':selected')) {
+                                                        $('#Sponsoring-block').show()
+                                                    } else {
+                                                        $('#Sponsoring-block').hide()
+                                                    }
+                                                    if ($('#achat-option').is(':selected')) {
+                                                        $('#achat-block').show()
+                                                    } else {
+                                                        $('#achat-block').hide()
+                                                    }
                                                 })
                                             })
-                                        </script>                                  
+                                        </script>
                                     </div>
                                 </div>
-                               
+
                                 <div id="financial-block" style="display: none">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="amount">Montant (en FCFA)</label>
                                             <input type="number" name="amount" class="form-control"
-                                                placeholder="Montant à donner (en FCFA)">
+                                                   placeholder="Montant à donner (en FCFA)">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -140,12 +134,14 @@
                                             <!--ici je donne un id a cette classe pour lappeller dans le script-->
                                             <div class="form-check d-flex" id="mode3_payment">
                                                 <!--<a href="https://gofund.me/3a5f9632">
-                                                
+
                                                     Paypal / Carte bancaire</a> -->
-                                                    <input class="form-check-input" type="radio" name="payment_mode" value="paypal"
-                                                    id="payment_mode1">
-                                               <label class="form-check-label" for="payment_mode1">Paypal / Carte bancaire</label>
-                                                    
+                                                <input class="form-check-input" type="radio" name="payment_mode"
+                                                       value="paypal"
+                                                       id="payment_mode1">
+                                                <label class="form-check-label" for="payment_mode1">Paypal / Carte
+                                                    bancaire</label>
+
                                             </div>
                                             <!--<div class="form-check d-flex ms-3">
                                                 <input class="form-check-input" type="radio" name="payment_mode" value="card"
@@ -153,32 +149,25 @@
                                                 <label class="form-check-label" for="payment_mode2">Carte bancaire</label>
                                             </div>-->
                                             <div class="form-check d-flex ms-3">
-                                                <input class="form-check-input" type="radio" name="payment_mode" value="momo"
-                                                    id="payment_mode3">
-                                                <label class="form-check-label" for="payment_mode3">OM / MTN MoMo</label>
+                                                <input class="form-check-input" type="radio" name="payment_mode"
+                                                       value="momo"
+                                                       id="payment_mode3">
+                                                <label class="form-check-label" for="payment_mode3">OM / MTN
+                                                    MoMo</label>
                                             </div>
                                         </div>
-                                     
+
                                     </div>
                                 </div>
                                 <div id="payment_mode3-block" style="display: none">
-                                    <div class="form-check d-flex ms-3">
-                                        <div class="form-group">
-                                            <p> adresse</p>
-                                            <form>
-                                                <ul>
-                                                    <li>Nom: One nation one heart</li>
-                                                    <li>Numero de telephone: +237 6 55 02 98 67</li>
-                                                </ul>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div id="payment_mode1-block" style="display: none">
-                                    <div class="gfm-embed" data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div><script defer src="https://www.gofundme.com/static/js/embed.js"></script>
+                                    <div class="gfm-embed"
+                                         data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div>
+                                    <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
                                 </div>
 
-                                <div id="Recepteur-block" style="display: none">
+                                <div id="recepteur-block" style="display: none">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <p> Recepteur des dons en nature</p>
@@ -201,11 +190,12 @@
                                 </div>
                                 <div id="achat-block" style="display: none">
                                     <div class="col-md-12">
-                                        <div class="form-group"> 
-                                            <a href="https://market.lamater.net/?ref=onenation_oneheart" >effectuons l'achat</a>
+                                        <div class="form-group">
+                                            <a href="https://market.lamater.net/?ref=onenation_oneheart">effectuons
+                                                l'achat</a>
                                         </div>
                                     </div>
-                                </div>                              
+                                </div>
 
 
                                 <div class="col-md-12">
@@ -216,7 +206,7 @@
                     </div>
                 </div>
                 <div class="col-md-7 heading-section d-flex align-items-center" data-aos="fade-up" data-aos-delay="200"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <div class="mt-0 about-wrap">
                         <span class="subheading">Bienvenue chez One Nation, One Heart</span>
                         <h2 class="mb-4">Pour une action sociale, humanitaire et solidaire,</h2>
@@ -225,13 +215,16 @@
                         </p>
                         <p>
                             Ceux-ci sont répartis suivant divers critères vous permettant de les découvrir aisément:
-                            <ul>
-                                <li>La localisation : la région, le département, la ville et le quartier</li>
-                                <li>Leur capacité d'accueil : le nombre d'enfants pris en charge dans chaque structure, la tranche
-                                    d'âge de ces enfants</li>
-                                <li>Leurs besoins : financiers, sanitaires, denrées alimentaires, vestimentaires, etc...</li>
-                                <li>Leur histoire et les contacts des responsables de ces diverses structures.</li>
-                            </ul>  
+                        <ul>
+                            <li>La localisation : la région, le département, la ville et le quartier</li>
+                            <li>Leur capacité d'accueil : le nombre d'enfants pris en charge dans chaque structure, la
+                                tranche
+                                d'âge de ces enfants
+                            </li>
+                            <li>Leurs besoins : financiers, sanitaires, denrées alimentaires, vestimentaires, etc...
+                            </li>
+                            <li>Leur histoire et les contacts des responsables de ces diverses structures.</li>
+                        </ul>
                         </p>
                         <p>
                             L'idée étant de casser les codes préétablis et préjugés de l’action sociale au Cameroun et
@@ -274,7 +267,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 heading-section heading-section-white mb-5" data-aos="fade-up"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <span class="subheading">Quelques chiffres de ONOH</span>
                     <h2 class="mb-0">Chiffres clés</h2>
                 </div>
@@ -304,7 +297,7 @@
                         <div class="icon">
                             <span class="flaticon-donation"></span>
                         </div>
-                        <h2 class="number"><span class="countup">239</span></h2>
+                        <h2 class="number"><span class="countup">{{ $total_enfants }}</span></h2>
                         <span class="caption">enfants recensés</span>
                     </div>
                 </div>
@@ -350,44 +343,12 @@
                         </div>
                     @else
                         <div class="d-flex"
-                            style="flex-direction: column; align-items: center; justify-content:center; margin: auto;">
-                            <img src="{{ asset('lovecare/images/empty.svg') }}" style="margin: 50px auto; width: 300px" />
+                             style="flex-direction: column; align-items: center; justify-content:center; margin: auto;">
+                            <img src="{{ asset('lovecare/images/empty.svg') }}"
+                                 style="margin: 50px auto; width: 300px"/>
                             Pas d'articles enregistré pour l'instant
                         </div>
                     @endif
-
-                    {{-- <div class="item">
-                            <div class="causes-wrap">
-                                <a href="{{ asset('lovecare/images/cause-1') }}.jpg"
-                                    class="img d-flex align-items-end justify-content-center glightbox"
-                                    style="background-image: url({{ asset('lovecare/images/cause-1') }}.jpg);">
-                                    <div class="icon d-flex align-items-center justify-content-center"><span
-                                            class="fa fa-search"></span></div>
-                                    <span class="sub">Education</span>
-                                </a>
-                                <div class="text">
-                                    <div class="desc">
-                                        <h2 class="mb-3">Give Food to Homeless Children</h2>
-                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                            Consonantia.</p>
-                                    </div>
-                                    <div class="progress-desc">
-                                        <div class="progress-wrap">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                                    <span>70%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex raised-goal justify-content-between">
-                                            <span>Raised: <strong>$9,800</strong></span>
-                                            <span class="goal">Goal: <strong>15,000</strong></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                 </div>
             </div>
         </div>
@@ -398,10 +359,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10 heading-section heading-section-white mb-5 text-center" data-aos="fade-up"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <span class="subheading">Faites un don ou devenez volontaires</span>
                     <h2 class="mb-4">Le plus petit acte de bonté vaut plus que la plus grande intention</h2>
-                    <p><a href="#" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a>          </a><a href="{{route("public.joinus")}}"
+                    <p><a href="#" class="btn btn-primary py-3 px-4">Faire un don maintenant !</a> <a> </a><a
+                            href="{{route("public.joinus")}}"
                             class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
                 </div>
             </div>
@@ -424,142 +386,13 @@
             </div>
         </div>
     </section>
-    {{-- <section class="ftco-section">
-        <div class="container-fluid">
-            <div class="row justify-content-center pb-4">
-                <div class="col-lg-7 text-center heading-section" data-aos="fade-up" data-aos-duration="1000">
-                    <span class="subheading">Meet Our Volunteer</span>
-                    <h2 class="mb-5">Our Volunteer</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
-                    <div class="staff">
-                        <div class="img-wrap d-flex align-items-stretch">
-                            <div class="img align-self-stretch"
-                                style="background-image: url({{ asset('lovecare/images/staff-1') }}.jpg);"></div>
-                        </div>
-                        <div class="text text-center">
-                            <h3 class="mb-2">Jason Smith</h3>
-                            <span class="position mb-2">Volunteer</span>
-                            <div class="faded">
-                                <ul class="ftco-social text-center">
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-twitter"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-google"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-instagram"></span></a></li>
-                                </ul>
-                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
-                    <div class="staff">
-                        <div class="img-wrap d-flex align-items-stretch">
-                            <div class="img align-self-stretch"
-                                style="background-image: url({{ asset('lovecare/images/staff-2') }}.jpg);"></div>
-                        </div>
-                        <div class="text text-center">
-                            <h3 class="mb-2">Anne Hayes</h3>
-                            <span class="position mb-2">Volunteer</span>
-                            <div class="faded">
-                                <ul class="ftco-social text-center">
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-twitter"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-google"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-instagram"></span></a></li>
-                                </ul>
-                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
-                    <div class="staff">
-                        <div class="img-wrap d-flex align-items-stretch">
-                            <div class="img align-self-stretch"
-                                style="background-image: url({{ asset('lovecare/images/staff-3') }}.jpg);"></div>
-                        </div>
-                        <div class="text text-center">
-                            <h3 class="mb-2">Martha Smith</h3>
-                            <span class="position mb-2">Volunteer</span>
-                            <div class="faded">
-                                <ul class="ftco-social text-center">
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-twitter"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-google"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-instagram"></span></a></li>
-                                </ul>
-                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3" data-aos="flip-right" data-aos-delay="100" data-aos-duration="1000">
-                    <div class="staff">
-                        <div class="img-wrap d-flex align-items-stretch">
-                            <div class="img align-self-stretch"
-                                style="background-image: url({{ asset('lovecare/images/staff-4') }}.jpg);"></div>
-                        </div>
-                        <div class="text text-center">
-                            <h3 class="mb-2">Mike Tyson</h3>
-                            <span class="position mb-2">Volunteer</span>
-                            <div class="faded">
-                                <ul class="ftco-social text-center">
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-twitter"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-google"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"
-                                            class="d-flex align-items-center justify-content-center"><span
-                                                class="fa fa-instagram"></span></a></li>
-                                </ul>
-                                <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section class="ftco-section testimony-section img"
-        style="background-image: url({{ asset('lovecare/images/bg_4.jpg') }});">
+             style="background-image: url({{ asset('lovecare/images/bg_4.jpg') }});">
         <div class="overlay"></div>
         <div class="container-xl">
             <div class="row justify-content-center pb-4">
                 <div class="col-lg-7 text-center heading-section heading-section-white" data-aos="fade-up"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <span class="subheading">Témoignages</span>
                     <h2 class="mb-5">Ce qu'ils disent de nous</h2>
                 </div>
@@ -582,22 +415,24 @@
         <div class="container-xl">
             <div class="row g-lg-5">
                 <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <div class="img img-2 w-100"
-                        style="background-image: url({{ asset('lovecare/images/about.jpg') }});">
+                         style="background-image: url({{ asset('lovecare/images/about.jpg') }});">
                     </div>
                 </div>
                 <div class="col-md-6 heading-section d-flex align-items-center" data-aos="fade-up" data-aos-delay="200"
-                    data-aos-duration="1000">
+                     data-aos-duration="1000">
                     <div class="mt-0 my-lg-5 py-5">
                         <span class="subheading">Apportez un soutien humain à l'aventure ONOH</span>
                         <h2 class="mb-4">Appel à bénévoles</h2>
-                        <p>Couvrir l’étendue du territoire afin d’avoir une proximité avec la quasi-totalité des orphelinats
+                        <p>Couvrir l’étendue du territoire afin d’avoir une proximité avec la quasi-totalité des
+                            orphelinats
                             et centres sociaux. Faciliter les descentes et faire connaître l’association.
                         </p>
                         <p>N'hésitez pas à nous rejoindre et mettre votre pièrre à l'édifice.
                         </p>
-                        <p><a href="{{route("public.joinus")}}" class="btn btn-secondary py-3 px-4">Devenir bénévole</a></p>
+                        <p><a href="{{route("public.joinus")}}" class="btn btn-secondary py-3 px-4">Devenir bénévole</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -605,10 +440,8 @@
     </section>
     <script>
         $(document).ready(function () {
-            
+
         })
     </script>
-
-
 
 @endsection

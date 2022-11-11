@@ -33,7 +33,7 @@ class PageController extends Controller
         $partners[] = ([
             "name" => "YALI West Africa Alumni Association",
             "entete" => "Association",
-            "url" => "https: //yali.state.gov/fr/",
+            "url" => "https://yali.state.gov/fr/",
             "description" => "Programme visant à forger un réseau actif de jeunes leaders Africains.",
             "background" => asset('lovecare/images/yali.png'),
         ]);

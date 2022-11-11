@@ -62,6 +62,7 @@
 
     @yield("scripts")
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
+    <script type="text/javascript" src="https://fr.monetbil.com/widget/v2/monetbil.min.js"></script>
 </body>
 
 </html>
