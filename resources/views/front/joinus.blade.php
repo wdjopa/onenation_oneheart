@@ -6,7 +6,7 @@
       label{
         margin-top: 1rem;
       }
-      
+
       .checkbox-item{
         margin: 5px 10px;
         padding: 5px;
@@ -89,7 +89,7 @@
                                                 placeholder="N° de téléphone ">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="">Comment as-tu connu One Nation One Heart (ONOH)?</label>
@@ -103,7 +103,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="">Dans quelle ville résides-tu ?</label>
-                                            
+
                                             <input type="text" class="form-control" name="city" id="city"
                                                 placeholder="Votre ville de résidence">
                                         </div>
@@ -112,10 +112,10 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="">As-tu deja investi precedement dans une association a but non
+                                            <label for="">As-tu deja été investi précédemment dans une association a but non
                                                 lucratif? Si oui, parle nous-en en quelques mots.</label>
                                             <textarea name="past_experience" class="form-control" id="message" cols="30" rows="7"
-                                                placeholder="As-tu deja investi precedement dans une association a but non lucrative? Si oui, parle nous-en en quelques mots."></textarea>
+                                                placeholder="As-tu deja été investi précédemment dans une association a but non lucrative? Si oui, parle nous-en en quelques mots."></textarea>
                                         </div>
                                     </div>
 

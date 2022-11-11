@@ -7,7 +7,7 @@
             <p class="meta"><span>{{$partner["entete"]}}</span></p>
             <h3 class="heading mb-3"><a href="{{$partner["url"]}}">{{$partner["name"]}}</a></h3>
             <p>{{$partner["description"]}}</p>
-            <p><a href="{{$partner["url"]}}" class="btn btn-secondary">Découvrir <span class="ion-ios-arrow-round-forward me-2"></span></a>
+            <p><a href="{{$partner["url"]}}" class="btn btn-secondary" target="_blank">Découvrir <span class="ion-ios-arrow-round-forward me-2"></span></a>
             </p>
         </div>
     </div>
