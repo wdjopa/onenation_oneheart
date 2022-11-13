@@ -32,13 +32,19 @@
                         <span>Blogs/Actions</span>
                     </a>
                 </li>
+                <li class="sidebar-item @if(Request::segment(2) == trim('partners')) active @endif">
+                    <a href="{{route("partners.index")}}" class='sidebar-link'>
+                        <i class="bi bi-building"></i>
+                        <span>Partenaires</span>
+                    </a>
+                </li>
                 {{-- <li class="sidebar-item">
                     <a href="{{route("admins.home")}}" class='sidebar-link'>
                         <i class="bi bi-tag-fill"></i>
                         <span>Tags</span>
                     </a>
                 </li> --}}
-                
+
                 {{-- <li class="sidebar-item">
                     <a href="{{route("admins.home")}}" class='sidebar-link'>
                         <i class="bi bi-briefcase-fill"></i>
@@ -51,7 +57,7 @@
                         <span>Villes</span>
                     </a>
                 </li>
-                
+
                 <li class="sidebar-title">Administration</li>
                 <li class="sidebar-item  @if(Request::segment(2) == trim('donations')) active @endif">
                     <a href="{{route("donations.index")}}" class='sidebar-link'>
@@ -59,7 +65,7 @@
                         <span>Dons</span>
                     </a>
                 </li>
-                
+
                 <li class="sidebar-item @if(Request::segment(2) == trim('users')) active @endif">
                     <a href="{{route("users.index")}}" class='sidebar-link'>
                         <i class="bi bi-person-fill"></i>
