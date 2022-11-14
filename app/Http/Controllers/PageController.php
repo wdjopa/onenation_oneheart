@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\City;
 use App\Models\Donation;
 use App\Models\Orphanage;
+use App\Models\Partner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,28 +16,7 @@ class PageController extends Controller
 {
     public function home(Request $request)
     {
-        $partners = [];
-        $partners[] = ([
-            "name" => "La Mater Market",
-            "entete" => "Startup, Livraison alimentaire",
-            "url" => "https://market.lamater.net/?ref=onenation_oneheart",
-            "description" => "Plateforme de services de courses en ligne. La Mater Market nous aidera à livrer les packs alimentaires dans les orphélinats.",
-            "background" => asset('lovecare/images/lamater.png'),
-        ]);
-        $partners[] = ([
-            "name" => "Make Them Smile Corporation",
-            "entete" => "Association",
-            "url" => "https://facebook.com/hope.smile.leave",
-            "description" => "If you have the power to make someone happy, Please do it. The world needs more of that.",
-            "background" => asset('lovecare/images/mts.png'),
-        ]);
-        $partners[] = ([
-            "name" => "YALI West Africa Alumni Association",
-            "entete" => "Association",
-            "url" => "https: //yali.state.gov/fr/",
-            "description" => "Programme visant à forger un réseau actif de jeunes leaders Africains.",
-            "background" => asset('lovecare/images/yali.png'),
-        ]);
+        $partners = Partner::all();
 
         $testimonies = [];
         $testimonies[] = [

@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('title', 'Orphélinats')
+@section('title', 'Orphelinats')
 @section('content')
 
 

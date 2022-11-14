@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\PageController;
@@ -32,6 +33,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
 
     Route::resource("users", UserController::class);
     Route::post("users/bulk_delete", [UserController::class, "multipleDestroy"])->name("users.multipleDestroy");
+
+    Route::resource("partners", PartnerController::class);
+    Route::post("partners/bulk_delete", [PartnerController::class, "multipleDestroy"])->name("partners.multipleDestroy");
 
     Route::resource("blogs", BlogController::class);
     Route::post("blogs/bulk_delete", [BlogController::class, "multipleDestroy"])->name("blogs.multipleDestroy");
