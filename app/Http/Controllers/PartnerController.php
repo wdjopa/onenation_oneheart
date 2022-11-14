@@ -180,4 +180,19 @@ class PartnerController extends Controller
     {
         //
     }
+
+    public function multipleDestroy(Request $request)
+    {
+        if ($request->ids) {
+            $ids = $request->ids;
+            foreach ($ids as $id) {
+                $partner = Partner::find($id);
+                $partner->delete();
+            }
+            $message = sizeof($ids) . ' Partenaire(s) supprimé(s) avec succès';
+        } else {
+            $message = "Aucun partenaire n'a été supprimé";
+        }
+        return redirect()->route("partners.index")->with('success', $message);
+    }
 }
