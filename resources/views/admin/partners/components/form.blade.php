@@ -31,14 +31,16 @@
              </div>
          </div>
 
-         <div class="form-group row mb-5">
-             <div class="col-md-4 col-lg-2">
-                 <label>Image actuelle</label>
+         @if(isset($partner))
+             <div class="form-group row mb-5">
+                 <div class="col-md-4 col-lg-2">
+                     <label>Image actuelle</label>
+                 </div>
+                 <div class="image">
+                     {{ $partner->getFirstMedia('images') }}
+                 </div>
              </div>
-             <div class="image">
-                 {{ $partner->getFirstMedia('images') }}
-             </div>
-         </div>
+         @endif
 
 
          <div class="col-sm-12 d-flex justify-content-end">
