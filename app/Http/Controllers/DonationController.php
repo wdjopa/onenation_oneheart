@@ -45,7 +45,8 @@ class DonationController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'tel' => 'required'
+            'tel' => 'required',
+            "amount" => 'required'
         ]);
 
         $donation = new Donation;
