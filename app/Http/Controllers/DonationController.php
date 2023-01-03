@@ -132,6 +132,9 @@ class DonationController extends Controller
     public function callback_dvXQEdsFNNCcfTYCrvGY(Request $request) {
         // Check transaction status
         $key = env("MY_COOL_PAY_PRIVATE_KEY", null);
+
+        if ($request->ip() != '15.236.140.89' || $key == null) return;
+
         $siganture = md5($request->transaction_ref
             .$request->transaction_type
             .$request->transaction_amount
