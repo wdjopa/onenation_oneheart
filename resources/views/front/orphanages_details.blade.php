@@ -379,7 +379,7 @@
                                             <div id="achat-block" style="display: none">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <a href="https://market.lamater.net/?ref=onenation_oneheart">effectuons
+                                                        <a href="https://market.lamater.net/?ref=onenation_oneheart&orphanage={{$orphelinat->slug}}" target="_blank">effectuons
                                                             l'achat</a>
                                                     </div>
                                                 </div>

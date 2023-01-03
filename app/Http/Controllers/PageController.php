@@ -63,7 +63,8 @@ class PageController extends Controller
             $total_enfants += intval($total_kids);
         }
 
-        $total_donations = Donation::all()->sum("amount");
+        // Ne considerer que les dons qui ont ete valides
+        $total_donations = Donation::where('status', 1)->sum("amount");
 
         $blogs = Blog::latest()->paginate(9);
 
