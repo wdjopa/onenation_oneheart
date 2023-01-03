@@ -62,12 +62,12 @@
                                     <div class="form-group">
                                         <label for="amount">Nature du Don </label>
 
-                                        <select class="form-select" name="" id="select-don">
-                                            <option value="" id="recepteur-option">Don vestimentaire</option>
-                                            <option value="" id="Collecteur-option">Don alimentaire en nature</option>
-                                            <option value="" id="Sponsoring-option">Parrainage d'enfant</option>
-                                            <option value="" id="achat-option">Achat alimentaire en ligne</option>
-                                            <option value="" id="financial-option">Don financier</option>
+                                        <select class="form-select" name="donate_option" id="select-don">
+                                            <option value="wearing" id="recepteur-option">Don vestimentaire</option>
+                                            <option value="collector" id="Collecteur-option">Don alimentaire en nature</option>
+                                            <option value="sponsoring" id="Sponsoring-option">Parrainage d'enfant</option>
+                                            <option value="eating" id="achat-option">Achat alimentaire en ligne</option>
+                                            <option value="financial" id="financial-option">Don financier</option>
 
 
                                         </select>
@@ -75,14 +75,16 @@
 
                                         <script>
                                             $(document).ready(function () {
-
-
+                                                $('#donateBtn').click(function (e) {
+                                                    if ($('#payment_mode3').prop('checked') === true && $('#financial-option').is(':selected')) {
+                                                    } else { console.log('Non Fredchess') }
+                                                })
                                                 $('#payment_mode3, #payment_mode1').on('change', function () {
-                                                    console.log('@ornella')
-                                                    if ($('#payment_mode3').prop('checked') == true) {
+                                                    if ($('#payment_mode3').prop('checked') === true) {
                                                         $('#payment_mode3-block').show()
                                                         $('#payment_mode1-block').hide()
-                                                    } else {
+                                                    }
+                                                    else {
                                                         $('#payment_mode3-block').hide()
                                                         $('#payment_mode1-block').show()
                                                     }
@@ -131,23 +133,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group d-flex" style="flex-wrap: wrap;">
-                                            <!--ici je donne un id a cette classe pour lappeller dans le script-->
                                             <div class="form-check d-flex" id="mode3_payment">
-                                                <!--<a href="https://gofund.me/3a5f9632">
-
-                                                    Paypal / Carte bancaire</a> -->
                                                 <input class="form-check-input" type="radio" name="payment_mode"
                                                        value="paypal"
                                                        id="payment_mode1">
                                                 <label class="form-check-label" for="payment_mode1">Paypal / Carte
                                                     bancaire</label>
-
                                             </div>
-                                            <!--<div class="form-check d-flex ms-3">
-                                                <input class="form-check-input" type="radio" name="payment_mode" value="card"
-                                                    id="payment_mode2">
-                                                <label class="form-check-label" for="payment_mode2">Carte bancaire</label>
-                                            </div>-->
                                             <div class="form-check d-flex ms-3">
                                                 <input class="form-check-input" type="radio" name="payment_mode"
                                                        value="momo"
@@ -155,6 +147,13 @@
                                                 <label class="form-check-label" for="payment_mode3">OM / MTN
                                                     MoMo</label>
                                             </div>
+                                            <script>
+                                                if (document.readyState === 'complete') {
+                                                    const checked_payment = document.querySelector("input[name='payment_mode']:checked")
+
+                                                    if (checked_payment != null) console.log('some checked')
+                                                }
+                                            </script>
                                         </div>
 
                                     </div>
@@ -166,7 +165,6 @@
                                          data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div>
                                     <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
                                 </div>
-
                                 <div id="recepteur-block" style="display: none">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -191,15 +189,13 @@
                                 <div id="achat-block" style="display: none">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <a href="https://market.lamater.net/?ref=onenation_oneheart">effectuons
+                                            <a href="https://market.lamater.net/?ref=onenation_oneheart" target="_blank">effectuons
                                                 l'achat</a>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="col-md-12">
-                                    <input type="submit" value="Faire mon don" class="btn btn-light py-3 px-4 rounded">
+                                <div class="col-md-12" id="donateBtn_container">
+                                    <input type="submit" value="Faire mon don" class="btn btn-light py-3 px-4 rounded" id="donateBtn">
                                 </div>
                             </div>
                         </form>
