@@ -30,7 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
     Route::resource("donations", DonationController::class);
     Route::post("donations/update_status", [DonationController::class, "update_status"])->name("donations.update_status");
     Route::post("donations/bulk_delete", [DonationController::class, "multipleDestroy"])->name("donations.multipleDestroy");
-    Route::post("callback/dvXQEdsFNNCcfTYCrvGY", [DonationController::class, 'callback_dvXQEdsFNNCcfTYCrvGY']);
 
     Route::resource("users", UserController::class);
     Route::post("users/bulk_delete", [UserController::class, "multipleDestroy"])->name("users.multipleDestroy");
@@ -66,6 +65,6 @@ Route::post('/donation', [DonationController::class, "store"])->name("public.don
 
 Route::get('/test', [TestController::class, 'List']);
 
-Auth::routes();
+Route::post("callback/dvXQEdsFNNCcfTYCrvGY", [DonationController::class, 'callback_dvXQEdsFNNCcfTYCrvGY'])->name('callback');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
