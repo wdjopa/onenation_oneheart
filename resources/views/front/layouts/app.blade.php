@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-{{--    <title>@yield('title', "Accueil ") - One Nation One Heart</title>--}}
+  <title>@yield('title', "Accueil ") - One Nation One Heart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="{{ asset('lovecare/js/jquery.js') }}"></script>
@@ -39,7 +39,15 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZLSCY3SQV"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-SZLSCY3SQV');
+        </script>
     @yield('css')
 </head>
 
