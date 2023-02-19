@@ -34,7 +34,7 @@
                                 <span>Dons récoltés</span>
                             </div>
                         </div>
-                        <form action="{{ route('public.donation') }}" method="POST" class="appointment">
+                        <form action="{{ route('public.donation') }}" method="POST" class="appointment" id="donation_form">
                             @csrf
                             <span class="subheading">Faire un don</span>
                             <h2 class="mb-4 appointment-head">Donner est le plus grand acte de grace</h2>
@@ -42,22 +42,22 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="name">Nom complet</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Nom complet">
+                                        <input type="text" name="name" class="form-control" placeholder="Nom complet" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="email">Adresse email</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Email">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="tel">N° de tel</label>
-                                        <input id="phone" type="tel" name="tel" class="form-control"
-                                               placeholder="N° de Téléphone">
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="tel">N° de tel</label>--}}
+{{--                                        <input id="phone" type="tel" name="tel" class="form-control"--}}
+{{--                                               placeholder="N° de Téléphone">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="amount">Nature du Don </label>
@@ -68,17 +68,9 @@
                                             <option value="sponsoring" id="Sponsoring-option">Parrainage d'enfant</option>
                                             <option value="eating" id="achat-option">Achat alimentaire en ligne</option>
                                             <option value="financial" id="financial-option">Don financier</option>
-
-
                                         </select>
-
-
                                         <script>
                                             $(document).ready(function () {
-                                                $('#donateBtn').click(function (e) {
-                                                    if ($('#payment_mode3').prop('checked') === true && $('#financial-option').is(':selected')) {
-                                                    } else { console.log('Non Fredchess') }
-                                                })
                                                 $('#payment_mode3, #payment_mode1').on('change', function () {
                                                     if ($('#payment_mode3').prop('checked') === true) {
                                                         $('#payment_mode3-block').show()
@@ -128,7 +120,7 @@
                                         <div class="form-group">
                                             <label for="amount">Montant (en FCFA)</label>
                                             <input type="number" name="amount" class="form-control"
-                                                   placeholder="Montant à donner (en FCFA)">
+                                                   placeholder="Montant à donner (en FCFA)" id="amount">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -147,23 +139,24 @@
                                                 <label class="form-check-label" for="payment_mode3">OM / MTN
                                                     MoMo</label>
                                             </div>
-                                            <script>
-                                                if (document.readyState === 'complete') {
-                                                    const checked_payment = document.querySelector("input[name='payment_mode']:checked")
-
-                                                    if (checked_payment != null) console.log('some checked')
-                                                }
-                                            </script>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div id="payment_mode3-block" style="display: none">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="tel">N° de tel</label>
+                                            <input id="phone" type="tel" name="tel" class="form-control"
+                                                   placeholder="Mobile Money">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="payment_mode1-block" style="display: none">
-                                    <div class="gfm-embed"
-                                         data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div>
-                                    <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
+{{--                                    <div class="gfm-embed"--}}
+{{--                                         data-url="https://www.gofundme.com/f/descentes-2022/widget/large/"></div>--}}
+{{--                                    <script defer src="https://www.gofundme.com/static/js/embed.js"></script>--}}
+                                    @onoh237
                                 </div>
                                 <div id="recepteur-block" style="display: none">
                                     <div class="col-md-12">

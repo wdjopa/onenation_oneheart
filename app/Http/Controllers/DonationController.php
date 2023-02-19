@@ -45,8 +45,14 @@ class DonationController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'tel' => 'required'
         ]);
+
+        if ($request->donate_option == 'financial' && $request->payment_mode == 'momo') {
+            $request->validate([
+                'tel' => 'required',
+                'amount' => 'required'
+            ]);
+        }
 
         $donation = new Donation;
         $donation->amount = $request->amount;
@@ -80,16 +86,20 @@ class DonationController extends Controller
                 "customer_lang" => "fr"
             ]);
 
-            $client = new Client();
-            $req = new \GuzzleHttp\Psr7\Request('POST', $url, ['Content-Type' => 'application/json'], $body);
+            try {
+                $client = new Client();
+                $req = new \GuzzleHttp\Psr7\Request('POST', $url, ['Content-Type' => 'application/json'], $body);
 
-            $response = $client->send($req);
+                $response = $client->send($req);
 
-            $json = json_decode($response->getBody()->getContents());
+                $json = json_decode($response->getBody()->getContents());
 
-            if (!isset($json->payment_url)) return redirect()->back();
+                if (!isset($json->payment_url)) return redirect()->back();
 
-            return redirect($json->payment_url);
+                return redirect($json->payment_url);
+            }catch (\Exception $e) {
+                return redirect()->back();
+            }
         }
 
         return redirect()->back()->with("success", "Votre don a bien été enregistré. Nous vous recontacterons afin de finaliser le paiement");
@@ -144,7 +154,7 @@ class DonationController extends Controller
         );
 
         if ($siganture == $request->signature) {
-            $donation_id = intval(explode('_', $request->transaction_ref)[1]);
+            $donation_id = intval(explode('_', $request->app_transaction_ref)[1]);
 
             $donation = Donation::find($donation_id);
 
@@ -152,6 +162,8 @@ class DonationController extends Controller
                 $donation->status = 1;
 
                 $donation->save();
+
+                return ['message' => 'ok'];
             }
         }
     }
