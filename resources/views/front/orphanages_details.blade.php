@@ -56,6 +56,63 @@
                                 </div>
                             </div>
                         @endif
+                        @if ($orphelinat->data_needs)
+                            <div class="besoins mt-5">
+                                <div class="title">
+                                    <h1 style="color: #0313A0; text-transform: uppercase">Besoins de l'orphelinat</h1>
+                                    <div class="ml-4" style="margin-left: 1.5rem">
+                                        @if ($orphelinat->data_needs['food_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Besoins alimentaires</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['food_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        @if ($orphelinat->data_needs['health_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Besoins sanitaires & hygiéniques</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['health_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        @if ($orphelinat->data_needs['school_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Besoins scolaires</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['school_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        @if ($orphelinat->data_needs['clothes_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Besoins vestimentaires</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['clothes_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        @if ($orphelinat->data_needs['ludic_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Besoins ludiques</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['ludic_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        @if ($orphelinat->data_needs['other_needs'])
+                                            <div class="mt-5 food-needs-content">
+                                                <h3 style="color: #0313A0; text-transform: uppercase">Autres besoins</h3>
+                                                    <div class="mt-5 histoire-content">
+                                                        {!! $orphelinat->data_needs['other_needs'] !!}
+                                                    </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         @if( array_key_exists("withonoh", $orphelinat->data_identity))
                             @if($orphelinat->data_identity['withonoh'] != null)
                                 <div class="withonoh mt-5">

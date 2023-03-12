@@ -73,7 +73,7 @@
             <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
-                        {{ $orphelinats->links() }}
+                        {!! $orphelinats->links() !!}
                     </div>
                 </div>
             </div>
@@ -82,6 +82,11 @@
     </section>
 
     <style>
-        .navigation svg { display: none }
+        /* .relative.z-0.inline-flex.shadow-sm.rounded-md { display: none } */
+        .block-27, .block-27 a.page-link, .block-27 span.page-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 @endsection
