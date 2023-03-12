@@ -404,10 +404,14 @@ class OrphanageController extends Controller
         $orphanage->save();
 
         // dd($request->files);
-        if ($request->files) {
-            foreach ($request->files as $image) {
-                $orphanage->addMedia($image)->toMediaCollection("images");
-            }
+        // if ($request->files) {
+        //     foreach ($request->files as $image) {
+        //         $orphanage->addMedia($image)->toMediaCollection("images");
+        //     }
+        // }
+
+        if ($request->hasFile('profile_image')) {
+            $orphanage->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
         }
 
         return redirect()->route("orphanages.index")->with("success", "L'orphelinat a été enregistré avec succès.");
@@ -847,13 +851,18 @@ class OrphanageController extends Controller
 
         $orphanage->save();
 
-        if ($request->files) {
-            foreach($orphanage->getMedia("images") as $media)
-            $media->delete();
-            foreach ($request->files as $image) {
-                $orphanage->addMedia($image)->toMediaCollection("images");
-            }
+        // if ($request->files) {
+        //     foreach($orphanage->getMedia("images") as $media)
+        //     $media->delete();
+        //     foreach ($request->files as $image) {
+        //         $orphanage->addMedia($image)->toMediaCollection("images");
+        //     }
+        // }
+
+        if ($request->hasFile('profile_image')) {
+            $orphanage->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
         }
+
         return redirect()->route("orphanages.index")->with("success", "L'orphelinat a été modifié avec succès.");
 
     }

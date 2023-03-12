@@ -41,7 +41,7 @@
                                          <label>Images de l'orphelinat</label>
                                      </div>
                                      <div class="col-md-8 col-lg-10">
-                                         <input type="file" class="image-preview-filepond-" name="files" multiple>
+                                         <input type="file" class="image-preview-filepond-" name="profile_image">
                                      </div>
                                  </div>
                                  <div class="form-group row mb-5">
