@@ -277,7 +277,7 @@
                         <div class="icon">
                             <span class="icon fa fa-map marker"></span>
                         </div>
-                        <h2 class="number"><span class="countup">1</span></h2>
+                        <h2 class="number"><span class="countup">{{$total_cities}}</span></h2>
                         <span class="caption">Régions couvertes</span>
                     </div>
                 </div>

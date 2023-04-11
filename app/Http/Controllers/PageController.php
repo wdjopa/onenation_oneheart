@@ -66,10 +66,11 @@ class PageController extends Controller
 
         // Ne considerer que les dons qui ont ete valides
         $total_donations = Donation::where('status', 1)->sum("amount");
+        $total_cities = count(City::all());
 
         $blogs = Blog::latest()->paginate(9);
 
-        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants", "total_orphanages"));
+        return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants", "total_orphanages", "total_cities"));
     }
     public function contact(Request $request)
     {
@@ -116,8 +117,13 @@ class PageController extends Controller
         if ($request->ages != null) {
             $query = $orphelinats->newQuery();
 
+            $orphanages_ages_1 = null;
+            $orphanages_ages_2 = null;
+            $orphanages_ages_3 = null;
+
             if (in_array(1, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
-            if (in_array(2, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
+            if (in_array(2, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_7_13', '>', 0);
+            if (in_array(3, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_14_21', '>', 0);
         }
 
 

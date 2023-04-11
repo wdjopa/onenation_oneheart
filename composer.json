@@ -6,7 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0.2",
+        "ext-http": "*",
         "cyrildewit/eloquent-viewable": "^6.0",
+        "doctrine/dbal": "^3.6",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -15,8 +17,7 @@
         "laravel/ui": "^3.4",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^5.4",
-        "spatie/laravel-searchable": "^1.10",
-      "ext-http": "*"
+        "spatie/laravel-searchable": "^1.10"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
