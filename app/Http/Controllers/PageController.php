@@ -117,13 +117,25 @@ class PageController extends Controller
         if ($request->ages != null) {
             $query = $orphelinats->newQuery();
 
-            $orphanages_ages_1 = null;
-            $orphanages_ages_2 = null;
-            $orphanages_ages_3 = null;
+            $ages = $request->ages;
 
-            if (in_array(1, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_0_6', '>', 0);
-            if (in_array(2, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_7_13', '>', 0);
-            if (in_array(3, $request->ages)) $orphelinats->where('orphanages.data_stats->children_number_14_21', '>', 0);
+            $orphelinats = $orphelinats->where(function ($q) use ($ages) {
+                foreach ($ages as $age) {
+                    switch ($age) {
+                        case 1:
+                            $q->orwhere('orphanages.data_stats->children_number_0_6', '>', 0);
+                            break;
+                        case 2:
+                            $q->orwhere('orphanages.data_stats->children_number_7_13', '>', 0);
+                            break;
+                        case 3:
+                            $q->orwhere('orphanages.data_stats->children_number_14_21', '>', 0);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
         }
 
 
@@ -131,13 +143,13 @@ class PageController extends Controller
         if ($request->villes != null)
         {
             $orphelinats = Orphanage::
-                                joinSub($cities, 'cities', function ($join) {
-                                    $join->on('cities.id', '=', 'orphanages.city_id');
-                                })
-                                -> joinSub($orphelinats, 'orph', function ($join) {
-                                    $join->on('orph.id', '=', 'orphanages.city_id');
-                                })
-                                ->select('orphanages.*');
+                joinSub($cities, 'cities', function ($join) {
+                    $join->on('cities.id', '=', 'orphanages.city_id');
+                })
+                -> joinSub($orphelinats, 'orph', function ($join) {
+                    $join->on('orph.id', '=', 'orphanages.city_id');
+                })
+                ->select('orphanages.*');
         }
 
         //le nombre d'enfants
