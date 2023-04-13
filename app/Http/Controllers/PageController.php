@@ -98,10 +98,7 @@ class PageController extends Controller
 
     public function orphanages(Request $request)
     {
-
         $villes = City::all();
-        $cities = City::whereIn('name', $request->villes ?? []);
-
         // recherche par le nom
         $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
                                 ->where('status', '=', 1);
@@ -142,14 +139,13 @@ class PageController extends Controller
         // Recherche par nom des villes
         if ($request->villes != null)
         {
-            $orphelinats = Orphanage::
-                joinSub($cities, 'cities', function ($join) {
-                    $join->on('cities.id', '=', 'orphanages.city_id');
-                })
-                -> joinSub($orphelinats, 'orph', function ($join) {
-                    $join->on('orph.id', '=', 'orphanages.city_id');
-                })
-                ->select('orphanages.*');
+            $cities = $request->villes;
+
+            $orphelinats = $orphelinats->whereIn('city_id', function ($q) use ($cities) {
+                $q->select('id')
+                        ->from('cities')
+                        ->whereIn('name', $cities);
+            });
         }
 
         //le nombre d'enfants
@@ -167,7 +163,9 @@ class PageController extends Controller
 
         }
 
-        $orphelinats = $orphelinats->paginate(9);
+        $orphelinats = $orphelinats->paginate(1);
+
+        $orphelinats->appends(['search' => $request->input('search'), 'villes' => $request->input('villes', []), 'villes' => $request->input('villes', [])]);
 
         return view("front.orphanages", compact("orphelinats", "villes"));
     }
