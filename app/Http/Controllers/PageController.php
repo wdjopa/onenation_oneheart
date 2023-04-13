@@ -163,7 +163,9 @@ class PageController extends Controller
 
         }
 
-        $orphelinats = $orphelinats->paginate(9);
+        $orphelinats = $orphelinats->paginate(1);
+
+        $orphelinats->appends(['search' => $request->input('search'), 'villes' => $request->input('villes', []), 'villes' => $request->input('villes', [])]);
 
         return view("front.orphanages", compact("orphelinats", "villes"));
     }
