@@ -63,6 +63,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mt-5">
+                                <div class="d-flex flex-end items-center">
+                                    <strong class="mr-2">Trier par</strong> &nbsp;
+                                    <select name="sort" id="sort-select">
+                                        <option value="">---</option>
+                                        <option value="1">Nombre d'enfants croissant</option>
+                                        <option value="2">Nombre d'enfants décroissant</option>
+                                    </select>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
                         </form>
                     </div>
@@ -99,6 +109,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .flex-end {
+            justify-content: flex-end
+        }
+
+        .items-center { align-items: center }
+
+        select{
+            height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding-left: 5px;
+            padding: 10px;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+            color: #555;
+            background-color: rgb(255, 255, 255);
+            background-image: none;
+            border: 1px solid rgb(41, 18, 18);
+            outline: none
+        }
+        select>option{
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+            color: #555;
+            background-color: rgb(247, 247, 247);
+            background-image: none;
+            font-size: 18px;
+            height: 50px;
+            padding: 15px;
+            border: 1px solid rgb(41, 18, 18);
         }
     </style>
 @endsection

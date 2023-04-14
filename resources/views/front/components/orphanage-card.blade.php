@@ -15,7 +15,8 @@
                 </p>
             </div>
             <div class="progress-desc">
-                <div class="d-flex raised-goal justify-content-between">
+                <div class="d-flex flex-col raised-goal justify-content-between">
+                    <span>Nombre d'enfants: <strong>{{$orphanage->data_stats['children_number']}}</strong></span>
                     <span>Dons collectés: <strong>{{$orphanage->dons->sum("amount")}} FCFA</strong></span>
                 </div>
             </div>
@@ -23,3 +24,14 @@
     </div>
 </div>
 @endif
+
+
+@section('css')
+
+<style>
+    .flex-col {
+        flex-direction: column
+    }
+</style>
+
+@endsection

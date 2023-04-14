@@ -163,9 +163,26 @@ class PageController extends Controller
 
         }
 
+        // Trier par ...
+        // Nombre d'enfants
+        if ($request->input('sort')) {
+            switch ($request->input('sort')) {
+                case 1:
+                    $orphelinats->orderByRaw("json_extract(data_stats, '$.children_number') ASC");
+                    break;
+                case 2:
+                    $orphelinats->orderByRaw("json_extract(data_stats, '$.children_number') DESC");
+                    break;
+            }
+        }
+
         $orphelinats = $orphelinats->paginate(9);
 
-        $orphelinats->appends(['search' => $request->input('search'), 'street' => $request->input('street'), 'villes' => $request->input('villes', []), 'ages' => $request->input('ages', [])]);
+        $orphelinats->appends(['search' => $request->input('search'),
+                             'street' => $request->input('street'),
+                             'sort' => $request->input('sort'),
+                             'villes' => $request->input('villes', []),
+                             'ages' => $request->input('ages', [])]);
 
         return view("front.orphanages", compact("orphelinats", "villes"));
     }
