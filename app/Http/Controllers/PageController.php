@@ -163,7 +163,7 @@ class PageController extends Controller
 
         }
 
-        $orphelinats = $orphelinats->paginate(1);
+        $orphelinats = $orphelinats->paginate(9);
 
         $orphelinats->appends(['search' => $request->input('search'), 'villes' => $request->input('villes', []), 'villes' => $request->input('villes', [])]);
 
