@@ -8,10 +8,9 @@ use App\Models\Donation;
 use App\Models\Orphanage;
 use App\Models\Partner;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Spatie\Searchable\Search;
 
 class PageController extends Controller
 {
@@ -98,93 +97,97 @@ class PageController extends Controller
 
     public function orphanages(Request $request)
     {
-        $villes = City::all();
-        // recherche par le nom
-        $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
-                                ->where('status', '=', 1);
+        try {
+            $villes = City::all();
+            // recherche par le nom
+            $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
+                                    ->where('status', '=', 1);
 
-        //quartier
-        if ($request->street != null) {
-            $query = $orphelinats->newQuery();
+            //quartier
+            if ($request->street != null) {
+                $query = $orphelinats->newQuery();
 
-            $orphelinats = $query->where('orphanages.data_address->localisation', 'like', "%{$request->street}%");
-        }
-
-        // Recherche par tranche d'age
-        if ($request->ages != null) {
-            $query = $orphelinats->newQuery();
-
-            $ages = $request->ages;
-
-            $orphelinats = $orphelinats->where(function ($q) use ($ages) {
-                foreach ($ages as $age) {
-                    switch ($age) {
-                        case 1:
-                            $q->orwhere('orphanages.data_stats->children_number_0_6', '>', 0);
-                            break;
-                        case 2:
-                            $q->orwhere('orphanages.data_stats->children_number_7_13', '>', 0);
-                            break;
-                        case 3:
-                            $q->orwhere('orphanages.data_stats->children_number_14_21', '>', 0);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            });
-        }
-
-
-        // Recherche par nom des villes
-        if ($request->villes != null)
-        {
-            $cities = $request->villes;
-
-            $orphelinats = $orphelinats->whereIn('city_id', function ($q) use ($cities) {
-                $q->select('id')
-                        ->from('cities')
-                        ->whereIn('name', $cities);
-            });
-        }
-
-        //le nombre d'enfants
-        if ($request->profesional_search_children != null) {
-
-        }
-
-        //le nombre d'enfants en recherche de professionnalisation
-        if ($request->total_children != null) {
-
-        }
-
-        //le nombre d'enfants en classe d'examen
-        if ($request->exam_class_children != null) {
-
-        }
-
-        // Trier par ...
-        // Nombre d'enfants
-        if ($request->input('sort')) {
-            switch ($request->input('sort')) {
-                case 1:
-                    $orphelinats->orderByRaw("json_extract(data_stats, '$.children_number') ASC");
-                    break;
-                case 2:
-                    $orphelinats->orderByRaw("json_extract(data_stats, '$.children_number') DESC");
-                    break;
+                $orphelinats = $query->where('orphanages.data_address->localisation', 'like', "%{$request->street}%");
             }
+
+            // Recherche par tranche d'age
+            if ($request->ages != null) {
+                $query = $orphelinats->newQuery();
+
+                $ages = $request->ages;
+
+                $orphelinats = $orphelinats->where(function ($q) use ($ages) {
+                    foreach ($ages as $age) {
+                        switch ($age) {
+                            case 1:
+                                $q->orwhere('orphanages.data_stats->children_number_0_6', '>', 0);
+                                break;
+                            case 2:
+                                $q->orwhere('orphanages.data_stats->children_number_7_13', '>', 0);
+                                break;
+                            case 3:
+                                $q->orwhere('orphanages.data_stats->children_number_14_21', '>', 0);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+            }
+
+
+            // Recherche par nom des villes
+            if ($request->villes != null)
+            {
+                $cities = $request->villes;
+
+                $orphelinats = $orphelinats->whereIn('city_id', function ($q) use ($cities) {
+                    $q->select('id')
+                            ->from('cities')
+                            ->whereIn('name', $cities);
+                });
+            }
+
+            //le nombre d'enfants
+            if ($request->profesional_search_children != null) {
+
+            }
+
+            //le nombre d'enfants en recherche de professionnalisation
+            if ($request->total_children != null) {
+
+            }
+
+            //le nombre d'enfants en classe d'examen
+            if ($request->exam_class_children != null) {
+
+            }
+
+            // Trier par ...
+            if ($request->input('sort')) {
+                switch ($request->input('sort')) {
+                    case 1:
+                        $orphelinats->orderBy('data_stats->children_number', 'asc');
+                        break;
+                    case 2:
+                        $orphelinats->orderBy('data_stats->children_number', 'desc');
+                        break;
+                }
+            }
+
+            $orphelinats = $orphelinats->paginate(9);
+
+            $orphelinats->appends(['search' => $request->input('search'),
+                                'street' => $request->input('street'),
+                                'sort' => $request->input('sort'),
+                                'villes' => $request->input('villes', []),
+                                'ages' => $request->input('ages', [])]);
+
+            return view("front.orphanages", compact("orphelinats", "villes"));
         }
-
-        $orphelinats = $orphelinats->paginate(9);
-
-        $orphelinats->appends(['search' => $request->input('search'),
-                             'street' => $request->input('street'),
-                             'sort' => $request->input('sort'),
-                             'villes' => $request->input('villes', []),
-                             'ages' => $request->input('ages', [])]);
-
-        return view("front.orphanages", compact("orphelinats", "villes"));
+        catch (Exception $e) {
+            return redirect()->route('public.orphanages');
+        }
     }
     public function orphanages_detail(Request $request, $orphanage_slug)
     {
@@ -193,15 +196,8 @@ class PageController extends Controller
         views($orphelinat)->record();
         $other_orphanages = City::where('id', $orphelinat->city_id)->first();
         $other_orphanages = $other_orphanages->orphanages;
+
         return view("front.orphanages_details", compact("orphelinat", "other_orphanages"));
-    }
-
-    public function search(Request $request)
-    {
-        $searchResults = (new Search())
-            ->registerModel(Orphanage::class, 'name', 'city')
-            ->search($request->q);
-
     }
 
     public function joinus(Request $request)
