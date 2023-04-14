@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0.2",
-        "ext-http": "*",
         "cyrildewit/eloquent-viewable": "^6.0",
         "doctrine/dbal": "^3.6",
         "fideloper/proxy": "^4.4",
