@@ -32,4 +32,4 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no willy@51.178.86.41 -p1805 "cd /var/www/onenation_oneheart && git
           checkout master && git pull origin master && composer install && php artisan migrate
-          --path=/database/migrations/ && exit"
+          --path=database/migrations/ && exit"
