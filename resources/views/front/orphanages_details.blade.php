@@ -34,13 +34,15 @@
                                 <li>{{ $orphelinat->data_stats['children_number'] }} enfants</li>
                                 <li>{{ $orphelinat->data_address['localisation'] ?? '' }} ({{ $orphelinat->city->name }})</li>
                                 <li>{{ $orphelinat->data_identity_promoter['promoter_phone'] }} / {{$orphelinat->data_identity_promoter['second_phone'] ?? '' }}</li>
-                                <li>
-                                    <a href="{{ $orphelinat->data_identity['website'] }}" target="_blank">Site web
-                                        <span>
-                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                        </span>
-                                    </a>
-                                </li>
+                                @if($orphelinat->data_identity['website'])
+                                    <li>
+                                        <a href="{{ (strpos($orphelinat->data_identity['website'], 'http') === 0) ? $orphelinat->data_identity['website'] : 'http://' . $orphelinat->data_identity['website'] }}" target="_blank">Site web
+                                            <span>
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                         <div class="description mt-5">
