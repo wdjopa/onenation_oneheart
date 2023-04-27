@@ -100,7 +100,7 @@ class PageController extends Controller
         try {
             $villes = City::all();
             // recherche par le nom
-            $orphelinats = Orphanage::where('orphanages.data_identity->name', 'like', "%{$request->search}%")
+            $orphelinats = Orphanage::where('name', 'like', "%{$request->search}%")
                                     ->where('status', '=', 1);
 
             //quartier
