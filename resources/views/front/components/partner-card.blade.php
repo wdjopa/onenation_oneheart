@@ -6,7 +6,7 @@
         <div class="text text-center">
             <p class="meta"><span>{{$partner["domain"]}}</span></p>
             <h3 class="heading mb-3"><a href="{{$partner["url"]}}">{{$partner["name"]}}</a></h3>
-            <p>{{$partner["description"]}}</p>
+            <p>{!! $partner["description"] !!}</p>
             <p><a href="{{$partner["url"]}}" class="btn btn-secondary" target="_blank">Découvrir <span class="ion-ios-arrow-round-forward me-2"></span></a>
             </p>
         </div>
