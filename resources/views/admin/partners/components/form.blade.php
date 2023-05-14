@@ -59,3 +59,20 @@
          height: 100%;
      }
  </style>
+
+@section('scripts')
+
+<!-- TinyMCE -->
+<script src="{{asset("admin_assets/vendors/tinymce/tinymce.min.js")}}"></script>
+<script src="{{asset("admin_assets/vendors/tinymce/plugins/code/plugin.min.js")}}"></script>
+<script>
+    // EDITEUR DE TEXTE
+     tinymce.init({
+            selector: '#description',
+            plugins: "image code",
+            toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+            a11y_advanced_options: true
+        });
+</script>
+
+@endsection

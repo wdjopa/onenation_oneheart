@@ -56,11 +56,11 @@ Orphelinats
 
 <!-- toastify -->
 <script src="{{asset("admin_assets/vendors/toastify/toastify.js")}}"></script>
+<!-- filepond -->
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 <!-- TinyMCE -->
 <script src="{{asset("admin_assets/vendors/tinymce/tinymce.min.js")}}"></script>
 <script src="{{asset("admin_assets/vendors/tinymce/plugins/code/plugin.min.js")}}"></script>
-<!-- filepond -->
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 <script>
     // EDITEUR DE TEXTE
      tinymce.init({
