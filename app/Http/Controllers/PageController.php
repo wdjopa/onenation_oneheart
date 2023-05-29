@@ -68,6 +68,8 @@ class PageController extends Controller
         $total_cities = count(City::all());
 
         $blogs = Blog::latest()->paginate(9);
+        
+        dd($blogs);
 
         return view("front.home", compact("partners", "testimonies", "total_donations", "blogs", "total_enfants", "total_orphanages", "total_cities"));
     }
