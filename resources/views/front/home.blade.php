@@ -322,8 +322,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-
-
                     @if ($blogs->count() > 0)
                         <div class="carousel-causes">
                             @foreach ($blogs as $blog)
