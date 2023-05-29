@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -172,6 +174,32 @@ class BlogController extends Controller
             $message = "Aucun article n'a été supprimé";
         }
         return redirect()->route("blogs.index")->with('success', $message);
+    }
+
+    public function addImage(Request $request) 
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => ['required', 'image', 'max:2048']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Invalid image'
+            ], 400);
+        }
+
+        $image = $request->file('file');
+        $image_name = $image->getClientOriginalName();
+
+        if (Storage::exists('public/article_images/'.$image_name)) {
+            return response()->json(['location' => Storage::url('public/article_images/'.$image_name)]);
+        }
+
+        $path = $image->storeAs('public/article_images', $image_name);
+
+        return response()->json([
+            'location' => Storage::url($path)
+        ]);
     }
 
 }

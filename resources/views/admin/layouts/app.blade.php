@@ -68,8 +68,8 @@
     // Dropzone js
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    @yield("scripts")
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
+    @yield("scripts")
 </body>
 
 </html>

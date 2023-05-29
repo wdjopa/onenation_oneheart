@@ -58,7 +58,10 @@
             selector: '#public_content',
             plugins: "image code",
             toolbar: 'undo image redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
-            a11y_advanced_options: true
+            a11y_advanced_options: true,
+            images_upload_url: '/admin/blogs/add-image',
+            images_upload_credentials: true
+            // file_picker_types: 'images'
         });
 
         // Filepond: Multiple Files
