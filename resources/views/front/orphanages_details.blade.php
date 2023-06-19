@@ -5,11 +5,11 @@
 @section('meta_title', $orphelinat->name)
 @section('meta_description', $orphelinat->data_identity['history'] ?? '')
 @section('meta_url', route('public.orphanages.details', ['orphanage_slug' => $orphelinat->slug]))
-@section('meta_image', $orphelinat->getFirstMediaUrl('images'))
+@section('meta_image', $orphelinat->getFirstMediaUrl('profile_images'))
 
 @section('content')
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ $orphelinat->getFirstMediaUrl('images') }}');">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{ $orphelinat->getFirstMediaUrl('profile_images') }}');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
