@@ -851,15 +851,9 @@ class OrphanageController extends Controller
 
         $orphanage->save();
 
-        // if ($request->files) {
-        //     foreach($orphanage->getMedia("images") as $media)
-        //     $media->delete();
-        //     foreach ($request->files as $image) {
-        //         $orphanage->addMedia($image)->toMediaCollection("images");
-        //     }
-        // }
-
         if ($request->hasFile('profile_image')) {
+            foreach($orphanage->getMedia("profile_images") as $media)
+                $media->delete();
             $orphanage->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
         }
 
