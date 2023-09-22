@@ -77,7 +77,8 @@ class PartnerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
-            'domain' => 'required|string'
+            'domain' => 'required|string',
+            'url' => 'required|string',
         ]);
 
         $partner = Partner::create($validated);
@@ -158,6 +159,7 @@ class PartnerController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'domain' => 'required|string',
+            'url' => 'required|string',
         ]);
 
         $partner->update($validated);
