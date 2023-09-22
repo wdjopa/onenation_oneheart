@@ -34,7 +34,7 @@ Partenaires
                                         </label>
                                     </th>
                                     <th class="font-14 font-weight-medium text-muted">Nom</th>
-                                    <th class="font-14 font-weight-medium text-muted">Description</th>
+                                    {{-- <th class="font-14 font-weight-medium text-muted">Description</th> --}}
                                     <th class="font-14 font-weight-medium text-muted">Domaine</th>
                                     <th class="font-14 font-weight-medium text-muted">Lien</th>
 {{--                                    <th class="font-14 font-weight-medium text-muted">Visible</th>--}}
@@ -53,7 +53,7 @@ Partenaires
                                         </label>
                                     </td>
                                     <td>{{$partner->name}}</td>
-                                    <td>{{$partner->description}}</td>
+                                    {{-- <td>{!! $partner->description !!}</td> --}}
                                     <td>{{$partner->domain}}</td>
                                     <td>
                                         <div class="">
