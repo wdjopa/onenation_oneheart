@@ -63,6 +63,7 @@ Route::get('/blog', [PageController::class, "blog"])->name("public.blog");
 Route::get('/blog/{blog_slug}', [PageController::class, "blog_detail"])->name("public.blog.details");
 
 Route::post('/donation', [DonationController::class, "store"])->name("public.donation");
+Route::post('/donation/callback', [DonationController::class, "callback"])->name('donation.callback');
 
 Route::get('/test', [TestController::class, 'List']);
 
