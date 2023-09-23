@@ -11,7 +11,7 @@ use Stripe\StripeClient;
 
 class StripeGateway implements BaseGateway
 {
-    public function pay(Donation $donation) : string
+    public function pay(Request $request, Donation $donation) : string
     {
         $key = env("STRIPE_SECRET");
 
@@ -20,21 +20,22 @@ class StripeGateway implements BaseGateway
         $session = $stripe->checkout->sessions->create([
             'success_url' => $donation->orphanage_id ? route('public.orphanages.details', $donation->orphanage->slug)."?success=true" : route('public.home')."?success=true",
             'cancel_url' => $donation->orphanage_id ? route('public.orphanages.details', $donation->orphanage->slug)."?success=false" : route('public.home')."?success=false",
-            'currency' => 'XAF',
+            'currency' => 'EUR',
             'metadata' => [
                 'donation_id' => $donation->id
             ],
             'mode' => 'payment',
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'XAF',
+                    'currency' => 'EUR',
                     'product_data' => [
                         'name' => 'Donation'
                     ],
-                    'unit_amount' => $donation->amount
+                    'unit_amount_decimal' => $donation->amount * 100
                 ],
                 'quantity' => 1
-            ]]
+            ]],
+            "customer_email" => $request->email
         ]);
 
         return $session->url;

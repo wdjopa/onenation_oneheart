@@ -59,7 +59,7 @@ class DonationController extends Controller
         }
 
         $donation = new Donation;
-        $donation->amount = $request->amount;
+        $donation->amount = ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') ? $request->amount * 655 : $request->amount; // Conversion approximative du EUR en XAF lorsque le mode de paiement est PayPal
         $donation->status = 0;
         $datas = [
             "name" => $request->name,
@@ -108,7 +108,9 @@ class DonationController extends Controller
             try {
                 $paymentService = new PaymentService(new StripeGateway()); // Faire pareil pour MyCollPay
 
-                $url = $paymentService->processPayment($donation);
+                $donation->amount = $request->amount; // On reprend le montant en EUR
+
+                $url = $paymentService->processPayment($request, $donation);
 
                 return redirect($url);
             } catch (\Exception $e) {

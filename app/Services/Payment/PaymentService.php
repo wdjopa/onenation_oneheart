@@ -14,9 +14,9 @@ class PaymentService
         $this->gateway = $gateway;
     }
 
-    public function processPayment (Donation $donation)
+    public function processPayment (Request $request, Donation $donation)
     {
-        return $this->gateway->pay($donation);
+        return $this->gateway->pay($request, $donation);
     }
 
     public function callback (Request $request)
