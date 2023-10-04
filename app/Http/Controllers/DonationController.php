@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
+use App\Services\Payment\PaymentService;
+use App\Services\Payment\StripeGateway;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Stripe\StripeClient;
+
 use function MongoDB\BSON\toJSON;
 
 class DonationController extends Controller
@@ -20,7 +25,6 @@ class DonationController extends Controller
         //
         $donations = Donation::all();
         return view("admin.donations.index", compact("donations"));
-
     }
 
     /**
@@ -55,7 +59,7 @@ class DonationController extends Controller
         }
 
         $donation = new Donation;
-        $donation->amount = $request->amount;
+        $donation->amount = ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') ? $request->amount * 655 : $request->amount; // Conversion approximative du EUR en XAF lorsque le mode de paiement est PayPal
         $donation->status = 0;
         $datas = [
             "name" => $request->name,
@@ -65,8 +69,8 @@ class DonationController extends Controller
         ];
         $donation->datas = $datas;
 
-        if($request->orphanage_id)
-        $donation->orphanage_id = $request->orphanage_id;
+        if ($request->orphanage_id)
+            $donation->orphanage_id = $request->orphanage_id;
 
         $donation->save();
 
@@ -97,8 +101,20 @@ class DonationController extends Controller
                 if (!isset($json->payment_url)) return redirect()->back();
 
                 return redirect($json->payment_url);
-            }catch (\Exception $e) {
+            } catch (\Exception $e) {
                 return redirect()->back();
+            }
+        } else if ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') {
+            try {
+                $paymentService = new PaymentService(new StripeGateway()); // Faire pareil pour MyCollPay
+
+                $donation->amount = $request->amount; // On reprend le montant en EUR
+
+                $url = $paymentService->processPayment($request, $donation);
+
+                return redirect($url);
+            } catch (\Exception $e) {
+                return redirect()->back()->with("error", $e->getMessage());
             }
         }
 
@@ -137,20 +153,22 @@ class DonationController extends Controller
 
 
     /**
-        * Callback for My cool pay payment api
+     * Callback for My cool pay payment api
      */
-    public function callback_dvXQEdsFNNCcfTYCrvGY(Request $request) {
+    public function callback_dvXQEdsFNNCcfTYCrvGY(Request $request)
+    {
         // Check transaction status
         $key = env("MY_COOL_PAY_PRIVATE_KEY", null);
 
         if ($request->ip() != '15.236.140.89' || $key == null) return;
 
-        $siganture = md5($request->transaction_ref
-            .$request->transaction_type
-            .$request->transaction_amount
-            .$request->transaction_currency
-            .$request->transaction_operator
-            .$key
+        $siganture = md5(
+            $request->transaction_ref
+                . $request->transaction_type
+                . $request->transaction_amount
+                . $request->transaction_currency
+                . $request->transaction_operator
+                . $key
         );
 
         if ($siganture == $request->signature) {
@@ -166,6 +184,13 @@ class DonationController extends Controller
                 return ['message' => 'ok'];
             }
         }
+    }
+
+    public function callback(Request $request)
+    {
+        $paymentService = new PaymentService(new StripeGateway());
+
+        $paymentService->callback($request);
     }
 
     /**
@@ -205,7 +230,6 @@ class DonationController extends Controller
         $donation->save();
 
         return redirect()->back()->with("success", "Ce don a bien été modifié.");
-
     }
 
     /**
