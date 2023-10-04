@@ -79,7 +79,7 @@
             <div id="payment_mode1-block" style="display: none">
                 <div class="col-md-12">
                     <div class="form-group mb-3">
-                        <label for="amount">Montant (en FCFA)</label>
+                        <label for="amount">Montant (en EUR)</label>
                         <input type="number" name="amount" class="form-control"
                             placeholder="Montant à donner (en EUR)" id="amount">
                     </div>
