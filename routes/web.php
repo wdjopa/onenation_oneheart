@@ -73,4 +73,4 @@ Route::get('/test', [TestController::class, 'List']);
 
 Route::post("callback/dvXQEdsFNNCcfTYCrvGY", [DonationController::class, 'callback_dvXQEdsFNNCcfTYCrvGY'])->name('callback');
 
-Auth::routes();
+Auth::routes(['register' => false]);
