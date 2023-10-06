@@ -18,6 +18,13 @@ class OrphanageController extends Controller
     public function index()
     {
         //
+
+        $user = auth()->user();
+        if ($user->roles->pluck('name')->contains('responsable')) {
+            if ($user->orphanage == null) return abort(403);
+            return redirect(route('orphanages.edit', ['orphanage' => $user->orphanage]));
+        }
+        
         $orphanages = Orphanage::all();
         return view("admin.orphanages.index", compact("orphanages"));
     }

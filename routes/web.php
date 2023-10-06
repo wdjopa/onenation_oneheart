@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\OrphanageController;
+use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -46,6 +47,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
 
     Route::post('orphanages/images', [OrphanageController::class, 'storeImages'])->name('orphanage.storeImages');
 
+
+    Route::resource('responsables', ResponsableController::class);
+    Route::post("responsables/bulk_delete", [ResponsableController::class, "multipleDestroy"])->name("responsables.multipleDestroy");
 });
 // Route::group(['middleware' => 'auth'], function () {});
 
