@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Orphanage;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class OrphanageController extends Controller
 {
@@ -18,6 +21,13 @@ class OrphanageController extends Controller
     public function index()
     {
         //
+
+        $user = auth()->user();
+        if ($user->roles->pluck('name')->contains('responsable')) {
+            if ($user->orphanage == null) return abort(403);
+            return redirect(route('orphanages.edit', ['orphanage' => $user->orphanage]));
+        }
+        
         $orphanages = Orphanage::all();
         return view("admin.orphanages.index", compact("orphanages"));
     }
@@ -339,6 +349,18 @@ class OrphanageController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        $validator = Validator::make($request->all(), [
+            'responsable_id' => [
+                'nullable',
+                'unique:orphanages,responsable_id'
+            ]
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withErrors($validator->errors())->withInput();
+
+
         $orphanage = new Orphanage();
         $orphanage->slug = Str::slug($request->name);
         $orphanage->name = $request->name;
@@ -438,6 +460,19 @@ class OrphanageController extends Controller
     {
 
         $cities = City::all();
+
+        /**
+         * @var User $connected_user
+         */
+        $connected_user = auth()->user();
+
+        if ($connected_user->hasRole('responsable') && $connected_user->id != $orphanage->responsable_id) {
+            return abort(403);
+        }
+
+        $responsables = User::with('roles')->get()->filter(function (User $user) {
+            return $user->hasRole('responsable');
+        });
 
         $data_identity = [];
         $data_identity_promoter = [];
@@ -775,7 +810,7 @@ class OrphanageController extends Controller
         ];
 
         return view("admin.orphanages.edit", compact("cities", "data_needs", 'data_education',
-            'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage'));
+            'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage', 'responsables'));
 
     }
 
@@ -788,9 +823,34 @@ class OrphanageController extends Controller
      */
     public function update(Request $request, Orphanage $orphanage)
     {
+        /**
+         * @var User $connected_user
+         */
+        $connected_user = auth()->user();
+        if (!$connected_user->hasRole('responsable')) {
+            $validator = Validator::make($request->all(), [
+                'responsable_id' => [
+                    'nullable',
+                    Rule::unique('orphanages')->ignore($orphanage->responsable_id, 'responsable_id'),
+                ]
+            ]);
+    
+            if ($validator->fails()) return redirect()->back()->withErrors($validator->errors())->withInput();
+
+
+            $orphanage->data_identity_promoter = [
+                'promoter_name' => $request->promoter_name,
+                'promoter_phone' => $request->promoter_phone,
+                'promoter_email' => $request->promoter_email,
+                'second_name' => $request->second_name,
+                'second_phone' => $request->second_phone,
+            ];
+        }
+
         $orphanage->slug = Str::slug($request->name);
 
         $orphanage->name = $request->name;
+        
         $orphanage->data_identity = [
             'name' => $request->name,
             'email' => $request->email,
@@ -802,13 +862,7 @@ class OrphanageController extends Controller
             'withonoh' => $request->withonoh,
             'mini_description' => $request->mini_description
         ];
-        $orphanage->data_identity_promoter = [
-            'promoter_name' => $request->promoter_name,
-            'promoter_phone' => $request->promoter_phone,
-            'promoter_email' => $request->promoter_email,
-            'second_name' => $request->second_name,
-            'second_phone' => $request->second_phone,
-        ];
+
         $orphanage->data_address = [
             'google_address' => $request->google_address,
             'localisation' => $request->localisation,
@@ -849,6 +903,8 @@ class OrphanageController extends Controller
         $orphanage->city_id = $request->city;
         $orphanage->status = $request->status ?? 0;
 
+        if ($request->has('responsable_id')) $orphanage->responsable_id = $request->responsable_id;
+
         $orphanage->save();
 
         if ($request->hasFile('profile_image')) {
@@ -856,6 +912,8 @@ class OrphanageController extends Controller
                 $media->delete();
             $orphanage->addMedia($request->file('profile_image'))->toMediaCollection('profile_images');
         }
+
+        if ($connected_user->hasRole('responsable')) return redirect()->route("admins.home")->with("success", "L'orphelinat a été modifié avec succès.");
 
         return redirect()->route("orphanages.index")->with("success", "L'orphelinat a été modifié avec succès.");
 

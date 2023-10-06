@@ -158,7 +158,7 @@
                                             <div class="accordion-body">
                                                 <div class="container p-20">
                                                     <strong>Nom du promoteur : </strong>
-                                                    <span>{{ $orphelinat->data_identity_promoter['promoter_name'] ?? '' }}</span>
+                                                    <span>{{ $orphelinat->responsable->name ?? ($orphelinat->data_identity_promoter['promoter_name'] ?? '') }}</span>
                                                 </div>
                                             </div>
                                         </div>
