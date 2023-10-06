@@ -85,7 +85,7 @@
                                             <option class="option" value>Selectionner un promoteur</option>
                                              @foreach ($responsables as $responsable)
                                                  <option value="{{ $responsable->id }}"
-                                                     {{ $orphanage->responsable?->id == $responsable->id ? 'selected' : '' }}>
+                                                     {{ $orphanage->responsable_id == $responsable->id ? 'selected' : '' }}>
                                                      {{ $responsable->name }} ({{ $responsable->email }})</option>
                                              @endforeach
                                          </select>
