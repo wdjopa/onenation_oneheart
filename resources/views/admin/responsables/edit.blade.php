@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 {{-- Titre de la page --}}
 @section('title')
-Utilisateurs
+Responsables - Misae a jour
 @endsection
 
-@section("subtitle", "Modifiez l'utilisateur $user->name")
+@section("subtitle", "Modifiez le responsable $responsable->name")
 
 @section('css')
 <link rel="stylesheet" href="{{asset("admin_assets/vendors/toastify/toastify.css")}}">
@@ -16,16 +16,16 @@ Utilisateurs
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Mise à jour d'un utilisateur</h4>
+            <h4 class="card-title">Mise à jour d'un responsable</h4>
             <small>Tous les champs avec (*) sont obligatoires</small>
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-horizontal" method="POST" action="{{route("users.update", $user)}}"
+                <form class="form form-horizontal" method="POST" action="{{route("responsables.update", $responsable)}}"
                     enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
-                    @include("admin.users.components.form", ["fields" => $fields, "user" => $user])
+                    @include("admin.responsables.components.form", ["fields" => $fields, "responsable" => $responsable])
                 </form>
             </div>
         </div>

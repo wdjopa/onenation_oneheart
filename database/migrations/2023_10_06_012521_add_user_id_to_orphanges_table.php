@@ -14,7 +14,7 @@ class AddUserIdToOrphangesTable extends Migration
     public function up()
     {
         Schema::table('orphanages', function (Blueprint $table) {
-            $table->foreignId('responsable_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('responsable_id')->nullable()->unique()->constrained('users')->nullOnDelete();
         });
     }
 
@@ -26,7 +26,7 @@ class AddUserIdToOrphangesTable extends Migration
     public function down()
     {
         Schema::table('orphanages', function (Blueprint $table) {
-            $table->dropColumn('responsable_id');
+            $table->dropConstrainedForeignId('responsable_id');
         });
     }
 }

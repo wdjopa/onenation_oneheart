@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Orphanage;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class OrphanageController extends Controller
@@ -446,6 +448,19 @@ class OrphanageController extends Controller
 
         $cities = City::all();
 
+        /**
+         * @var User $connected_user
+         */
+        $connected_user = auth()->user();
+
+        if ($connected_user->hasRole('responsable') && $connected_user->id != $orphanage->responsable_id) {
+            return abort(403);
+        }
+
+        $responsables = User::with('roles')->get()->filter(function (User $user) {
+            return $user->hasRole('responsable');
+        });
+
         $data_identity = [];
         $data_identity_promoter = [];
         $data_address = [];
@@ -782,7 +797,7 @@ class OrphanageController extends Controller
         ];
 
         return view("admin.orphanages.edit", compact("cities", "data_needs", 'data_education',
-            'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage'));
+            'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage', 'responsables'));
 
     }
 
@@ -795,6 +810,12 @@ class OrphanageController extends Controller
      */
     public function update(Request $request, Orphanage $orphanage)
     {
+        $validator = Validator::make($request->all(), [
+            'responsable_id' => 'nullable|unique:orphanages,responsable_id',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withErrors($validator->errors())->withInput();
+
         $orphanage->slug = Str::slug($request->name);
 
         $orphanage->name = $request->name;
@@ -855,6 +876,8 @@ class OrphanageController extends Controller
 
         $orphanage->city_id = $request->city;
         $orphanage->status = $request->status ?? 0;
+
+        $orphanage->responsable_id = $request->responsable_id;
 
         $orphanage->save();
 

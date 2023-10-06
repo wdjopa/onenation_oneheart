@@ -13,6 +13,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Orphanage extends Model implements Viewable, HasMedia, Searchable
 {
@@ -57,5 +58,10 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
     public function dons()
     {
         return $this->hasMany(Donation::class);
+    }
+
+    public function responsable() : BelongsTo
+    {
+        return $this->belongsTo(User::class, 'responsable_id');
     }
 }

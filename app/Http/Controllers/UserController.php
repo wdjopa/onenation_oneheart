@@ -17,7 +17,10 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::with('roles')->get()->filter(function (User $user) {
+            return !$user->hasRole('responsable');
+        });
+        
         return view("admin.users.index", compact("users"));
     }
     /**

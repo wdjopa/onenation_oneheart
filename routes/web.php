@@ -12,6 +12,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\OrphanageController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\TestController;
+use App\Http\Middleware\VerifyIsNotResponsable;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,8 @@ use App\Http\Controllers\TestController;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
-    Route::get("/", [AdminController::class, "index"])->name("admins.home");
-    Route::resource("orphanages", OrphanageController::class);
+Route::group(['prefix' => 'admin', 'middleware' => ["auth", VerifyIsNotResponsable::class]], function () {
+    Route::resource("orphanages", OrphanageController::class)->except(["update", "edit"]);
     Route::post("orphanages/bulk_delete", [OrphanageController::class, "multipleDestroy"])->name("orphanages.multipleDestroy");
 
     Route::resource("donations", DonationController::class);
@@ -52,6 +52,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
     Route::post("responsables/bulk_delete", [ResponsableController::class, "multipleDestroy"])->name("responsables.multipleDestroy");
 });
 // Route::group(['middleware' => 'auth'], function () {});
+
+Route::group(['prefix' => 'admin', 'middleware' => ["auth"]], function () {
+    Route::get("/", [AdminController::class, "index"])->name("admins.home");
+    Route::resource('orphanages', OrphanageController::class)->only(['edit', 'update']);
+});
 
 Route::get('/', [PageController::class, "home"])->name("public.home");
 Route::get('/about', [PageController::class, "about"])->name("public.about");

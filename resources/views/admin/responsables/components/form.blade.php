@@ -11,7 +11,7 @@
              </div>
          @endforeach
 
-         <div class="col-md-4 col-lg-2">
+         {{-- <div class="col-md-4 col-lg-2">
              <label>Photo du responsable</label>
          </div>
          <div class="col-md-8 col-lg-10 form-group">
@@ -22,7 +22,7 @@
                  <br>
                  <img src="{{ $responsable->getFirstMediaUrl() }}" style="height: 150px" alt="">
              @endif
-         </div>
+         </div> --}}
 
          <div class="col-sm-12 d-flex justify-content-end">
              <a href="{{ route('responsables.index') }}" class="btn btn-light-secondary me-1 mb-1">Retour</a>

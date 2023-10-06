@@ -18,7 +18,9 @@ class ResponsableController extends Controller
      */
     public function index()
     {
-        $responsables = User::all();
+        $responsables = User::with('roles')->get()->filter(function (User $user) {
+            return $user->hasRole('responsable');
+        });
 
         return view('admin.responsables.index', ['responsables' => $responsables, 'orphanage' => auth()->user()->orphanage]);
     }
@@ -114,24 +116,68 @@ class ResponsableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $responsable)
     {
-        //
+        $fields = [];
+        $fields[] = [
+            "name" => "Nom",
+            "value" => $responsable->name,
+            "field_name" => "name",
+            "placeholder" => "Nom du responsable",
+            "type" => "text",
+            "required" => true,
+        ];
+        $fields[] = [
+            "name" => "Email",
+            "value" => $responsable->email,
+            "field_name" => "email",
+            "placeholder" => "Email du responsable",
+            "type" => "email",
+            "required" => true,
+        ];
+
+        $fields[] = [
+            "name" => "Mot de passe",
+            "field_name" => "password",
+            "placeholder" => "Mot de passe du responsable",
+            "type" => "password"
+        ];
+        $fields[] = [
+            "name" => "Tel",
+            "value" => ($responsable->datas != null && isset($responsable->datas["tel"])) ? $responsable->datas["tel"] : "",
+            "field_name" => "tel",
+            "placeholder" => "N° de téléphone l'utilisateur",
+            "type" => "tel",
+            "required" => true,
+        ];
+
+        return view('admin.responsables.edit', ['fields' => $fields, 'responsable' => $responsable]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User $responsable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $responsable)
     {
-        //
+        $datas = [];
+        $responsable->name = $request->name;
+        $responsable->email = $request->email;
+
+        $datas["tel"] = $request->tel;
+        $responsable->datas = $datas;
+
+        if ($request->password) $responsable->password = Hash::make($request->password);
+
+        $responsable->save();
+
+        return redirect()->route("responsables.index")->with("success", "Le responsable a été mis à jour avec succès.");
     }
 
     /**
@@ -145,8 +191,19 @@ class ResponsableController extends Controller
         //
     }
 
-    public function multipleDestroy() 
+    public function multipleDestroy(Request $request)
     {
-
+        if ($request->ids) {
+            $ids = $request->ids;
+            foreach ($ids as $id) {
+                    $users = User::find($id);
+                    //ActivityLogger::activity("Suppression de l'équipe ID:".$client->id.' par l\'utilisateur ID:'.Auth::id());
+                    $users->delete();
+            }
+            $message = sizeof($ids) . ' responsable(s) supprimé(s) avec succès';
+        } else {
+            $message = "Aucun responsable n'a responsables supprimé";
+        }
+        return redirect()->route("responsables.index")->with('success', $message);
     }
 }
