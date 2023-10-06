@@ -86,7 +86,7 @@
                                              @foreach ($responsables as $responsable)
                                                  <option value="{{ $responsable->id }}"
                                                      {{ $orphanage->responsable?->id == $responsable->id ? 'selected' : '' }}>
-                                                     {{ old('responsable_id', $responsable->name) }}</option>
+                                                     {{ $responsable->name }} ({{ $responsable->email }})</option>
                                              @endforeach
                                          </select>
                                          @if($errors->has('responsable_id'))
