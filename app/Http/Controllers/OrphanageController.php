@@ -334,9 +334,14 @@ class OrphanageController extends Controller
             "type" => "text",
         ];
 
+        // responsables
+
+        $responsables = User::with('roles')->get()->filter(function (User $user) {
+            return $user->hasRole('responsable');
+        });
 
         return view("admin.orphanages.create", compact("cities", "data_needs", 'data_education',
-        'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage'));
+        'data_stats', 'data_financial_infos', 'data_address', 'data_identity_promoter', 'data_identity', 'data_projects', 'orphanage', 'responsables'));
         //
     }
 
