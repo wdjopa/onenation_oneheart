@@ -46,20 +46,26 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
         ]);
 
+        $donation = new Donation;
+
         if ($request->donate_option == 'financial' && $request->payment_mode == 'momo') {
             $request->validate([
                 'tel' => 'required',
-                'amount' => 'required'
+                'amount' => 'required|numeric'
             ]);
         }
-
-        $donation = new Donation;
-        $donation->amount = ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') ? $request->amount * 655 : $request->amount; // Conversion approximative du EUR en XAF lorsque le mode de paiement est PayPal
+        elseif ($request->donate_option == 'financial') {
+            $request->validate([
+                'amount_eur' => 'required|numeric'
+            ]);
+        }
+        $donation->amount = ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') ? $request->amount_eur * 655 : $request->amount; // Conversion approximative du EUR en XAF lorsque le mode de paiement est PayPal
         $donation->status = 0;
         $datas = [
             "name" => $request->name,
@@ -102,13 +108,13 @@ class DonationController extends Controller
 
                 return redirect($json->payment_url);
             } catch (\Exception $e) {
-                return redirect()->back();
+                return redirect()->back()->with('error' ,$e->getMessage());
             }
         } else if ($request->donate_option == 'financial' && $request->payment_mode == 'paypal') {
             try {
                 $paymentService = new PaymentService(new StripeGateway()); // Faire pareil pour MyCollPay
 
-                $donation->amount = $request->amount; // On reprend le montant en EUR
+                $donation->amount = $request->amount_eur; // On reprend le montant en EUR
 
                 $url = $paymentService->processPayment($request, $donation);
 

@@ -80,7 +80,7 @@
                 <div class="col-md-12">
                     <div class="form-group mb-3">
                         <label for="amount">Montant (en EUR)</label>
-                        <input type="number" name="amount" class="form-control"
+                        <input type="number" name="amount_eur" class="form-control"
                             placeholder="Montant à donner (en EUR)" id="amount">
                     </div>
                 </div>
