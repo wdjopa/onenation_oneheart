@@ -46,6 +46,7 @@
                                         <th class="font-14 font-weight-medium text-muted">Montant</th>
                                         <th class="font-14 font-weight-medium text-muted">Mode de paiement</th>
                                         <th class="font-14 font-weight-medium text-muted">Statut</th>
+                                        <th class="font-14 font-weight-medium text-muted">Date</th>
                                         <th class="font-14 font-weight-medium text-muted">Orphelinat associé</th>
                                         <th class="font-14 font-weight-medium text-muted">Action</th>
                                     </tr>
@@ -72,6 +73,9 @@
 
                                                 @if ($donation->status == 1) <div onclick="document.getElementById('donation_id').value='{{$donation->id}}'; document.getElementById('status').value='0'; document.getElementById('update_status').submit()"  class="badge btn bg-light-success">Reçu</div> @else <div onclick="document.getElementById('donation_id').value='{{$donation->id}}'; document.getElementById('status').value='1'; document.getElementById('update_status').submit()"   class="badge btn bg-light-danger">Non reçu</div> @endif
 
+                                            </td>
+                                            <td>
+                                                {{ $donation->created_at }}
                                             </td>
                                             
                                             <td>
