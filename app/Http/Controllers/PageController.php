@@ -163,6 +163,21 @@ class PageController extends Controller
 
             }
 
+            //nombre minimal de garçons
+            if ($request->boys_number != null) {
+
+                $boys_number = (int)$request->boys_number;
+                $orphelinats = $orphelinats->where('data_stats->boys_number', '>=', $boys_number);
+            }
+
+            //nombre minimal de filles
+            if ($request->girls_number != null) {
+
+                $girls_number = (int)$request->girls_number;
+
+                $orphelinats = $query->where('data_stats->girls_number', '>=', $girls_number);
+            }
+
             // Trier par ...
             if ($request->input('sort')) {
                 switch ($request->input('sort')) {
@@ -186,6 +201,7 @@ class PageController extends Controller
             return view("front.orphanages", compact("orphelinats", "villes"));
         }
         catch (Exception $e) {
+            //return redirect()->back()->withErrors(dd($e->getMessage()));
             return redirect()->route('public.orphanages');
         }
     }

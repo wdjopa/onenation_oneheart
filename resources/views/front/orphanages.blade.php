@@ -62,6 +62,18 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3 col-lg-3 col-sm-6 mt-1 mb-1">
+                                    <div class="form-group">
+                                        <input type="number" name="boys_number" class="form-control" placeholder="Nombre minimal de garçons">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-lg-3 col-sm-6 mt-1 mb-1">
+                                    <div class="form-group">
+                                        <input type="number" name="girls_number" class="form-control" placeholder="Nombre minimal de filles">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row mt-5">
                                 <div class="d-flex flex-end items-center">
@@ -70,6 +82,8 @@
                                         <option value="">---</option>
                                         <option value="1">Nombre d'enfants croissant</option>
                                         <option value="2">Nombre d'enfants décroissant</option>
+                                        <option value="3">Don le plus récent</option>
+                                        <option value="4">Don le moins récent</option>
                                     </select>
                                 </div>
                             </div>
