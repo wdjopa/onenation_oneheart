@@ -15,6 +15,7 @@ class Partner extends Model implements HasMedia
         'name',
         'domain',
         'url',
-        'description'
+        'description',
+        'visible',
     ];
 }
