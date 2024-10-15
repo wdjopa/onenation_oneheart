@@ -21,7 +21,19 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
 
     protected $fillable = [
         'name',
-        'data_identity'
+        'data_identity',
+        'status',
+        'slug',
+        'data',
+        'data_identity_promoter',
+        'data_address',
+        'data_financial_infos',
+        'data_stats',
+        'data_education',
+        'data_needs',
+        'data_projects',
+        'city_id',
+        'responsable_id',
     ];
 
     /**
@@ -40,6 +52,11 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
         'data_needs' => 'array',
         'data_projects' => 'array',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('profile_images')->singleFile();
+    }
 
      public function getSearchResult(): SearchResult
      {

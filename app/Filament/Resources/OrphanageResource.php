@@ -5,9 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrphanageResource\Pages;
 use App\Filament\Resources\OrphanageResource\RelationManagers;
 use App\Models\Orphanage;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -21,6 +24,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class OrphanageResource extends Resource
 {
@@ -34,30 +39,32 @@ class OrphanageResource extends Resource
         return $form
             ->schema([
                 Section::make('ID Orphelinat')
-                    ->statePath('data_identity')
                     ->schema([
-                        TextInput::make('name')
+                        TextInput::make('data_identity.name')
                             ->label('Nom')
                             ->columnSpanFull(),
-                        TextInput::make('email')
+                        TextInput::make('data_identity.email')
                             ->label('email')
                             ->email(),
-                        TextInput::make('website')
+                        TextInput::make('data_identity.website')
                             ->label('Site web')
                             ->url(),
-                        TextInput::make('arret_number')
+                        TextInput::make('data_identity.arret_number')
                             ->label('Numero d\'arrete'),
-                        RichEditor::make('history')
+                        RichEditor::make('data_identity.history')
                             ->label('Histoire')
                             ->columnSpanFull(),
-                        Textarea::make('mini_description')
+                        Textarea::make('data_identity.mini_description')
                             ->label('Mini Description')
                             ->columnSpanFull(),
-                        RichEditor::make('description')
+                        RichEditor::make('data_identity.description')
                             ->label('Description')
                             ->columnSpanFull(),
                         SpatieMediaLibraryFileUpload::make('image')
                             ->collection('profile_images')
+                            ->columnSpanFull(),
+                        Checkbox::make('status')
+                            ->label('Rendre visible'),
                         // TextInput::make('withonoh')
                         //     ->label(''),
                     ])
@@ -65,46 +72,213 @@ class OrphanageResource extends Resource
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
-                Section::make('ID du promotteur')
+                Section::make('Informations du promotteur')
+                    ->schema([
+                        Tabs::make('Promoteur')
+                            ->tabs([
+                                Tab::make('Promoteur')
+                                    ->schema([
+                                        Select::make('reponsable_id')
+                                            ->label('Promotteur')
+                                            ->relationship('responsable', 'name')
+                                            ->createOptionForm([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->required()
+                                                    ->label('Nom'),
+                                                Forms\Components\TextInput::make('email')
+                                                    ->email()
+                                                    ->required()
+                                                    ->label('email'),
+                                                Forms\Components\TextInput::make('password')
+                                                    ->password()
+                                                    ->label('Mot de passe'),
+                                                TextInput::make('tel')
+                                                    ->label('Telephone')
+                                                    ->required()
+                                                    ->tel(),
+                                            ])
+                                            ->options(function () {
+                                                return User::query()
+                                                    ->with('roles')
+                                                    ->whereHas('roles', function (Builder $query) {
+                                                        $query->where('name', 'responsable');
+                                                    })
+                                                    ->pluck('name', 'id');
+                                            })
+                                            ->searchable()
+                                            ->preload()
+                                            ->createOptionUsing(function (array $data) {
+                                                $user =  User::query()->create([
+                                                    'name' => $data['name'],
+                                                    'email' => $data['email'],
+                                                    'password' => Hash::make($data['password']),
+                                                    'datas' => ['tel' => $data['tel'], 'visible' => true]
+                                                ]);
+
+                                                if (Role::where('name', 'responsable')->first() == null) Role::create(['name' => 'responsable']);
+
+                                                $user->assignRole(['responsable']);
+
+                                                return $user->getkey();
+                                            })
+                                        ])
+                                    ->columns(2),
+                                Tab::make('Secondant')
+                                    ->schema([
+                                        TextInput::make('data_identity_promoter.second_name')
+                                            ->label('Nom du secondant'),
+                                        TextInput::make('data_identity_promoter.second_phone')
+                                            ->label('Téléphone du secondant')
+                                    ])
+                                    ->columns(2)
+                            ])
+                            ->columnSpanFull()
+
+                    ])
                     ->collapsible()
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
                 Section::make('Adresse de l\'orphelinat')
+                    ->schema([
+                        Select::make('city_id')
+                            ->label('Ville')
+                            ->relationship('city', 'name')
+                            ->searchable()
+                            ->required()
+                            ->preload()
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->label('Nom')
+                                    ->required(),
+                                TextInput::make('description'),
+                                TextInput::make('country_name'),
+                                TextInput::make('country_code'),
+                            ]),
+
+                        TextInput::make('data_address.google_address')
+                            ->label('Adresse Google'),
+                        TextInput::make('data_address.localisation')
+                            ->label('Localisation')
+                    ])
                     ->collapsible()
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
                 Section::make('Informations financières')
+                    ->schema([
+                        TextInput::make('bank_number'),
+                        TextInput::make('om_momo'),
+                    ])
+                    ->statePath('data_financial_infos')
                     ->collapsible()
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
                 Section::make('Statistiques')
+                    ->schema([
+                        TextInput::make('data_stats.children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants'),
+                        TextInput::make('data_stats.children_number_0_6')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants dans la tranche 0-6 ans'),
+                        TextInput::make('data_stats.children_number_7_13')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants dans la tranche 7-13 ans'),
+                        TextInput::make('data_stats.children_number_14_21')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants dans la tranche 14-21 ans'),
+                        TextInput::make('data_stats.boys_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre de garçons'),
+                        TextInput::make('data_stats.girls_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre de filles'),
+                        
+                    ])
                     ->collapsible()
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
                 Section::make('Education dans l\'orphelinat')
+                    ->schema([
+                        TextInput::make('school_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants scolarisés'),
+                        TextInput::make('schoolexam_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants en classe d\'examen'),
+                        TextInput::make('maternelle_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants en maternelle'),
+                        TextInput::make('primary_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants en primaire'),
+                        TextInput::make('college_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants au collège'),
+                        TextInput::make('university_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants à l\'université'),
+                        TextInput::make('professional_children_number')
+                            ->numeric()
+                            ->minValue(0)
+                            ->label('Nombre d\'enfants en recherche de formation professionnelle'),
+                    ])
+                    ->statePath('data_education')
                     ->collapsible()
                     ->collapsed()
                     ->persistCollapsed()
                     ->columns(2),
                 Section::make('Besoins de l\'orphelinat')
+                    ->schema([
+                        RichEditor::make('food_needs')
+                            ->label('Alimentaires'),
+                        RichEditor::make('health_needs')
+                            ->label('Sanitaires + hygiéniques'),
+                        RichEditor::make('school_needs')
+                            ->label('Scolaires'),
+                        RichEditor::make('clothes_needs')
+                            ->label('Vestimentaires'),
+                        RichEditor::make('ludic_needs')
+                            ->label('Ludiques'),
+                        RichEditor::make('other_needs')
+                            ->label('Autres'),
+                    ])
+                    ->statePath('data_needs')
                     ->collapsible()
                     ->collapsed()
-                    ->persistCollapsed()
-                    ->columns(2),
+                    ->persistCollapsed(),
                 Section::make('Projets de l\'orphelinat')
+                    ->schema([
+                        RichEditor::make('projects')
+                            ->label('Projets'),
+                    ])
+                    ->statePath('data_projects')
                     ->collapsible()
                     ->collapsed()
-                    ->persistCollapsed()
-                    ->columns(2),
+                    ->persistCollapsed(),
                 Section::make('ONOH et l\'orphelinat')
+                    ->schema([
+                        RichEditor::make('data_identity.withonoh')
+                            ->label('ONOH et l\'orphelinat'),
+                    ])
                     ->collapsible()
                     ->collapsed()
-                    ->persistCollapsed()
-                    ->columns(2),
+                    ->persistCollapsed(),
             ]);
     }
 

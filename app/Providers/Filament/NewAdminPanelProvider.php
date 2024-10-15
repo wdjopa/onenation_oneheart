@@ -29,8 +29,11 @@ class NewAdminPanelProvider extends PanelProvider
             ->path('new-admin')
             ->login()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Fuchsia,
             ])
+            ->brandName('ONOH')
+            ->brandLogo(asset('lovecare/images/logo.png'))
+            ->brandLogoHeight('4rem')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
