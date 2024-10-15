@@ -15,6 +15,13 @@ class Blog extends Model implements Viewable, HasMedia, Searchable
 {
     use HasFactory, InteractsWithViews, InteractsWithMedia;
 
+    protected $fillable = [
+      'name',
+      'slug',
+      'status',
+      'datas',  
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
 use App\Models\Orphanage;
+use App\Observers\BlogObserver;
 use App\Observers\OphanageObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,5 +32,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Orphanage::observe(OphanageObserver::class);
+        Blog::observe(BlogObserver::class);
     }
 }
