@@ -19,6 +19,11 @@ class Orphanage extends Model implements Viewable, HasMedia, Searchable
 {
     use HasFactory, InteractsWithViews, InteractsWithMedia;
 
+    protected $fillable = [
+        'name',
+        'data_identity'
+    ];
+
     /**
      * The attributes that should be cast to native types.
      *

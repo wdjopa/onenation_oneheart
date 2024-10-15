@@ -8,6 +8,7 @@
         "php": "^8.2.0",
         "cyrildewit/eloquent-viewable": "^7.0",
         "filament/filament": "^3.2",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
