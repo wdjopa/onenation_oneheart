@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\UserRoleEnum;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +15,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, FilamentUser
 {
     use HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
@@ -48,6 +50,11 @@ class User extends Authenticatable implements HasMedia
         'datas' => 'array',
         'email_verified_at' => 'datetime',
     ];
+
+    public function canAccessPanel(\Filament\Panel $panel): bool
+    {
+        return $this->hasRole([UserRoleEnum::ADMIN->value, UserRoleEnum::SUPER_ADMIN->value, UserRoleEnum::RESPONSABLE->value]);
+    }
 
     public function orphanage()
     {

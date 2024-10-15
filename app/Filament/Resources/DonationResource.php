@@ -20,6 +20,7 @@ class DonationResource extends Resource
     protected static ?string $model = Donation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static ?string $navigationGroup = 'Administration';
     protected static ?string $label = 'Don';
 
     public static function form(Form $form): Form
