@@ -18,16 +18,16 @@ class ManageUsers extends ManageRecords
         return [
             Actions\CreateAction::make()
                 ->after(function (User $record) {
-                    if (Role::where('name', UserRoleEnum::RESPONSABLE->value)->first() == null) Role::create(['name' => UserRoleEnum::RESPONSABLE->value]);
+                    // if (Role::where('name', UserRoleEnum::RESPONSABLE->value)->first() == null) Role::create(['name' => UserRoleEnum::RESPONSABLE->value]);
 
-                    $record->assignRole([UserRoleEnum::RESPONSABLE->value]);
+                    // $record->assignRole([UserRoleEnum::RESPONSABLE->value]);
 
-                    $record->update([
-                        'datas' => [
-                            'tel' => $record->datas['tel'],
-                            'visible' => true
-                        ],
-                    ]);
+                    // $record->update([
+                    //     'datas' => [
+                    //         'tel' => $record->datas['tel'],
+                    //         'visible' => true
+                    //     ],
+                    // ]);
                 }),
         ];
     }
