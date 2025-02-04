@@ -15,7 +15,7 @@ class StripeGateway implements BaseGateway
     {
         $key = config('payment.stripe.secret_key');
 
-        $stripe = new StripeClient("sk_test_51Ns709JoXnHjU1qel10BGNDpjyZV982Xzb0uGhXbnAhdPV6i6SAFxBOjzzsKeqmFKapu2ZrOplPmHRH6p0xZGWoH00LgVaPlNm");
+        $stripe = new StripeClient($key);
 
         $session = $stripe->checkout->sessions->create([
             'success_url' => $donation->orphanage_id ? route('public.orphanages.details', $donation->orphanage->slug)."?success=true" : route('public.home')."?success=true",
