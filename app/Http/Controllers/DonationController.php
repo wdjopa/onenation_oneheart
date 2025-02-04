@@ -120,6 +120,7 @@ class DonationController extends Controller
 
                 return redirect($url);
             } catch (\Exception $e) {
+                Log::error($e->getMessage(), ["file" => $e->getFile(), "line" => $e->getLine(), "trace" => $e->getTraceAsString()]);
                 return redirect()->back()->with("error", $e->getMessage());
             }
         }
